@@ -31,7 +31,9 @@ def create_app():
     from add_personal_details import add_personal_details
     from add_declarations import add_declarations
     from add_beneficiary import add_beneficiary_bp, view_beneficiaries_bp
-
+    from admin_routes import admin_bp
+    from sponsor_routes import sponsor_bp
+    from applicant_routes import applicant_bp
     # Register blueprints
     app.register_blueprint(signup)
     app.register_blueprint(add_contact_details)
@@ -42,8 +44,9 @@ def create_app():
     app.register_blueprint(add_declarations)
     app.register_blueprint(add_beneficiary_bp)
     app.register_blueprint(view_beneficiaries_bp)
-    
-
+    app.register_blueprint(admin_bp)
+    app.register_blueprint(sponsor_bp)
+    app.register_blueprint(applicant_bp)
     return app
 
 if __name__ == "__main__":

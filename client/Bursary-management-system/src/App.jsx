@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import SignUp from './SignUp';
+import AddContactDetails from './AddContactDetails';
+import AddFamilyInformation from './AddFamilyInformation';
+import AddSiblingInformation from './AddSiblingInformation';
+import AddInstitutionInformation from './AddInstitutionInformation';
+import AddPersonalDetails from './AddPersonalDetails';
+import AddDeclarations from './AddDeclarations';
+import AddEducationFundingHistory from './AddEducationFundingHistory';
+import ReceiveBursary from './ReceiveBursary';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/sign-up">Sign Up</Link></li>
+                        <li><Link to="/add-contact-details">Add Contact Details</Link></li>
+                        <li><Link to="/add-family-information">Add Family Information</Link></li>
+                        <li><Link to="/add-sibling-information">Add Sibling Information</Link></li>
+                        <li><Link to="/add-institution-information">Add Institution Information</Link></li>
+                        <li><Link to="/add-personal-details">Add Personal Details</Link></li>
+                        <li><Link to="/add-declarations">Add Declarations</Link></li>
+                        <li><Link to="/add-education-funding-history">Add Education Funding History</Link></li>
+                        <li><Link to="/receive-bursary">Receive Bursary</Link></li>
+                    </ul>
+                </nav>
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+                <Switch>
+                    <Route path="/sign-up"><SignUp /></Route>
+                    <Route path="/add-contact-details"><AddContactDetails /></Route>
+                    <Route path="/add-family-information"><AddFamilyInformation /></Route>
+                    <Route path="/add-sibling-information"><AddSiblingInformation /></Route>
+                    <Route path="/add-institution-information"><AddInstitutionInformation /></Route>
+                    <Route path="/add-personal-details"><AddPersonalDetails /></Route>
+                    <Route path="/add-declarations"><AddDeclarations /></Route>
+                    <Route path="/add-education-funding-history"><AddEducationFundingHistory /></Route>
+                    <Route path="/receive-bursary"><ReceiveBursary /></Route>
+                </Switch>
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;

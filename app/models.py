@@ -39,6 +39,11 @@ class StudentDetails(db.Model):
     course = db.Column(db.String(100), nullable=False)
     mode_of_study = db.Column(db.String(100), nullable=False)
     expected_completion_year = db.Column(db.Date, nullable=False)
+    # experimental additions
+    verified = db.Column(db.Boolean, default=False)
+    approved = db.Column(db.Boolean, default=False)
+    needy_score = db.Column(db.Integer)
+
 
 class ParentGuardian(db.Model):
     __Tablename__='parentguardian'
@@ -83,6 +88,10 @@ class Bursary(db.Model):
     fund_amount = db.Column(db.Float, nullable=False)
     contact_person = db.Column(db.String(100), nullable=False)
     photo_url = db.Column(db.String(500))
+    #expermental additions
+    awarded = db.Column(db.Boolean, default=False)
+    rejected = db.Column(db.Boolean, default=False)
+
 
 class Beneficiary(db.Model):
     __Tablename__='beneficiary'
