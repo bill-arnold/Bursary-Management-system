@@ -1,9 +1,5 @@
-#from app import db, ma
-from models import db, User, StudentDetails, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-
-
-
+from models import db, User, StudentDetails, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments
 
 class UserSchema(SQLAlchemyAutoSchema):
     class Meta:

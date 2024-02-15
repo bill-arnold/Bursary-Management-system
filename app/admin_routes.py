@@ -1,36 +1,58 @@
-from flask import Blueprint, request, jsonify
-from models import db, StudentDetails, Bursary  # Import your models
+# resources.py
+from flask import request
+from flask_restful import Resource
+from models import db, StudentDetails, Bursary
+from serializers import StudentDetailsSchema, BursarySchema
+from marshmallow import ValidationError
 
-admin_bp = Blueprint('admin', __name__)
+class VerifyStudent(Resource):
+    def post(self, student_id):
+        schema = StudentDetailsSchema()
+        try:
+            data = schema.load(request.get_json())
+        except ValidationError as err:
+            return err.messages, 400
 
-@admin_bp.route('/verify-student/<student_id>', methods=['POST'])
-def verify_student(student_id):
-    student = StudentDetails.query.get(student_id)
-    if student:
-        student.verified = True
-        db.session.commit()
-        return jsonify({"message": "Student verified successfully."}), 200
-    return jsonify({"message": "Student not found."}), 404
+        student = StudentDetails.query.get(student_id)
+        if student:
+            student.verified = True
+            db.session.commit()
+            return {"message": "Student verified successfully."}, 200
+        return {"message": "Student not found."}, 404
 
-@admin_bp.route('/approve-student/<student_id>', methods=['POST'])
-def approve_student(student_id):
-    student = StudentDetails.query.get(student_id)
-    if student:
-        student.approved = True
-        db.session.commit()
-        return jsonify({"message": "Student approved successfully."}), 200
-    return jsonify({"message": "Student not found."}), 404
+class ApproveStudent(Resource):
+    def post(self, student_id):
+        schema = StudentDetailsSchema()
+        try:
+            data = schema.load(request.get_json())
+        except ValidationError as err:
+            return err.messages, 400
 
-@admin_bp.route('/award-score/<student_id>', methods=['POST'])
-def award_score(student_id):
-    student = StudentDetails.query.get(student_id)
-    if student:
-        student.needy_score = request.json.get('score')
-        db.session.commit()
-        return jsonify({"message": "Score awarded successfully."}), 200
-    return jsonify({"message": "Student not found."}), 404
+        student = StudentDetails.query.get(student_id)
+        if student:
+            student.approved = True
+            db.session.commit()
+            return {"message": "Student approved successfully."}, 200
+        return {"message": "Student not found."}, 404
 
-@admin_bp.route('/view-applied-bursaries', methods=['GET'])
-def view_applied_bursaries():
-    applications = Bursary.query.all()
-    return jsonify([application.to_dict() for application in applications]), 200
+class AwardScore(Resource):
+    def post(self, student_id):
+        schema = StudentDetailsSchema()
+        try:
+            data = schema.load(request.get_json())
+        except ValidationError as err:
+            return err.messages, 400
+
+        student = StudentDetails.query.get(student_id)
+        if student:
+            student.needy_score = data.get('score')
+            db.session.commit()
+            return {"message": "Score awarded successfully."}, 200
+        return {"message": "Student not found."}, 404
+
+class ViewAppliedBursaries(Resource):
+    def get(self):
+        schema = BursarySchema(many=True)
+        applications = Bursary.query.all()
+        result = schema.dump(applications)
+        return result, 200

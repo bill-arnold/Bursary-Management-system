@@ -4,10 +4,14 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from flask_migrate import Migrate
-
+from flask_restful import Api
+from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedBursaries
+from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
+from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddPersonalDetails, AddDeclarations, AddEducationFundingHistory, ReceiveBursary
 # Initialize Flask app
 def create_app():
     app = Flask(__name__)
+    api = Api(app) 
     from models import db  # Importing db from models
 
     # Configuration
@@ -23,32 +27,37 @@ def create_app():
 
     # Import blueprints after initializing extensions to avoid circular import issues
 
-    from signup import signup
-    from add_contact_details import add_contact_details
-    from add_family_information import add_family_information
-    from add_sibling_infromation import add_sibling_information
-    from add_institution_information import add_institution_information
-    from add_personal_details import add_personal_details
-    from add_declarations import add_declarations
-    from add_beneficiary import add_beneficiary_bp, view_beneficiaries_bp
-    from admin_routes import admin_bp
-    from sponsor_routes import sponsor_bp
-    from applicant_routes import applicant_bp
+    
+    #from admin_routes import admin_bp
+    #from sponsor_routes import sponsor_bp
+    #from applicant_routes import applicant_bp
     # Register blueprints
-    app.register_blueprint(signup)
-    app.register_blueprint(add_contact_details)
-    app.register_blueprint(add_family_information)
-    app.register_blueprint(add_sibling_information)
-    app.register_blueprint(add_institution_information)
-    app.register_blueprint(add_personal_details)
-    app.register_blueprint(add_declarations)
-    app.register_blueprint(add_beneficiary_bp)
-    app.register_blueprint(view_beneficiaries_bp)
-    app.register_blueprint(admin_bp)
-    app.register_blueprint(sponsor_bp)
-    app.register_blueprint(applicant_bp)
-    return app
+    
+    
+    #app.register_blueprint(admin_bp)
+    #admin_routes
+    api.add_resource(VerifyStudent, '/verify-student/<int:student_id>')
+    api.add_resource(ApproveStudent, '/approve-student/<int:student_id>')
+    api.add_resource(AwardScore, '/award-score/<int:student_id>')
+    api.add_resource(ViewAppliedBursaries, '/view_applied_bursaries')
+    #sponsor_routes
+    api.add_resource(AddBursary, '/add-bursary')
+    api.add_resource(ViewApplications, '/view-applications/<int:sponsor_id>')
+    api.add_resource(AwardBursary, '/award-bursary/<int:application_id>')
+    api.add_resource(ViewStudents, '/view-students')
+    api.add_resource(RejectRequest, '/reject-request/<int:application_id>')
+    #applicant route
+    api.add_resource(SignUp, '/sign-up')
+    api.add_resource(AddContactDetails, '/add-contact-details/<int:user_id>')
+    api.add_resource(AddFamilyInformation, '/add-family-information/<int:student_id>')
+    api.add_resource(AddSiblingInformation, '/add-sibling-information/<int:student_id>')
+    api.add_resource(AddInstitutionInformation, '/add-institution-information/<int:student_id>')
+    api.add_resource(AddPersonalDetails, '/add-personal-details/<int:student_id>')
+    api.add_resource(AddDeclarations, '/add-declarations/<int:student_id>')
+    api.add_resource(AddEducationFundingHistory, '/add-education-funding-history/<int:student_id>')
+    api.add_resource(ReceiveBursary, '/receive-bursary/<int:student_id>')
 
+    return app 
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True)

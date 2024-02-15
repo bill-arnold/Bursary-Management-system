@@ -10,7 +10,7 @@ def generate_uuid():
     return str(uuid.uuid4())
 
 class User(db.Model):
-    __Tablename__='user'
+    __tablename__='user'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -42,7 +42,7 @@ class StudentDetails(db.Model):
     # experimental additions
     verified = db.Column(db.Boolean, default=False)
     approved = db.Column(db.Boolean, default=False)
-    needy_score = db.Column(db.Integer)
+    needy_score = db.Column(db.Integer())
 
 
 class ParentGuardian(db.Model):
@@ -88,9 +88,6 @@ class Bursary(db.Model):
     fund_amount = db.Column(db.Float, nullable=False)
     contact_person = db.Column(db.String(100), nullable=False)
     photo_url = db.Column(db.String(500))
-    #expermental additions
-    awarded = db.Column(db.Boolean, default=False)
-    rejected = db.Column(db.Boolean, default=False)
 
 
 class Beneficiary(db.Model):
