@@ -2,7 +2,7 @@
 from flask import request
 from flask_restful import Resource
 from models import db, StudentDetails, Bursary
-from serializer import StudentDetailsSchema, BursarySchema
+from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
 
 class AddBursary(Resource):

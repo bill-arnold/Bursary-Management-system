@@ -40,9 +40,9 @@ class StudentDetails(db.Model):
     mode_of_study = db.Column(db.String(100), nullable=False)
     expected_completion_year = db.Column(db.Date, nullable=False)
     # experimental additions
-    verified = db.Column(db.Boolean, default=False)
-    approved = db.Column(db.Boolean, default=False)
-    needy_score = db.Column(db.Integer())
+    #verified = db.Column(db.Boolean, default=False)
+    #approved = db.Column(db.Boolean, default=False)
+    #needy_score = db.Column(db.Integer())
 
 
 class ParentGuardian(db.Model):
