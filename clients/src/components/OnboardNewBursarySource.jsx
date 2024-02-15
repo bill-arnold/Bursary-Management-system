@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { onboardNewSourcesOfBursary } from './api';  // You would need to define this function in api.jsx
+import { onboardNewBursarySource } from '/src/components/api';
+ 
 
 const OnboardNewSourcesOfBursary = () => {
     const [sourceInfo, setSourceInfo] = useState({
@@ -15,7 +16,7 @@ const OnboardNewSourcesOfBursary = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await onboardNewSourcesOfBursary(sourceInfo);
+            const response = await onboardNewBursarySource(sourceInfo);
             console.log(response.data);
         } catch (error) {
             console.error(error);

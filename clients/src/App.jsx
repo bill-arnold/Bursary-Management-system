@@ -1,29 +1,30 @@
-// app.jsx
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+
+
 // Import your existing components...
 import SignUp from './components/SignUp';
-import AddContactDetails from 'src/components/AddContactDetails';
-import AddFamilyInformation from 'src/components/AddFamilyInformation';
-import AddSiblingInformation from 'src/components/AddSiblingInformation';
-import AddInstitutionInformation from 'src/components/AddInstitutionInformation';
-import AddPersonalDetails from 'src/components/AddPersonalDetails';
-import AddDeclarations from 'src/components/AddDeclarations';
-import AddEducationFundingHistory from 'src/components/AddEducationFundingHistory';
-import ReceiveBursary from 'src/components/ReceiveBursary';
+import AddContactDetails from './components/AddContactDetails';
+import AddFamilyInformation from './components/AddFamilyInformation';
+import AddSiblingInformation from './components/AddSiblingInformation';
+import AddInstitutionInformation from './components/AddInstitutionInformation';
+import AddPersonalDetails from './components/AddPersonalDetails';
+import AddDeclarations from './components/AddDeclarations';
+import AddEducationFundingHistory from './components/AddEducationFundingHistory';
+import ReceiveBursary from './components/ReceiveBursary';
 
 // Import your new components...
-import VerifyStudentInformation from 'src/components/VerifyStudentInformation';
-import ApproveStudentInformation from 'src/components/ApproveStudentInformation';
-import AwardStudentNeedyScore from 'src/components/AwardStudentNeedyScore';
-import OnboardNewBursarySource from 'src/components/OnboardNewBursarySource';
-import ViewAppliedBursaries from 'src/components/ViewAppliedBursaries';
-import CreateNewBursary from 'src/components/CreateNewBursary';
-import ViewApplications from 'src/components/ViewApplications';
-import AwardBursaries from 'src/components/AwardBursaries';
-import ViewStudents from 'src/components/ViewStudents';
-import RejectRequest from 'src/components/RejectRequest';
+import VerifyStudentInformation from './components/VerifyStudentInformation';
+// import ApproveStudentInformation from './components/ApproveStudentInformation';
+import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
+import OnboardNewBursarySource from './components/OnboardNewBursarySource';
+import ViewAppliedBursaries from './components/ViewAppliedBursaries';
+// import CreateNewBursary from './components/CreateNewBursary';
+// import ViewApplications from './components/ViewApplications';
+import AwardBursaries from './components/AwardBursaries';
+import ViewStudents from './components/ViewStudents';
+import RejectRequest from './components/RejectRequest';
 
 const App = () => {
     return (
@@ -50,15 +51,15 @@ const App = () => {
                         <ReceiveBursary />
                     </Route>
                     <Route path="/sponsors">
-                        <CreateNewBursary />
-                        <ViewApplications />
+                        {/* <CreateNewBursary />
+                        <ViewApplications /> */}
                         <AwardBursaries />
                         <ViewStudents />
                         <RejectRequest />
                     </Route>
                     <Route path="/admin">
                         <VerifyStudentInformation />
-                        <ApproveStudentInformation />
+                        {/* <ApproveStudentInformation /> */}
                         <AwardStudentNeedyScore />
                         <OnboardNewBursarySource />
                         <ViewAppliedBursaries />
