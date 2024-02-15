@@ -24,7 +24,9 @@ const AddDeclarations = ({ studentId }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* Add input fields for each property in declarations */}
+            <input type="text" name="declaration1" value={declarations.declaration1} onChange={handleChange} placeholder="Declaration 1" required />
+            <input type="text" name="declaration2" value={declarations.declaration2} onChange={handleChange} placeholder="Declaration 2" required />
+            <input type="text" name="declaration3" value={declarations.declaration3} onChange={handleChange} placeholder="Declaration 3" required />
             <button type="submit">Add Declarations</button>
         </form>
     );
