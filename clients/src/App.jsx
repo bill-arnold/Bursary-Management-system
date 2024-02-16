@@ -1,9 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-
-
-// Import your existing components...
+// import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import AddContactDetails from './components/AddContactDetails';
 import AddFamilyInformation from './components/AddFamilyInformation';
@@ -13,15 +9,10 @@ import AddPersonalDetails from './components/AddPersonalDetails';
 import AddDeclarations from './components/AddDeclarations';
 import AddEducationFundingHistory from './components/AddEducationFundingHistory';
 import ReceiveBursary from './components/ReceiveBursary';
-
-// Import your new components...
 import VerifyStudentInformation from './components/VerifyStudentInformation';
-// import ApproveStudentInformation from './components/ApproveStudentInformation';
 import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
 import OnboardNewBursarySource from './components/OnboardNewBursarySource';
 import ViewAppliedBursaries from './components/ViewAppliedBursaries';
-// import CreateNewBursary from './components/CreateNewBursary';
-// import ViewApplications from './components/ViewApplications';
 import AwardBursaries from './components/AwardBursaries';
 import ViewStudents from './components/ViewStudents';
 import RejectRequest from './components/RejectRequest';
@@ -29,45 +20,29 @@ import RejectRequest from './components/RejectRequest';
 const App = () => {
     return (
         <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/applicants">Applicants</Link></li>
-                        <li><Link to="/sponsors">Sponsors</Link></li>
-                        <li><Link to="/admin">Admin</Link></li>
-                    </ul>
-                </nav>
-                <Switch>
-                    <Route path="/applicants">
-                        <SignUp />
-                        <AddContactDetails />
-                        <AddFamilyInformation />
-                        <AddSiblingInformation />
-                        <AddInstitutionInformation />
-                        <AddPersonalDetails />
-                        <AddDeclarations />
-                        <AddEducationFundingHistory />
-                        <ReceiveBursary />
-                    </Route>
-                    <Route path="/sponsors">
-                        {/* <CreateNewBursary />
-                        <ViewApplications /> */}
-                        <AwardBursaries />
-                        <ViewStudents />
-                        <RejectRequest />
-                    </Route>
-                    <Route path="/admin">
-                        <VerifyStudentInformation />
-                        {/* <ApproveStudentInformation /> */}
-                        <AwardStudentNeedyScore />
-                        <OnboardNewBursarySource />
-                        <ViewAppliedBursaries />
-                    </Route>
-                </Switch>
-            </div>
+            <Routes>
+                <Route path="/applicants" element={<SignUp />}>
+                    <Route path="add-contact-details" element={<AddContactDetails />} />
+                    <Route path="add-family-information" element={<AddFamilyInformation />} />
+                    <Route path="add-sibling-information" element={<AddSiblingInformation />} />
+                    <Route path="add-institution-information" element={<AddInstitutionInformation />} />
+                    <Route path="add-personal-details" element={<AddPersonalDetails />} />
+                    <Route path="add-declarations" element={<AddDeclarations />} />
+                    <Route path="add-education-funding-history" element={<AddEducationFundingHistory />} />
+                    <Route path="receive-bursary" element={<ReceiveBursary />} />
+                </Route>
+                <Route path="/admin" element={<VerifyStudentInformation />}>
+                    <Route path="award-student-needy-score" element={<AwardStudentNeedyScore />} />
+                    <Route path="onboard-new-bursary-source" element={<OnboardNewBursarySource />} />
+                    <Route path="view-applied-bursaries" element={<ViewAppliedBursaries />} />
+                </Route>
+                <Route path="/sponsors" element={<AwardBursaries />}>
+                    <Route path="view-students" element={<ViewStudents />} />
+                    <Route path="reject-request" element={<RejectRequest />} />
+                </Route>
+            </Routes>
         </Router>
     );
-}
+};
 
 export default App;
