@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 
 
@@ -38,33 +38,39 @@ const App = () => {
                         <li><Link to="/admin">Admin</Link></li>
                     </ul>
                 </nav>
-                <Switch>
-                    <Route path="/applicants">
-                        <SignUp />
-                        <AddContactDetails />
-                        <AddFamilyInformation />
-                        <AddSiblingInformation />
-                        <AddInstitutionInformation />
-                        <AddPersonalDetails />
-                        <AddDeclarations />
-                        <AddEducationFundingHistory />
-                        <ReceiveBursary />
-                    </Route>
-                    <Route path="/sponsors">
-                        {/* <CreateNewBursary />
-                        <ViewApplications /> */}
-                        <AwardBursaries />
-                        <ViewStudents />
-                        <RejectRequest />
-                    </Route>
-                    <Route path="/admin">
-                        <VerifyStudentInformation />
-                        {/* <ApproveStudentInformation /> */}
-                        <AwardStudentNeedyScore />
-                        <OnboardNewBursarySource />
-                        <ViewAppliedBursaries />
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route path="/applicants" element={
+                        <>
+                            <SignUp />
+                            <AddContactDetails />
+                            <AddFamilyInformation />
+                            <AddSiblingInformation />
+                            <AddInstitutionInformation />
+                            <AddPersonalDetails />
+                            <AddDeclarations />
+                            <AddEducationFundingHistory />
+                            <ReceiveBursary />
+                        </>
+                    }/>
+                    <Route path="/sponsors" element={
+                        <>
+                            {/* <CreateNewBursary />
+                            <ViewApplications /> */}
+                            <AwardBursaries />
+                            <ViewStudents />
+                            <RejectRequest />
+                        </>
+                    }/>
+                    <Route path="/admin" element={
+                        <>
+                            <VerifyStudentInformation />
+                            {/* <ApproveStudentInformation /> */}
+                            <AwardStudentNeedyScore />
+                            <OnboardNewBursarySource />
+                            <ViewAppliedBursaries />
+                        </>
+                    }/>
+                </Routes>
             </div>
         </Router>
     );
