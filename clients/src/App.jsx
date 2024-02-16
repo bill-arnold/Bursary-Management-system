@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import './App.css';
 
 
 // Import your existing components...
@@ -29,6 +29,7 @@ import RejectRequest from './components/RejectRequest';
 const App = () => {
     return (
         <Router>
+            <h1>Bursary Management System</h1>
             <div>
                 <nav>
                     <ul>

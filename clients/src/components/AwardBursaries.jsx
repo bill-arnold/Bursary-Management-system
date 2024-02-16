@@ -12,7 +12,10 @@ const AwardBursaries = ({ applicationId }) => {
     };
 
     return (
+        <div>
+            Award bursaries
         <button onClick={handleClick}>Award Bursary</button>
+        </div>
     );
 };
 

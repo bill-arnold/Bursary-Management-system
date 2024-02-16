@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000';  // Replace with your API's base URL
+const API_URL = 'http://127.0.0.1:5555/';  // Replace with your API's base URL
 
 export const signUp = (userData) => axios.post(`${API_URL}/sign-up`, userData);
 export const addContactDetails = (userId, contactDetails) => axios.post(`${API_URL}/add-contact-details/${userId}`, contactDetails);
