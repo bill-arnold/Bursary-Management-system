@@ -4,6 +4,7 @@ from flask_restful import Resource
 from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
+import uuid
 
 class VerifyStudent(Resource):
     def post(self, student_id):
@@ -12,6 +13,7 @@ class VerifyStudent(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
@@ -27,6 +29,7 @@ class ApproveStudent(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
@@ -42,6 +45,7 @@ class AwardScore(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
@@ -56,3 +60,15 @@ class ViewAppliedBursaries(Resource):
         applications = Bursary.query.all()
         result = schema.dump(applications)
         return result, 200
+class OnboardBursary(Resource):
+    def post(self):
+        schema = BursarySchema()
+        try:
+            data = schema.load(request.get_json())
+        except ValidationError as err:
+            return err.messages, 400
+
+        new_bursary = Bursary(**data)
+        db.session.add(new_bursary)
+        db.session.commit()
+        return {"message": "New bursary onboarded successfully."}, 201

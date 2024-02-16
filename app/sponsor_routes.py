@@ -4,6 +4,7 @@ from flask_restful import Resource
 from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
+import uuid
 
 class AddBursary(Resource):
     def post(self):
@@ -19,15 +20,16 @@ class AddBursary(Resource):
         return {"message": "Bursary added successfully."}, 201
 
 class ViewApplications(Resource):
-    def get(self, sponsor_id):
+    def get(self):
         schema = BursarySchema(many=True)
-        applications = Bursary.query.filter_by(sponsor_id=sponsor_id)
+        applications = Bursary.query.all()
         result = schema.dump(applications)
         return result, 200
 
 class AwardBursary(Resource):
     def post(self, application_id):
         application = Bursary.query.get(application_id)
+        application_id = uuid.UUID(application_id)
         if application:
             application.awarded = True
             db.session.commit()
@@ -44,6 +46,7 @@ class ViewStudents(Resource):
 class RejectRequest(Resource):
     def post(self, application_id):
         application = Bursary.query.get(application_id)
+        application_id = uuid.UUID(application_id)
         if application:
             application.rejected = True
             db.session.commit()

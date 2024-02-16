@@ -4,7 +4,7 @@ from flask_restful import Resource
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory
 from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema
 from marshmallow import ValidationError
-
+import uuid
 class SignUp(Resource):
     def post(self):
         schema = UserSchema()
@@ -25,6 +25,7 @@ class AddContactDetails(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        user_id = uuid.UUID(user_id)
 
         user = User.query.get(user_id)
         if user:
@@ -40,6 +41,9 @@ class AddFamilyInformation(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        
+        # Convert student_id to a UUID
+        student_id = uuid.UUID(student_id)
 
         new_info = ParentGuardian(student_id=student_id, **data)
         db.session.add(new_info)
@@ -53,6 +57,8 @@ class AddSiblingInformation(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        
+        student_id = uuid.UUID(student_id)
 
         new_info = Siblings(student_id=student_id, **data)
         db.session.add(new_info)
@@ -66,6 +72,8 @@ class AddInstitutionInformation(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
@@ -87,6 +95,8 @@ class AddPersonalDetails(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
@@ -111,6 +121,8 @@ class AddDeclarations(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
@@ -127,6 +139,8 @@ class AddEducationFundingHistory(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        
+        student_id = uuid.UUID(student_id)
 
         new_history = EducationFundingHistory(student_id=student_id, **data)
         db.session.add(new_history)
@@ -140,6 +154,7 @@ class ReceiveBursary(Resource):
             data = schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 400
+        student_id = uuid.UUID(student_id)
 
         student = StudentDetails.query.get(student_id)
         if student:
