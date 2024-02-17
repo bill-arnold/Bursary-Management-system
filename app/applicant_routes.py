@@ -88,31 +88,35 @@ class AddInstitutionInformation(Resource):
             return {"message": "Institution information added successfully."}, 200
         return {"message": "Student not found."}, 404
 
-class AddPersonalDetails(Resource):
-    def post(self, student_id):
+
+
+from flask import request
+from marshmallow import ValidationError
+
+class AddStudent(Resource):
+    def post(self, user_id):
         schema = StudentDetailsSchema()
         try:
-            data = schema.load(request.get_json())
+            # Load the JSON data from the request into the schema
+            student_data = schema.load(request.get_json())
         except ValidationError as err:
-            return err.messages, 400
-        
-        student_id = uuid.UUID(student_id)
+            # If the data is invalid, return the errors
+            return {'errors': err.messages}, 400
+        user_id = uuid.UUID(user_id)
 
-        student = StudentDetails.query.get(student_id)
-        if student:
-            student.firstname = data.get('firstname')
-            student.lastname = data.get('lastname')
-            student.contact_phone_number = data.get('contact_phone_number')
-            student.photo_url = data.get('photo_url')
-            student.gender = data.get('gender')
-            student.dob = data.get('dob')
-            student.place_of_birth = data.get('place_of_birth')
-            student.village = data.get('village')
-            student.ward = data.get('ward')
-            student.constituency = data.get('constituency')
-            db.session.commit()
-            return {"message": "Personal details added successfully."}, 200
-        return {"message": "Student not found."}, 404
+        # Add the user_id to the student_data
+        student_data['user_id'] = user_id
+
+        # Create a new StudentDetails instance and add it to the database
+        new_student = StudentDetails(**student_data)
+        db.session.add(new_student)
+        db.session.commit()
+
+        # Return the serialized new student
+        return schema.dump(new_student), 201
+
+
+
 
 class AddDeclarations(Resource):
     def post(self, student_id):

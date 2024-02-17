@@ -7,8 +7,8 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedBursaries,OnboardBursary
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
-from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddPersonalDetails, AddDeclarations, AddEducationFundingHistory, ReceiveBursary
-from get_data import GetAllUsers, GetAllStudentDetails, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries
+from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary
+from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents
 def create_app():
     app = Flask(__name__)
     api = Api(app) 
@@ -53,14 +53,14 @@ def create_app():
     api.add_resource(AddFamilyInformation, '/add-family-information/<string:student_id>')
     api.add_resource(AddSiblingInformation, '/add-sibling-information/<string:student_id>')
     api.add_resource(AddInstitutionInformation, '/add-institution-information/<string:student_id>')
-    api.add_resource(AddPersonalDetails, '/add-personal-details/<string:student_id>')
+    api.add_resource(AddStudent, '/addstudent/<string:user_id>')
     api.add_resource(AddDeclarations, '/add-declarations/<string:student_id>')
     api.add_resource(AddEducationFundingHistory, '/add-education-funding-history/<string:student_id>')
     api.add_resource(ReceiveBursary, '/receive-bursary/<string:student_id>')
     #routes for get_data.py
     api.add_resource(GetAllUsers, '/get-all-users')
     # StudentDetails routes
-    api.add_resource(GetAllStudentDetails, '/get-all-student-details')
+    #api.add_resource(GetAllStudentDetails, '/get-all-student-details')
     # ParentGuardian routes
     api.add_resource(GetAllParentGuardians, '/get-all-parent-guardians')
     # Siblings routes
@@ -69,6 +69,9 @@ def create_app():
     api.add_resource(GetAllEducationFundingHistories, '/get-all-education-funding-histories')
     # Bursary routes
     api.add_resource(GetAllBursaries, '/get-all-bursaries')
+    #get all students
+    api.add_resource(GetAllStudents, '/get-all-students')
+
 
     return app 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ const API_URL = 'http://127.0.0.1:5555/';  // Replace with your API's base URL
 
 export const signUp = (userData) => axios.post(`${API_URL}/sign-up`, userData);
 export const addContactDetails = (userId, contactDetails) => axios.post(`${API_URL}/add-contact-details/${userId}`, contactDetails);
+//export const addContactDetails = (userId, contactDetails) => axios.post(`${API_URL}/add-contact-details/${userId}`, contactDetails);
 export const addFamilyInformation = (studentId, familyInfo) => axios.post(`${API_URL}/add-family-information/${studentId}`, familyInfo);
 export const addSiblingInformation = (studentId, siblingInfo) => axios.post(`${API_URL}/add-sibling-information/${studentId}`, siblingInfo);
 export const addInstitutionInformation = (studentId, institutionInfo) => axios.post(`${API_URL}/add-institution-information/${studentId}`, institutionInfo);
@@ -25,3 +26,8 @@ export const viewApplications = (sponsorId) => axios.get(`${API_URL}/view-applic
 export const awardBursaries = (sponsorId, studentId, bursaryDetails) => axios.post(`${API_URL}/award-bursaries/${sponsorId}/${studentId}`, bursaryDetails);
 export const viewStudents = (sponsorId) => axios.get(`${API_URL}/view-students/${sponsorId}`);
 export const rejectRequest = (sponsorId, requestId) => axios.post(`${API_URL}/reject-request/${sponsorId}/${requestId}`);
+
+//get all students
+export const getAllStudents = () => axios.get(`${API_URL}/get-all-students`);
+//get all users
+export const getAllUsers = () => axios.get(`${API_URL}/get-all-users`);

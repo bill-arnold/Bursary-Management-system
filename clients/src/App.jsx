@@ -5,10 +5,10 @@ import './App.css';
 
 // Import your existing components...
 import SignUp from './components/SignUp';
-import AddContactDetails from './components/AddContactDetails';
+//import AddContactDetails from './components/AddContactDetails';
 import AddFamilyInformation from './components/AddFamilyInformation';
 import AddSiblingInformation from './components/AddSiblingInformation';
-import AddInstitutionInformation from './components/AddInstitutionInformation';
+//import AddInstitutionInformation from './components/AddInstitutionInformation';
 import AddPersonalDetails from './components/AddPersonalDetails';
 import AddDeclarations from './components/AddDeclarations';
 import AddEducationFundingHistory from './components/AddEducationFundingHistory';
@@ -42,13 +42,20 @@ const App = () => {
                 <Routes>
                     <Route path="/applicants" element={
                         <>
+                        <h2>SignUp</h2>
                             <SignUp />
-                            <AddContactDetails />
+                            {/*<AddContactDetails />*/}
+                            <h2>AddFamilyInformation</h2>
                             <AddFamilyInformation />
+                            <h2>AddSiblingInformation</h2>
                             <AddSiblingInformation />
-                            <AddInstitutionInformation />
+                            {/*<h2>AddInstitutionInformation</h2>
+                            <AddInstitutionInformation />*/}
+                            <h2>AddStudentDetails</h2>
                             <AddPersonalDetails />
+                            <h2>AddDeclarations</h2>
                             <AddDeclarations />
+                            <h2>AddEducationFundingHistory</h2>
                             <AddEducationFundingHistory />
                             <ReceiveBursary />
                         </>
