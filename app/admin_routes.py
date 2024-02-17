@@ -17,10 +17,9 @@ student_details = api.model('StudentDetails', {
 bursary_details = api.model('BursaryDetails', {
     'bursary_id': fields.String(required=True, description='The bursary unique identifier'),
     'name': fields.String(required=True, description='Name of the bursary'),
-    # Add more fields as per your Bursary model
 })
 
-# Assuming student_id is part of the URL path and score is passed in the JSON body
+# Student_id is part of the URL path and score is passed in the JSON body
 score_parser = reqparse.RequestParser()
 score_parser.add_argument('score', type=int, required=True, help='Needy score to award', location='json')
 
