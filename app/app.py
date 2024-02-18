@@ -9,6 +9,7 @@ from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedB
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
 from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddPersonalDetails, AddDeclarations, AddEducationFundingHistory, ReceiveBursary
 from get_data import GetAllUsers, GetAllStudentDetails, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries
+
 def create_app():
     app = Flask(__name__)
     api = Api(app) 
@@ -25,6 +26,15 @@ def create_app():
     jwt = JWTManager(app)
     CORS(app)
 
+
+    #Flask-Mail config
+    app.config['MAIL_SERVER']='smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'rotichrotich70@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'simw mswg zscy orjf'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+
     # Import blueprints after initializing extensions to avoid circular import issues
 
     
@@ -34,6 +44,8 @@ def create_app():
     # Register blueprints
     
     
+    api = Api(app, version='1.0', title='Bursary_management', description='Bursary Management System Platform API')
+
     #app.register_blueprint(admin_bp)
     #admin_routes
     api.add_resource(VerifyStudent, '/verify-student/<string:student_id>')
@@ -71,6 +83,7 @@ def create_app():
     api.add_resource(GetAllBursaries, '/get-all-bursaries')
 
     return app 
+
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True)

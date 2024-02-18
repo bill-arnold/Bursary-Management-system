@@ -1,5 +1,6 @@
 from flask_restx import Resource, fields, Namespace, reqparse
 from flask import request
+from email_utils import send_student_approved_email, send_score_awarded_email
 from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
@@ -58,6 +59,10 @@ class ApproveStudent(Resource):
         if student:
             student.approved = data.get('approved')
             db.session.commit()
+
+             # Send an award email to the Student
+            send_student_approved_email(student)
+                
             return {"message": "Student approved successfully."}, 200
         return {"message": "Student not found."}, 404
 
@@ -73,6 +78,9 @@ class AwardScore(Resource):
         if student:
             student.needy_score = args.get('score')
             db.session.commit()
+
+            # Send an award email to the Student
+            send_score_awarded_email(student)
             return {"message": "Score awarded successfully."}, 200
         return {"message": "Student not found."}, 404
 

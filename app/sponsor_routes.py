@@ -1,5 +1,6 @@
 from flask_restx import Resource, fields, Namespace, reqparse
 from flask import request
+from email_utils import send_bursary_awarded_email, send_bursary_rejected_email
 from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
@@ -46,6 +47,10 @@ class AwardBursary(Resource):
         if application:
             application.awarded = True
             db.session.commit()
+
+            # Send an award email to the applicant
+            send_bursary_awarded_email(application)
+
             return {"message": "Bursary awarded successfully."}, 200
         return {"message": "Application not found."}, 404
 
@@ -67,5 +72,9 @@ class RejectRequest(Resource):
         if application:
             application.rejected = True
             db.session.commit()
+
+                # Send an award email to the applicant
+            send_bursary_rejected_email(application)
+
             return {"message": "Request rejected successfully."}, 200
         return {"message": "Application not found."}, 404
