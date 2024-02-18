@@ -1,8 +1,8 @@
 # resources.py
 from flask import request
 from flask_restful import Resource
-from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory
-from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema
+from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory,DeclarationDocuments,Beneficiary
+from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema
 from marshmallow import ValidationError
 import uuid
 class SignUp(Resource):
@@ -90,8 +90,8 @@ class AddInstitutionInformation(Resource):
 
 
 
-from flask import request
-from marshmallow import ValidationError
+
+
 
 class AddStudent(Resource):
     def post(self, user_id):
@@ -120,9 +120,9 @@ class AddStudent(Resource):
 
 class AddDeclarations(Resource):
     def post(self, student_id):
-        schema = StudentDetailsSchema()
+        schema = DeclarationDocumentsSchema()
         try:
-            data = schema.load(request.get_json())
+            data = schema.load(request.get_json(), partial=True)  # Load only specified fields
         except ValidationError as err:
             return err.messages, 400
         
@@ -130,11 +130,14 @@ class AddDeclarations(Resource):
 
         student = StudentDetails.query.get(student_id)
         if student:
-            for key, value in data.items():
-                setattr(student, key, value)
+            # Update the student with the declaration data
+            declarations = DeclarationDocuments(**data)
+            student.declarations = declarations
+            
             db.session.commit()
             return {"message": "Declarations added successfully."}, 200
         return {"message": "Student not found."}, 404
+
 
 class AddEducationFundingHistory(Resource):
     def post(self, student_id):
@@ -151,18 +154,19 @@ class AddEducationFundingHistory(Resource):
         db.session.commit()
         return {"message": "Education funding history added successfully."}, 201
 
-class ReceiveBursary(Resource):
-    def post(self, student_id):
-        schema = StudentDetailsSchema()
-        try:
-            data = schema.load(request.get_json())
-        except ValidationError as err:
-            return err.messages, 400
-        student_id = uuid.UUID(student_id)
 
-        student = StudentDetails.query.get(student_id)
-        if student:
-            student.received_bursary = data.get('received_bursary')
-            db.session.commit()
-            return {"message": "Bursary received successfully."}, 200
-        return {"message": "Student not found."}, 404
+
+
+class ReceiveBursary(Resource):
+    def get(self, student_id):
+        # Check if the student has received a bursary
+        student_id = uuid.UUID(student_id)
+        beneficiary = Beneficiary.query.filter_by(student_id=student_id).first()
+        if not beneficiary:
+            return {"message": "Student has not received a bursary."}, 404
+
+        # Serialize the beneficiary object using BeneficiarySchema
+        beneficiary_schema = BeneficiarySchema()
+        student_data = beneficiary_schema.dump(beneficiary)
+
+        return ({"student_data": student_data}), 200

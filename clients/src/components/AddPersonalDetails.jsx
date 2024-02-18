@@ -77,7 +77,8 @@ function AddPersonalInformation() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <select value={selectedUser} onChange={e => setSelectedUser(e.target.value)}>
+                <select value={selectedUser} onChange={e => setSelectedUser(e.target.value)} required>
+                    <option value="">Select User</option>
                     {users.map(user => (
                         <option key={user.id} value={user.id}>{user.name} ({user.id})</option>
                     ))}

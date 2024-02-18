@@ -8,7 +8,7 @@ from flask_restful import Api
 from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedBursaries,OnboardBursary
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
 from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary
-from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents
+from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
 def create_app():
     app = Flask(__name__)
     api = Api(app) 
@@ -70,7 +70,7 @@ def create_app():
     # Bursary routes
     api.add_resource(GetAllBursaries, '/get-all-bursaries')
     #get all students
-    api.add_resource(GetAllStudents, '/get-all-students')
+    api.add_resource(GetAllStudents2, '/get-all-students2')
 
 
     return app 
