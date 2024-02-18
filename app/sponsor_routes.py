@@ -26,10 +26,16 @@ class ViewApplications(Resource):
         result = schema.dump(applications)
         return result, 200
 
+from uuid import UUID
+
 class AwardBursary(Resource):
     def post(self, application_id):
+        try:
+            application_id = UUID(application_id)  # Convert string to UUID
+        except ValueError:
+            return {"message": "Invalid application ID"}, 400
+
         application = Bursary.query.get(application_id)
-        application_id = uuid.UUID(application_id)
         if application:
             application.awarded = True
             db.session.commit()

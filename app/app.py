@@ -47,6 +47,7 @@ def create_app():
     api.add_resource(AwardBursary, '/award-bursary/<string:application_id>')
     api.add_resource(ViewStudents, '/view-students')
     api.add_resource(RejectRequest, '/reject-request/<string:application_id>')
+    
     #applicant route
     api.add_resource(SignUp, '/sign-up')
     api.add_resource(AddContactDetails, '/add-contact-details/<string:user_id>')

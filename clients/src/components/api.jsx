@@ -25,14 +25,24 @@ export const viewAppliedBursaries = (adminId) => axios.get(`${API_URL}/view-appl
 // New functions for Sponsors
 export const createNewBursary = (bursaryDetails) => axios.post(`${API_URL}/add-bursary`, bursaryDetails);
 
-export const viewApplications = (sponsorId) => axios.get(`${API_URL}/view-applications/${sponsorId}`);
-export const awardBursaries = (sponsorId, studentId, bursaryDetails) => axios.post(`${API_URL}/award-bursaries/${sponsorId}/${studentId}`, bursaryDetails);
+export const viewApplications = () => axios.get(`${API_URL}/view-applications`);
+//export const awardBursary = (applicationId) => axios.post(`${API_URL}/award-bursary/${applicationId}`);
+
+//export const awardBursaries = (sponsorId, studentId, bursaryDetails) => axios.post(`${API_URL}/award-bursaries/${sponsorId}/${studentId}`, bursaryDetails);
 export const viewAllStudents = () => {return axios.get(`${API_URL}/view-students`);};
 
 
-export const rejectRequest = (sponsorId, requestId) => axios.post(`${API_URL}/reject-request/${sponsorId}/${requestId}`);
+export const awardBursaries = (applicationId) => axios.post(`${API_URL}/award-bursary/${applicationId}`);
+export const rejectRequest = (applicationId) => axios.post(`${API_URL}/reject-bursary/${applicationId}`);
+
 
 //get all students
 export const getAllStudents = () => axios.get(`${API_URL}/get-all-students2`);
 //get all users
 export const getAllUsers = () => axios.get(`${API_URL}/get-all-users`);
+//view applicant id and name
+export const ViewApplications = () => axios.get(`${API_URL}/view-applications`)
+  .then(response => response.data.map(application => ({
+    id: application.id,
+    name: application.name
+  })));

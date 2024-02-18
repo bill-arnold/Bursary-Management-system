@@ -64,7 +64,8 @@ const App = () => {
                         <>
                         <h2>Add Bursary</h2>
                              <AddBursary />
-                            {/*<ViewApplications /> */}
+                             <h2>Applied Bursary</h2>
+                            <ViewAppliedBursaries /> 
                             <h2>View Students</h2>
                             <ViewStudents />
                             <h2>Award Bursary</h2>
