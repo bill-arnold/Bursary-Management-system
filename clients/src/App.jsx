@@ -20,7 +20,7 @@ import VerifyStudentInformation from './components/VerifyStudentInformation';
 import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
 import OnboardNewBursarySource from './components/OnboardNewBursarySource';
 import ViewAppliedBursaries from './components/ViewAppliedBursaries';
-// import CreateNewBursary from './components/CreateNewBursary';
+import AddBursary from './components/AddBursary';
 // import ViewApplications from './components/ViewApplications';
 import AwardBursaries from './components/AwardBursaries';
 import ViewStudents from './components/ViewStudents';
@@ -62,10 +62,14 @@ const App = () => {
                     }/>
                     <Route path="/sponsors" element={
                         <>
-                            {/* <CreateNewBursary />
-                            <ViewApplications /> */}
-                            <AwardBursaries />
+                        <h2>Add Bursary</h2>
+                             <AddBursary />
+                            {/*<ViewApplications /> */}
+                            <h2>View Students</h2>
                             <ViewStudents />
+                            <h2>Award Bursary</h2>
+                            <AwardBursaries />
+                            <h2>Reject Bursary</h2>
                             <RejectRequest />
                         </>
                     }/>

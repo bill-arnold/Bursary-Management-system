@@ -23,10 +23,13 @@ export const onboardNewBursarySource = (adminId, sourceDetails) => axios.post(`$
 export const viewAppliedBursaries = (adminId) => axios.get(`${API_URL}/view-applied-bursaries/${adminId}`);
 
 // New functions for Sponsors
-export const createNewBursary = (sponsorId, bursaryDetails) => axios.post(`${API_URL}/create-new-bursary/${sponsorId}`, bursaryDetails);
+export const createNewBursary = (bursaryDetails) => axios.post(`${API_URL}/add-bursary`, bursaryDetails);
+
 export const viewApplications = (sponsorId) => axios.get(`${API_URL}/view-applications/${sponsorId}`);
 export const awardBursaries = (sponsorId, studentId, bursaryDetails) => axios.post(`${API_URL}/award-bursaries/${sponsorId}/${studentId}`, bursaryDetails);
-export const viewStudents = (sponsorId) => axios.get(`${API_URL}/view-students/${sponsorId}`);
+export const viewAllStudents = () => {return axios.get(`${API_URL}/view-students`);};
+
+
 export const rejectRequest = (sponsorId, requestId) => axios.post(`${API_URL}/reject-request/${sponsorId}/${requestId}`);
 
 //get all students
