@@ -2,13 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
-
 // Import your existing components...
 import SignUp from './components/SignUp';
-//import AddContactDetails from './components/AddContactDetails';
 import AddFamilyInformation from './components/AddFamilyInformation';
 import AddSiblingInformation from './components/AddSiblingInformation';
-//import AddInstitutionInformation from './components/AddInstitutionInformation';
 import AddPersonalDetails from './components/AddPersonalDetails';
 import AddDeclarations from './components/AddDeclarations';
 import AddEducationFundingHistory from './components/AddEducationFundingHistory';
@@ -21,7 +18,6 @@ import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
 import OnboardNewBursarySource from './components/OnboardNewBursarySource';
 import ViewAppliedBursaries from './components/ViewAppliedBursaries';
 import AddBursary from './components/AddBursary';
-// import ViewApplications from './components/ViewApplications';
 import AwardBursaries from './components/AwardBursaries';
 import ViewStudents from './components/ViewStudents';
 import RejectRequest from './components/RejectRequest';
@@ -37,35 +33,31 @@ const App = () => {
                         <li><Link to="/applicants">Applicants</Link></li>
                         <li><Link to="/sponsors">Sponsors</Link></li>
                         <li><Link to="/admin">Admin</Link></li>
+                        <li><Link to="/SignUp">Sign Up</Link></li>
                     </ul>
                 </nav>
                 <Routes>
                     <Route path="/applicants" element={
                         <>
-                        <h2>SignUp</h2>
-                            <SignUp />
-                            {/*<AddContactDetails />*/}
-                            <h2>AddFamilyInformation</h2>
+                            <h2>Add Family Information</h2>
                             <AddFamilyInformation />
-                            <h2>AddSiblingInformation</h2>
+                            <h2>Add Sibling Information</h2>
                             <AddSiblingInformation />
-                            {/*<h2>AddInstitutionInformation</h2>
-                            <AddInstitutionInformation />*/}
-                            <h2>AddStudentDetails</h2>
+                            <h2>Add Personal Details</h2>
                             <AddPersonalDetails />
-                            <h2>AddDeclarations</h2>
+                            <h2>Add Declarations</h2>
                             <AddDeclarations />
-                            <h2>AddEducationFundingHistory</h2>
+                            <h2>Add Education Funding History</h2>
                             <AddEducationFundingHistory />
                             <ReceiveBursary />
                         </>
-                    }/>
+                    } />
                     <Route path="/sponsors" element={
                         <>
-                        <h2>Add Bursary</h2>
-                             <AddBursary />
-                             <h2>Applied Bursary</h2>
-                            <ViewAppliedBursaries /> 
+                            <h2>Add Bursary</h2>
+                            <AddBursary />
+                            <h2>Applied Bursary</h2>
+                            <ViewAppliedBursaries />
                             <h2>View Students</h2>
                             <ViewStudents />
                             <h2>Award Bursary</h2>
@@ -73,20 +65,28 @@ const App = () => {
                             <h2>Reject Bursary</h2>
                             <RejectRequest />
                         </>
-                    }/>
+                    } />
                     <Route path="/admin" element={
                         <>
                             <VerifyStudentInformation />
-                            <ApproveStudentInformation /> 
+                            <ApproveStudentInformation />
                             <AwardStudentNeedyScore />
                             <OnboardNewBursarySource />
                             <ViewAppliedBursaries />
                         </>
-                    }/>
+                    } />
+                    <Route path="/SignUp" element={
+                        <>
+                            <h2>Sign Up</h2>
+                            <SignUp />
+                        </>
+                    } />
                 </Routes>
             </div>
         </Router>
     );
 }
+
+
 
 export default App;

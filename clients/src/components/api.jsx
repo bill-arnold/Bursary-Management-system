@@ -28,7 +28,7 @@ export const onboardNewBursary = (bursaryDetails) => axios.post(`${API_URL}/onbo
 
 
 // New functions for Sponsors
-//export const createNewBursary = (bursaryDetails) => axios.post(`${API_URL}/add-bursary`, bursaryDetails);
+export const createNewBursary = (bursaryDetails) => axios.post(`${API_URL}/add-bursary`, bursaryDetails);
 
 export const viewApplications = () => axios.get(`${API_URL}/view-applications`);
 //export const awardBursary = (applicationId) => axios.post(`${API_URL}/award-bursary/${applicationId}`);
