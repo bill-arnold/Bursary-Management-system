@@ -41,8 +41,9 @@ const App = () => {
                 <Routes>
                     <Route path="/applicants" element={
                         <>
-                            <SignUp />
+                            
                             <AddContactDetails />
+                            <SignUp />
                             <AddFamilyInformation />
                             <AddSiblingInformation />
                             <AddInstitutionInformation />
