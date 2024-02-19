@@ -51,8 +51,9 @@ class ViewStudents(Resource):
 
 class RejectRequest(Resource):
     def post(self, application_id):
-        application = Bursary.query.get(application_id)
         application_id = uuid.UUID(application_id)
+        application = Bursary.query.get(application_id)
+        
         if application:
             application.rejected = True
             db.session.commit()

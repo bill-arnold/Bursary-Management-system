@@ -1,29 +1,57 @@
-import React, { useState } from 'react';
-import { awardStudentNeedyScore } from './api';  // You would need to define this function in api.jsx
+// AwardNeedyScore.jsx
+import React, { useState, useEffect } from 'react';
+import { awardStudentNeedyScore, getAllStudents } from './api';
 
-const AwardStudentNeedyScore = ({ studentId }) => {
-    const [needyScore, setNeedyScore] = useState('');
+const AwardNeedyScore = () => {
+  const [students, setStudents] = useState([]);
+  const [selectedStudentId, setSelectedStudentId] = useState('');
+  const [score, setScore] = useState('');
+  const [message, setMessage] = useState('');
 
-    const handleChange = (e) => {
-        setNeedyScore(e.target.value);
-    };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await awardStudentNeedyScore(studentId, needyScore);
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await getAllStudents();
+      setStudents(response.data); // Assuming response.data is the array of students
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input type="number" name="needyScore" value={needyScore} onChange={handleChange} placeholder="Needy Score" required />
-            <button type="submit">Award Needy Score</button>
-        </form>
-    );
+  const handleAwardScore = async () => {
+    if (!selectedStudentId) {
+      setMessage('Please select a student.');
+      return;
+    }
+    if (!score || isNaN(score)) {
+      setMessage('Please enter a valid score.');
+      return;
+    }
+    try {
+      const response = await awardStudentNeedyScore(selectedStudentId, score);
+      setMessage('Needy score awarded successfully!');
+    } catch (error) {
+      setMessage('An error occurred while awarding the needy score.');
+      console.error(error);
+    }
+  };
+
+  return (
+    <div>
+      <select onChange={(e) => setSelectedStudentId(e.target.value)}>
+        <option value="">Select a student</option>
+        {students && students.map(student => (
+          <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
+        ))}
+      </select>
+      <input type="text" placeholder="Enter score" value={score} onChange={(e) => setScore(e.target.value)} />
+      <button onClick={handleAwardScore}>Award Needy Score</button>
+      {message && <p>{message}</p>}
+    </div>
+  );
 };
 
-export default AwardStudentNeedyScore;
+export default AwardNeedyScore;

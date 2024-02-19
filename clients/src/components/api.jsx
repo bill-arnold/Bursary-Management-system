@@ -16,14 +16,19 @@ export const addEducationFundingHistory = (studentId, fundingHistory) => axios.p
 export const receiveBursary = (studentId) => axios.get(`${API_URL}/receive-bursary/${studentId}`);
 
 //admin
-export const verifyStudentInformation = (adminId, studentId) => axios.post(`${API_URL}/verify-student-information/${adminId}/${studentId}`);
-export const approveStudentInformation = (adminId, studentId) => axios.post(`${API_URL}/approve-student-information/${adminId}/${studentId}`);
-export const awardStudentNeedyScore = (adminId, studentId, score) => axios.post(`${API_URL}/award-student-needy-score/${adminId}/${studentId}`, { score });
-export const onboardNewBursarySource = (adminId, sourceDetails) => axios.post(`${API_URL}/onboard-new-bursary-source/${adminId}`, sourceDetails);
-export const viewAppliedBursaries = (adminId) => axios.get(`${API_URL}/view-applied-bursaries/${adminId}`);
+
+
+export const verifyStudentInformation = (studentId) => axios.post(`${API_URL}/verify-student/${studentId}`);
+
+export const approveStudentInformation = (studentId) => axios.post(`${API_URL}/approve-student/${studentId}`);
+
+export const awardStudentNeedyScore = (studentId, score) => axios.post(`${API_URL}/award-score/${studentId}`, { score });
+
+export const onboardNewBursary = (bursaryDetails) => axios.post(`${API_URL}/onboard-bursary`, bursaryDetails);
+
 
 // New functions for Sponsors
-export const createNewBursary = (bursaryDetails) => axios.post(`${API_URL}/add-bursary`, bursaryDetails);
+//export const createNewBursary = (bursaryDetails) => axios.post(`${API_URL}/add-bursary`, bursaryDetails);
 
 export const viewApplications = () => axios.get(`${API_URL}/view-applications`);
 //export const awardBursary = (applicationId) => axios.post(`${API_URL}/award-bursary/${applicationId}`);
@@ -33,7 +38,7 @@ export const viewAllStudents = () => {return axios.get(`${API_URL}/view-students
 
 
 export const awardBursaries = (applicationId) => axios.post(`${API_URL}/award-bursary/${applicationId}`);
-export const rejectRequest = (applicationId) => axios.post(`${API_URL}/reject-bursary/${applicationId}`);
+export const rejectRequest = (applicationId) => axios.post(`${API_URL}/reject-request/${applicationId}`);
 
 
 //get all students

@@ -1,36 +1,61 @@
 import React, { useState } from 'react';
-import { onboardNewBursarySource } from '/src/components/api';
- 
+import { createNewBursary } from './api';
 
-const OnboardNewSourcesOfBursary = () => {
-    const [sourceInfo, setSourceInfo] = useState({
-        name: '',
-        contact: '',
-        amount: ''
-    });
+const OnboardNewBursary = () => {
+    const initialState = {
+        title: '',
+        description: '',
+        fund_amount: '',
+        contact_person: '',
+        photo_url: ''
+    };
+
+    const [bursary, setBursary] = useState(initialState);
 
     const handleChange = (e) => {
-        setSourceInfo({ ...sourceInfo, [e.target.name]: e.target.value });
+        setBursary({
+            ...bursary,
+            [e.target.name]: e.target.value
+        });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await onboardNewBursarySource(sourceInfo);
-            console.log(response.data);
+            await createNewBursary(bursary);
+            alert('New bursary onboarded successfully!');
+            setBursary(initialState); // Reset the state to clear the input fields
         } catch (error) {
             console.error(error);
+            alert('An error occurred while onboarding the new bursary.');
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="name" value={sourceInfo.name} onChange={handleChange} placeholder="Source Name" required />
-            <input type="text" name="contact" value={sourceInfo.contact} onChange={handleChange} placeholder="Contact" required />
-            <input type="number" name="amount" value={sourceInfo.amount} onChange={handleChange} placeholder="Amount" required />
-            <button type="submit">Onboard New Source of Bursary</button>
+            <label>
+                Title:
+                <input type="text" name="title" value={bursary.title} onChange={handleChange} required />
+            </label>
+            <label>
+                Description:
+                <textarea name="description" value={bursary.description} onChange={handleChange} required />
+            </label>
+            <label>
+                Fund Amount:
+                <input type="number" name="fund_amount" value={bursary.fund_amount} onChange={handleChange} required />
+            </label>
+            <label>
+                Contact Person:
+                <input type="text" name="contact_person" value={bursary.contact_person} onChange={handleChange} required />
+            </label>
+            <label>
+                Photo URL:
+                <input type="text" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
+            </label>
+            <button type="submit">Onboard New Bursary</button>
         </form>
     );
 };
 
-export default OnboardNewSourcesOfBursary;
+export default OnboardNewBursary;

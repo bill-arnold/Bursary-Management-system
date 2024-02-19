@@ -16,7 +16,7 @@ import ReceiveBursary from './components/ReceiveBursary';
 
 // Import your new components...
 import VerifyStudentInformation from './components/VerifyStudentInformation';
-// import ApproveStudentInformation from './components/ApproveStudentInformation';
+import ApproveStudentInformation from './components/ApproveStudentInformation';
 import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
 import OnboardNewBursarySource from './components/OnboardNewBursarySource';
 import ViewAppliedBursaries from './components/ViewAppliedBursaries';
@@ -77,7 +77,7 @@ const App = () => {
                     <Route path="/admin" element={
                         <>
                             <VerifyStudentInformation />
-                            {/* <ApproveStudentInformation /> */}
+                            <ApproveStudentInformation /> 
                             <AwardStudentNeedyScore />
                             <OnboardNewBursarySource />
                             <ViewAppliedBursaries />

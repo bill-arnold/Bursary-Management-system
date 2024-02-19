@@ -41,18 +41,16 @@ const AwardBursaries = () => {
 
   return (
     <div>
-      <h2>Award Bursaries</h2>
       <select onChange={(e) => setSelectedApplicationId(e.target.value)}>
         <option value="">Select an application</option>
         {options.map(application => (
-          <option key={application.id} value={application.id}>{`${application.id} - ${application.name}`}</option>
+          <option key={application.id} value={application.id}>{`${application.id} - ${application.contact_person}`}</option>
         ))}
       </select>
       <button onClick={handleClick}>Award Bursary</button>
       {message && <p>{message}</p>}
       {awardedApplicant && (
         <div>
-          <h3>Awarded Applicant:</h3>
           <p>ID: {awardedApplicant.id}</p>
           <p>Name: {awardedApplicant.name}</p>
           {/* Add more details if needed */}

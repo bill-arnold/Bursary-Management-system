@@ -2,7 +2,7 @@
 from flask import Flask,jsonify
 from flask_restful import Resource, Api
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, Bursary
-from serializers import UserSchema, StudentDetailsSchema2, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema, BursarySchema
+from serializers import UserSchema, StudentDetailsSchema2, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema, BursarySchema,StudentDetailsSchema
 
 
 class GetAllUsers(Resource):
@@ -12,12 +12,12 @@ class GetAllUsers(Resource):
         result = schema.dump(users)
         return result, 200
 
-#class GetAllStudentDetails(Resource):
-    #def get(self):
-        #schema = StudentDetailsSchema(many=True)
-        #students = StudentDetails.query.all()
-       # result = schema.dump(students)
-        #return result, 200
+class GetAllStudentDetails(Resource):
+    def get(self):
+        schema = StudentDetailsSchema(many=True)
+        students = StudentDetails.query.all()
+        result = schema.dump(students)
+        return result, 200
 
 class GetAllParentGuardians(Resource):
     def get(self):
