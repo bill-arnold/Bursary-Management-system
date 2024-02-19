@@ -1,11 +1,10 @@
-// AwardNeedyScore.jsx
+// ApproveStudentInformation.jsx
 import React, { useState, useEffect } from 'react';
-import { awardStudentNeedyScore, getAllStudents } from './api';
+import { approveStudentInformation, getAllStudents } from './api';
 
-const AwardNeedyScore = () => {
+const ApproveStudentInformation = () => {
   const [students, setStudents] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState('');
-  const [score, setScore] = useState('');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -21,20 +20,12 @@ const AwardNeedyScore = () => {
     }
   };
 
-  const handleAwardScore = async () => {
-    if (!selectedStudentId) {
-      setMessage('Please select a student.');
-      return;
-    }
-    if (!score || isNaN(score)) {
-      setMessage('Please enter a valid score.');
-      return;
-    }
+  const handleApprove = async () => {
     try {
-      const response = await awardStudentNeedyScore(selectedStudentId, score);
-      setMessage('Needy score awarded successfully!');
+      const response = await approveStudentInformation(selectedStudentId);
+      setMessage('Student approved successfully!');
     } catch (error) {
-      setMessage('An error occurred while awarding the needy score.');
+      setMessage('An error occurred while approving the student.');
       console.error(error);
     }
   };
@@ -47,11 +38,10 @@ const AwardNeedyScore = () => {
           <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
         ))}
       </select>
-      <input type="text" placeholder="Enter score" value={score} onChange={(e) => setScore(e.target.value)} />
-      <button onClick={handleAwardScore}>Award Needy Score</button>
+      <button onClick={handleApprove}>Approve Student</button>
       {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default AwardNeedyScore;
+export default ApproveStudentInformation;

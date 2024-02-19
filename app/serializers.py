@@ -1,5 +1,6 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from models import db, User, StudentDetails, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments
+from models import db, User, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments,StudentDetails
+from marshmallow import Schema, fields
 
 class UserSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -10,6 +11,7 @@ class StudentDetailsSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = StudentDetails
         sqla_session = db.session
+        
 
 class ParentGuardianSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -40,3 +42,9 @@ class DeclarationDocumentsSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = DeclarationDocuments
         sqla_session = db.session
+
+class StudentDetailsSchema2(Schema):
+    model = StudentDetails
+    sqla_session = db.session
+    id = fields.UUID()
+    name = fields.Function(lambda obj: f"{obj.firstname} {obj.lastname}")

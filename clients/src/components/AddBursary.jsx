@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createNewBursary } from './api';
 
-const OnboardNewBursary = () => {
+const AddBursary = () => {
     const initialState = {
         title: '',
         description: '',
@@ -23,11 +23,11 @@ const OnboardNewBursary = () => {
         e.preventDefault();
         try {
             await createNewBursary(bursary);
-            alert('New bursary onboarded successfully!');
+            alert('Bursary added successfully!');
             setBursary(initialState); // Reset the state to clear the input fields
         } catch (error) {
             console.error(error);
-            alert('An error occurred while onboarding the new bursary.');
+            alert('An error occurred while adding the bursary.');
         }
     };
 
@@ -53,9 +53,9 @@ const OnboardNewBursary = () => {
                 Photo URL:
                 <input type="text" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
             </label>
-            <button type="submit">Onboard New Bursary</button>
+            <button type="submit">Add Bursary</button>
         </form>
     );
 };
 
-export default OnboardNewBursary;
+export default AddBursary;

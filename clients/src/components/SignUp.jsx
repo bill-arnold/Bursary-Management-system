@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useHistory hook
 import { signUp } from './api';
 
 const SignUp = () => {
@@ -9,6 +10,8 @@ const SignUp = () => {
         role: '',
         id_no: ''
     });
+
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -21,18 +24,13 @@ const SignUp = () => {
         try {
             const response = await signUp(userData);
             console.log(response.data);
-            setSuccessMessage('Signed up successfully!');
-            // Clear the form after successful submission
-            setUserData({
-                name: '',
-                email: '',
-                phone: '',
-                role: '',
-                id_no: ''
-            });
+            setSuccessMessage('User signed up successfully!');
+            // Redirect to the desired route after successful signup
+            navigate('/applicants'); // Redirect to the applicants route
         } catch (error) {
             console.error(error);
             setError('Failed to sign up. Please try again.');
+            setSuccessMessage('');
         }
     };
 
