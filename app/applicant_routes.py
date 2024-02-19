@@ -5,6 +5,8 @@ from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, 
 from marshmallow import ValidationError
 import uuid
 
+
+
 api = Namespace('applicant', description='Applicant related operations')
 
 user_details = api.model('UserDetails', {
