@@ -3,6 +3,8 @@ from sqlalchemy.dialects.postgresql import UUID
 from flask_sqlalchemy import SQLAlchemy
 import uuid
 from sqlalchemy import Enum
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 db = SQLAlchemy()
 
@@ -17,6 +19,19 @@ class User(db.Model):
     phone = db.Column(db.String(20), nullable=False)
     role = db.Column(db.String(50), nullable=False)
     id_no = db.Column(db.Integer, nullable=False)
+    password_hash = db.Column(db.String(128))
+
+    @property
+    def password(self):
+        raise AttributeError('password: write-only field')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
 
 class StudentDetails(db.Model):
     __tablename__ = 'studentdetails'  
@@ -39,10 +54,9 @@ class StudentDetails(db.Model):
     course = db.Column(db.String(100), nullable=False)
     mode_of_study = db.Column(db.String(100), nullable=False)
     expected_completion_year = db.Column(db.Date, nullable=False)
-    # experimental additions
-    #verified = db.Column(db.Boolean, default=False)
-    #approved = db.Column(db.Boolean, default=False)
-    #needy_score = db.Column(db.Integer())
+    verified = db.Column(db.Boolean, default=False)
+    approved = db.Column(db.Boolean, default=False)
+    needy_score = db.Column(db.Integer())
 
 
 class ParentGuardian(db.Model):

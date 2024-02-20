@@ -5,18 +5,40 @@ from models import db, User, StudentDetails, ParentGuardian, Siblings, Education
 from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema
 from marshmallow import ValidationError
 import uuid
+from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import create_access_token
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from werkzeug.security import generate_password_hash
+
 class SignUp(Resource):
     def post(self):
         schema = UserSchema()
         try:
-            data = schema.load(request.get_json())
+            data = request.get_json()  # Get the JSON data from the request
         except ValidationError as err:
             return err.messages, 400
 
-        new_user = User(**data)
-        db.session.add(new_user)
-        db.session.commit()
-        return {"message": "User signed up successfully."}, 201
+        # Create a new User instance with the hashed password
+        new_user = User(
+            name=data['name'],
+            email=data['email'],
+            phone=data['phone'],
+            role=data['role'],
+            id_no=data['id_no'],
+            password_hash=generate_password_hash(data['password'])  # Hash the password
+        )
+
+        try: 
+            db.session.add(new_user)
+            db.session.commit()
+            return {"message": "User signed up successfully."}, 201
+        except IntegrityError:
+            db.session.rollback()
+            return {"message": "A user with this email already exists."}, 400
+
+
+        
 
 class AddContactDetails(Resource):
     def post(self, user_id):
@@ -112,8 +134,7 @@ class AddStudent(Resource):
         db.session.add(new_student)
         db.session.commit()
 
-        # Return the serialized new student
-        return schema.dump(new_student), 201
+        return {"message": "Student added successfully."}, 201
 
 
 
@@ -170,3 +191,23 @@ class ReceiveBursary(Resource):
         student_data = beneficiary_schema.dump(beneficiary)
 
         return ({"student_data": student_data}), 200
+    
+class Login(Resource):
+    def post(self):
+        schema = UserSchema(only=("email", "password"))
+        try:
+            data = schema.load(request.get_json())
+        except ValidationError as err:
+            return err.messages, 400
+
+        user = User.query.filter_by(email=data['email']).first()
+        if user and check_password_hash(user.password_hash, data['password']):
+            # User provided correct password
+
+            access_token = create_access_token(identity=user.id)
+            return {"message": "Logged in successfully.", "access_token": access_token}, 200
+        else:
+            # User provided incorrect password
+            return {"message": "Invalid email or password."}, 400
+
+    
