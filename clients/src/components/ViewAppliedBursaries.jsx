@@ -1,29 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { viewAppliedBursaries } from './api';  // You would need to define this function in api.jsx
+import React, { useState } from 'react';
+import { viewApplications } from './api';
 
-const ViewAppliedBursaries = ({ studentId }) => {
-    const [bursaries, setBursaries] = useState([]);
+const ViewAppliedBursaries = () => {
+    const [applications, setApplications] = useState([]);
+    const [showApplications, setShowApplications] = useState(false);
 
-    useEffect(() => {
-        const fetchBursaries = async () => {
+    const handleClick = async () => {
+        if (showApplications) {
+            setShowApplications(false);
+        } else {
             try {
-                const response = await viewAppliedBursaries(studentId);
-                setBursaries(response.data);
+                const response = await viewApplications();
+                setApplications(response.data);
+                setShowApplications(true);
             } catch (error) {
                 console.error(error);
+                alert('An error occurred while fetching the applications.');
             }
-        };
-
-        fetchBursaries();
-    }, [studentId]);
+        }
+    };
 
     return (
         <div>
-            <h1>Applied Bursaries</h1>
-            {bursaries.map((bursary, index) => (
-                <div key={index}>
-                    <h2>{bursary.name}</h2>
-                    <p>{bursary.description}</p>
+            <button onClick={handleClick}>View Applied Bursaries</button>
+            {showApplications && applications.map(application => (
+                <div className="application-card" key={application.id}>
+                    <h2>{application.title}</h2>
+                    <p>ID: {application.id}</p>
+                    <p>Description: {application.description}</p>
+                    <p>Fund Amount: {application.fund_amount}</p>
+                    <p>Contact Person: {application.contact_person}</p>
+                    <img src={application.photo_url} alt={application.title} />
                 </div>
             ))}
         </div>

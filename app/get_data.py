@@ -1,8 +1,8 @@
 # get_data.py
-from flask import Flask
+from flask import Flask,jsonify
 from flask_restful import Resource, Api
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, Bursary
-from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema, BursarySchema
+from serializers import UserSchema, StudentDetailsSchema2, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema, BursarySchema,StudentDetailsSchema
 
 
 class GetAllUsers(Resource):
@@ -46,4 +46,15 @@ class GetAllBursaries(Resource):
         bursaries = Bursary.query.all()
         result = schema.dump(bursaries)
         return result, 200
+
+
+
+
+class GetAllStudents2(Resource):
+    def get(self):
+        schema = StudentDetailsSchema2(many=True, only=('id', 'name'))
+        students = StudentDetails.query.all()
+        result = schema.dump(students)
+        return result, 200
+
 

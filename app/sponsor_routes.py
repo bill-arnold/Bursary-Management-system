@@ -4,6 +4,9 @@ from flask_restful import Resource
 from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
+import uuid
+from email_utils import send_bursary_awarded_email, send_bursary_rejected_email
+
 
 class AddBursary(Resource):
     def post(self):
@@ -19,18 +22,28 @@ class AddBursary(Resource):
         return {"message": "Bursary added successfully."}, 201
 
 class ViewApplications(Resource):
-    def get(self, sponsor_id):
+    def get(self):
         schema = BursarySchema(many=True)
-        applications = Bursary.query.filter_by(sponsor_id=sponsor_id)
+        applications = Bursary.query.all()
         result = schema.dump(applications)
         return result, 200
 
+from uuid import UUID
+
 class AwardBursary(Resource):
     def post(self, application_id):
+        try:
+            application_id = UUID(application_id)  # Convert string to UUID
+        except ValueError:
+            return {"message": "Invalid application ID"}, 400
+
         application = Bursary.query.get(application_id)
         if application:
             application.awarded = True
             db.session.commit()
+            # Send an award email to the applicant
+            send_bursary_awarded_email(application)
+
             return {"message": "Bursary awarded successfully."}, 200
         return {"message": "Application not found."}, 404
 
@@ -43,9 +56,14 @@ class ViewStudents(Resource):
 
 class RejectRequest(Resource):
     def post(self, application_id):
+        application_id = uuid.UUID(application_id)
         application = Bursary.query.get(application_id)
+        
         if application:
             application.rejected = True
             db.session.commit()
+             # Send an award email to the applicant
+            send_bursary_rejected_email(application)
+            
             return {"message": "Request rejected successfully."}, 200
         return {"message": "Application not found."}, 404

@@ -1,3 +1,5 @@
+# seed.py
+
 from app import create_app
 from models import db, User, StudentDetails, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments
 from datetime import datetime
@@ -15,13 +17,12 @@ with app.app_context():
             email='john2@example.com',
             phone='1234567890',
             role='applicant',
-            id_no=1234567890
+            id_no=1234567890,
+            password_hash='jdee123'
         )
 
         # Add the new user to the database
         db.session.add(new_user)
-        
-        # Commit the user creation first to get the user ID
         db.session.commit()
 
         # Create new student details
@@ -44,13 +45,14 @@ with app.app_context():
             level='Undergraduate',
             course='Computer Science',
             mode_of_study='Full-time',
-            expected_completion_year=datetime.strptime('2024-12-31', '%Y-%m-%d').date()
+            expected_completion_year=datetime.strptime('2024-12-31', '%Y-%m-%d').date(),
+            verified=True,  # Assuming student is verified
+            approved=True,  # Assuming student is approved
+            needy_score=80  # Assuming a needy score
         )
 
         # Add the new student details to the database
         db.session.add(new_student_details)
-        
-        # Commit the student details
         db.session.commit()
 
         # Create new parent/guardian details
@@ -146,6 +148,5 @@ with app.app_context():
         db.session.add(new_declaration_documents)
         db.session.commit()
 
-if __name__ == "__main__":
-    with app.app_context():
+    if __name__ == "__main__":
         seed_data()

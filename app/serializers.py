@@ -1,15 +1,25 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from models import db, User, StudentDetails, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments
-
+from models import db, User, ParentGuardian, EducationFundingHistory, Siblings, Bursary, Beneficiary, DeclarationDocuments,StudentDetails
+from marshmallow import Schema, fields,post_load
+from werkzeug.security import generate_password_hash
 class UserSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = User
         sqla_session = db.session
-
+        load_instance = True  # Optional: deserialize to model instances
+        exclude = ('password_hash',)  # Exclude password_hash when dumping
+    password = fields.Str(load_only=True)
+    @post_load
+    def hash_password(self, data, **kwargs):
+        if "password" in data:
+            data["password_hash"] = generate_password_hash(data["password"])
+            del data["password"]
+        return data
 class StudentDetailsSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = StudentDetails
         sqla_session = db.session
+        
 
 class ParentGuardianSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -40,3 +50,9 @@ class DeclarationDocumentsSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = DeclarationDocuments
         sqla_session = db.session
+
+class StudentDetailsSchema2(Schema):
+    model = StudentDetails
+    sqla_session = db.session
+    id = fields.UUID()
+    name = fields.Function(lambda obj: f"{obj.firstname} {obj.lastname}")
