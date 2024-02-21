@@ -10,8 +10,6 @@ import AddPersonalDetails from './components/AddPersonalDetails';
 import AddDeclarations from './components/AddDeclarations';
 import AddEducationFundingHistory from './components/AddEducationFundingHistory';
 import ReceiveBursary from './components/ReceiveBursary';
-
-// Import your new components...
 import VerifyStudentInformation from './components/VerifyStudentInformation';
 import ApproveStudentInformation from './components/ApproveStudentInformation';
 import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
@@ -27,13 +25,13 @@ const App = () => {
         <Router>
             <h1>Bursary Management System</h1>
             <div>
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/applicants">Applicants</Link></li>
-                        <li><Link to="/sponsors">Sponsors</Link></li>
-                        <li><Link to="/admin">Admin</Link></li>
-                        <li><Link to="/SignUp">Sign Up</Link></li>
+                <nav id="mainNav">
+                    <ul id="navList">
+                        <li id="navItem"><Link id="navLink" to="/">Home</Link></li>
+                        <li id="navItem"><Link id="navLink" to="/applicants">Applicants</Link></li>
+                        <li id="navItem"><Link id="navLink" to="/sponsors">Sponsors</Link></li>
+                        <li id="navItem"><Link id="navLink" to="/admin">Admin</Link></li>
+                        <li id="navItem"><Link id="navLink" to="/SignUp">Sign Up</Link></li>
                     </ul>
                 </nav>
                 <Routes>

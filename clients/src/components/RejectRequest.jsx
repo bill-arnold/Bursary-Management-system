@@ -1,5 +1,8 @@
+// RejectRequestComponent.jsx
+
 import React, { useState, useEffect } from 'react';
 import { rejectRequest, viewApplications } from './api';
+import './RejectRequest.css'; // Import the stylesheet
 
 const RejectRequestComponent = () => {
   const [message, setMessage] = useState('');
@@ -40,17 +43,17 @@ const RejectRequestComponent = () => {
   };
 
   return (
-    <div>
-      <select onChange={(e) => setSelectedApplicationId(e.target.value)}>
+    <div id="rejectRequestContainer">
+      <select id="applicationSelector" onChange={(e) => setSelectedApplicationId(e.target.value)}>
         <option value="">Select an application</option>
         {options.map(application => (
           <option key={application.id} value={application.id}>{`${application.id} - ${application.contact_person}`}</option>
         ))}
       </select>
-      <button onClick={handleClick}>Reject Request</button>
-      {message && <p>{message}</p>}
+      <button id="rejectRequestButton" onClick={handleClick}>Reject Request</button>
+      {message && <p id="rejectMessage">{message}</p>}
       {rejectedApplicant && (
-        <div>
+        <div id="rejectedApplicantDetails">
           <p>ID: {rejectedApplicant.id}</p>
           <p>Name: {rejectedApplicant.name}</p>
           {/* Add more details if needed */}
