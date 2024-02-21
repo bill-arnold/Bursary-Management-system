@@ -39,12 +39,12 @@ const App = () => {
                 <Routes>
                     <Route path="/applicants" element={
                         <>
+                            <h2>Add Personal Details</h2>
+                            <AddPersonalDetails />
                             <h2>Add Family Information</h2>
                             <AddFamilyInformation />
                             <h2>Add Sibling Information</h2>
                             <AddSiblingInformation />
-                            <h2>Add Personal Details</h2>
-                            <AddPersonalDetails />
                             <h2>Add Declarations</h2>
                             <AddDeclarations />
                             <h2>Add Education Funding History</h2>

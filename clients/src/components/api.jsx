@@ -8,7 +8,7 @@ export const signUp = (userData) => axios.post(`${API_URL}/sign-up`, userData);
 export const addFamilyInformation = (studentId, familyInfo) => axios.post(`${API_URL}/add-family-information/${studentId}`, familyInfo);
 export const addSiblingInformation = (studentId, siblingInfo) => axios.post(`${API_URL}/add-sibling-information/${studentId}`, siblingInfo);
 //export const addInstitutionInformation = (studentId, institutionInfo) => axios.post(`${API_URL}/add-institution-information/${studentId}`, institutionInfo);
-export const addPersonalDetails = (userId, personalDetails) => axios.post(`${API_URL}/add-personal-details/${userId}`, personalDetails);
+export const addStudent = (userId, studentDetails) => axios.post(`${API_URL}/addstudent/${userId}`, studentDetails);
 
 export const addDeclarations = (studentId, declarations) => axios.post(`${API_URL}/add-declarations/${studentId}`, declarations);
 export const addEducationFundingHistory = (studentId, fundingHistory) => axios.post(`${API_URL}/add-education-funding-history/${studentId}`, fundingHistory);
