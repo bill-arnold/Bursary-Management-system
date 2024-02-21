@@ -10,6 +10,7 @@ from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStude
 from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login
 from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
 import os
+from flask_cors import CORS
 def create_app():
     app = Flask(__name__)
     api = Api(app) 

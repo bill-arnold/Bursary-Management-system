@@ -19,6 +19,7 @@ import AddBursary from './components/AddBursary';
 import AwardBursaries from './components/AwardBursaries';
 import ViewStudents from './components/ViewStudents';
 import RejectRequest from './components/RejectRequest';
+import Login from './components/Login'
 
 const App = () => {
     return (
@@ -32,6 +33,7 @@ const App = () => {
                         <li id="navItem"><Link id="navLink" to="/sponsors">Sponsors</Link></li>
                         <li id="navItem"><Link id="navLink" to="/admin">Admin</Link></li>
                         <li id="navItem"><Link id="navLink" to="/SignUp">Sign Up</Link></li>
+                        <li id="navItem"><Link id="navLink" to="/logIn">Login</Link></li>
                     </ul>
                 </nav>
                 <Routes>
@@ -77,6 +79,12 @@ const App = () => {
                         <>
                             <h2>Sign Up</h2>
                             <SignUp />
+                        </>
+                    } />
+                    <Route path="/logIn" element={
+                        <>
+                            <h2>Login </h2>
+                            <Login />
                         </>
                     } />
                 </Routes>

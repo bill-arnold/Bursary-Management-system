@@ -52,3 +52,5 @@ export const ViewApplications = () => axios.get(`${API_URL}/view-applications`)
     id: application.id,
     name: application.name
   })));
+//login
+export const login = (email, password) => axios.post(`${API_URL}/login`, { email, password });

@@ -198,16 +198,16 @@ class Login(Resource):
         try:
             data = schema.load(request.get_json())
         except ValidationError as err:
-            return err.messages, 400
+            return {"message": "Validation error", "errors": err.messages}, 400
+
+        if 'email' not in data or 'password' not in data:
+            return {"message": "Email and password are required."}, 400
 
         user = User.query.filter_by(email=data['email']).first()
         if user and check_password_hash(user.password_hash, data['password']):
             # User provided correct password
-
             access_token = create_access_token(identity=user.id)
             return {"message": "Logged in successfully.", "access_token": access_token}, 200
         else:
-            # User provided incorrect password
-            return {"message": "Invalid email or password."}, 400
-
-    
+            # User provided incorrect email or password
+            return {"message": "Invalid email or password."}, 401  # Use 401 for authentication failure
