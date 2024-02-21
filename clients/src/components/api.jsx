@@ -18,7 +18,8 @@ export const receiveBursary = (studentId) => axios.get(`${API_URL}/receive-bursa
 //admin
 
 
-export const verifyStudentInformation = (studentId) => axios.post(`${API_URL}/verify-student/${studentId}`);
+export const verifyStudentInformation = (studentId) => axios.post(`${API_URL}/verify-student/${studentId}`, {});
+
 
 export const approveStudentInformation = (studentId) => axios.post(`${API_URL}/approve-student/${studentId}`);
 

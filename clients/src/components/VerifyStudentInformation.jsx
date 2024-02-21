@@ -1,4 +1,3 @@
-// VerifyStudentInformation.jsx
 import React, { useState, useEffect } from 'react';
 import { verifyStudentInformation, getAllStudents } from './api';
 
@@ -20,15 +19,16 @@ const VerifyStudentInformation = () => {
     }
   };
 
-  const handleVerify = async () => {
+  const handleVerify = async (isVerified) => {
     try {
-      const response = await verifyStudentInformation(selectedStudentId);
-      setMessage('Student verified successfully!');
+      const response = await verifyStudentInformation(selectedStudentId, { verified: isVerified });
+      setMessage('Student verification status updated successfully!');
     } catch (error) {
-      setMessage('An error occurred while verifying the student.');
+      setMessage('An error occurred while updating the student verification status.');
       console.error(error);
     }
   };
+
 
   return (
     <div>
@@ -38,7 +38,8 @@ const VerifyStudentInformation = () => {
           <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
         ))}
       </select>
-      <button onClick={handleVerify}>Verify Student</button>
+      <button onClick={() => handleVerify(true)}>Verify Student</button>
+      <button onClick={() => handleVerify(false)}>Not Verify Student</button>
       {message && <p>{message}</p>}
     </div>
   );
