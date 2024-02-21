@@ -10,8 +10,6 @@ import AddPersonalDetails from './components/AddPersonalDetails';
 import AddDeclarations from './components/AddDeclarations';
 import AddEducationFundingHistory from './components/AddEducationFundingHistory';
 import ReceiveBursary from './components/ReceiveBursary';
-
-// Import your new components...
 import VerifyStudentInformation from './components/VerifyStudentInformation';
 import ApproveStudentInformation from './components/ApproveStudentInformation';
 import AwardStudentNeedyScore from './components/AwardStudentNeedyScore';
