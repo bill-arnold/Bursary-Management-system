@@ -19,6 +19,17 @@ import AwardBursaries from './AwardBursaries';
 import ViewStudents from './ViewStudents';
 import RejectRequest from './RejectRequest';
 import Login from './Login';
+import UpdateFamilyInformation from './UpdateFamilyInformation';
+import UpdateSiblingInformation from './UpdateSiblingInformation';
+import UpdateStudentInformation from './updatestudentInformation';
+import UpdateDeclarations from './updateDeclarations';
+import UpdateEducationFundingHistory from './UpdateEducationFundingHistory';
+import ResetPassword from './ResetPassword';
+import DeleteFamilyInformation from './DeleteFamilyInformation';
+import DeleteSiblingInformation from './DeleteSiblingInformation';
+import DeleteStudent from './DeleteStudent';
+
+
 
 const Dashboard = () => {
     return (
@@ -37,16 +48,34 @@ const Dashboard = () => {
             <Routes>
                 <Route path="/applicants" element={
                     <>
-                        <h2>Add Personal Details</h2>
+                        <h2>Add Student Details</h2>
                         <AddPersonalDetails />
+                        <h2>View Students</h2>
+                        <ViewStudents />
+                        <h2>Update Student Details</h2>
+                        < UpdateStudentInformation/>
+                        <h2>Delete Students</h2>
+                        <DeleteStudent/>
                         <h2>Add Family Information</h2>
                         <AddFamilyInformation />
+                        <h2>Update Family Information</h2>
+                        < UpdateFamilyInformation/>
+                        <h2>Delete Family Information</h2>
+                        <DeleteFamilyInformation />
                         <h2>Add Sibling Information</h2>
                         <AddSiblingInformation />
+                        <h2>update Sibling Information</h2>
+                        < UpdateSiblingInformation/>
+                        <h2>Delete Sibling Information</h2>
+                        <DeleteSiblingInformation />
                         <h2>Add Declarations</h2>
                         <AddDeclarations />
+                          <h2>Update Declarations</h2>
+                        < UpdateDeclarations/>
                         <h2>Add Education Funding History</h2>
                         <AddEducationFundingHistory />
+                        <h2>Update Education Funding History</h2>
+                        < UpdateEducationFundingHistory />
                         <ReceiveBursary />
                     </>
                 } />
@@ -83,6 +112,7 @@ const Dashboard = () => {
                     <>
                         <h2>Login </h2>
                         <Login />
+                        < ResetPassword/>
                     </>
                 } />
             </Routes>

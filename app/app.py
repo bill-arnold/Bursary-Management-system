@@ -9,7 +9,8 @@ from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedB
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
 from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login
 from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
-import os
+#import os
+from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateInstitutionInformation,UpdateStudent,ResetPassword,DeleteContactDetails,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent
 from flask_cors import CORS
 from datetime import timedelta
 
@@ -79,6 +80,20 @@ def create_app():
     api.add_resource(GetAllStudents2, '/get-all-students2')
     #login
     api.add_resource(Login, '/login')
+
+    # Add resources for applicant_UD
+    api.add_resource(UpdateContactDetails, '/update_contact/<string:user_id>')
+    api.add_resource(UpdateFamilyInformation, '/update_family/<string:student_id>')
+    api.add_resource(UpdateSiblingInformation, '/update_sibling/<string:student_id>')
+    #api.add_resource(UpdateInstitutionInformation, '/update_institution/<string:student_id>')
+    api.add_resource(UpdateStudent, '/update_student/<string:student_id>')
+    api.add_resource(ResetPassword, '/reset_password/<string:user_email>')
+    #api.add_resource(DeleteContactDetails, '/delete_contact/<string:user_id>')
+    api.add_resource(DeleteFamilyInformation, '/delete_family/<string:student_id>')
+    api.add_resource(DeleteSiblingInformation, '/delete_sibling/<string:student_id>')
+    api.add_resource(DeleteInstitutionInformation, '/delete_institution/<string:student_id>')
+    api.add_resource(DeleteStudent, '/delete_student/<string:student_id>')
+    
 
 
 

@@ -126,3 +126,61 @@ export {
     refreshToken,
     isTokenExpired,
 };
+//update contact details
+export const updateContactDetails = (userId, contactDetails) => {
+    return axios.put(`${API_URL}/update_contact/${userId}`, contactDetails);
+};
+//updatefamilyinformation
+export const updateFamilyInformation = (studentId, familyInfo) => {
+    return axios.put(`${API_URL}/update_family/${studentId}`, familyInfo);
+};
+//update sibling information
+export const updateSiblingInformation = (studentId, siblingInfo) => {
+    return axios.put(`${API_URL}/update-sibling-information/${studentId}`, siblingInfo);
+};
+//update student information
+export const updateStudentInformation = (userId, studentDetails) => {
+    return axios.put(`${API_URL}/update_student/${userId}`, studentDetails);
+};
+//update declarations
+export const updateDeclarations = (studentId, declarations) => {
+    return axios.put(`${API_URL}/update_declarations/${studentId}`, declarations);
+    };
+//update education fund history
+export const updateEducationFundingHistory = (studentId, fundingHistory) => {
+    return axios.put(`${API_URL}/update_education_funding_history/${studentId}`, fundingHistory);
+};
+//reset password
+export const resetPassword = async (email, password) => {
+    try {
+        const response = await axios.post(`${API_URL}/reset_password/${email}`, { password });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+// Function to delete family information
+export const deleteFamilyInformation = (studentId) => {
+    return axios.delete(`${API_URL}/delete_family/${studentId}`);
+};
+
+// Function to delete sibling information
+export const deleteSiblingInformation = (studentId) => {
+    return axios.delete(`${API_URL}/delete_sibling/${studentId}`);
+};
+
+// Function to delete institution information for a student
+export const deleteInstitutionInformation = (studentId) => {
+    return axios.delete(`${API_URL}/delete_institution/${studentId}`);
+};
+
+// Function to delete a student
+export const deleteStudent = (studentId) => {
+    return axios.delete(`${API_URL}/delete_student/${studentId}`);
+};
+//deleteDeclaration
+
+
+
+
