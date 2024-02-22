@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from './api';
+import { login, makeAuthenticatedRequest, refreshToken, isTokenExpired } from './api';
 
 const Login = () => {
     const [userData, setUserData] = useState({
@@ -22,7 +22,14 @@ const Login = () => {
         try {
             await login(userData.email, userData.password);
             setSuccessMessage('Logged in successfully!');
-            // Redirect to the desired route after successful login
+            // Check if access token is expired, and refresh it if necessary
+            const accessToken = localStorage.getItem('accessToken');
+            if (!accessToken || isTokenExpired(accessToken)) {
+                await refreshToken();
+            }
+            // Now you can make authenticated requests using makeAuthenticatedRequest function
+            const data = await makeAuthenticatedRequest('/protected-endpoint', { method: 'GET' });
+            console.log('Authenticated request result:', data);
             navigate('/dashboard');
         } catch (error) {
             console.error(error);

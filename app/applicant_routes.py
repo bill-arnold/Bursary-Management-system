@@ -2,14 +2,13 @@
 from flask import request
 from flask_restful import Resource
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory,DeclarationDocuments,Beneficiary
-from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema
+from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema,UserSchema2
 from marshmallow import ValidationError
 import uuid
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from werkzeug.security import generate_password_hash
 
 class SignUp(Resource):
     def post(self):
@@ -191,12 +190,14 @@ class ReceiveBursary(Resource):
         student_data = beneficiary_schema.dump(beneficiary)
 
         return ({"student_data": student_data}), 200
-    
+
+
+
 class Login(Resource):
     def post(self):
-        schema = UserSchema(only=("email", "password"))
+        schema = UserSchema2(only=("email", "password"))
         try:
-            data = schema.load(request.get_json())
+            data = request.get_json()
         except ValidationError as err:
             return {"message": "Validation error", "errors": err.messages}, 400
 

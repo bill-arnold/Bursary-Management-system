@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+#from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -11,6 +11,8 @@ from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, Ad
 from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
 import os
 from flask_cors import CORS
+from datetime import timedelta
+
 def create_app():
     app = Flask(__name__)
     api = Api(app) 
@@ -18,12 +20,13 @@ def create_app():
 
     # Configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bursary.db'  # Use your own database URI
-    app.config['JWT_SECRET_KEY'] = os.environ.get('your-secret-key')  # Use your own secret key
+    app.config['JWT_SECRET_KEY'] = '8e491c3e401bbfc80d2bb16485ab0ccc35407b8773d683469afea3153ba3960a'
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 
     # Initialize extensions
     db.init_app(app)  # Initializing db with the Flask app
     migrate = Migrate(app, db)
-    bcrypt = Bcrypt(app)
+    #bcrypt = Bcrypt(app)
     jwt = JWTManager(app)
     CORS(app)
 

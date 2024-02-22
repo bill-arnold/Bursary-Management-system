@@ -56,3 +56,19 @@ class StudentDetailsSchema2(Schema):
     sqla_session = db.session
     id = fields.UUID()
     name = fields.Function(lambda obj: f"{obj.firstname} {obj.lastname}")
+
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+from models import User
+from marshmallow import fields, post_load
+
+class UserSchema2(SQLAlchemyAutoSchema):
+    class Meta:
+        model = User
+        sqla_session = db.session
+
+    email = fields.Email(required=True)
+    password = fields.Str(required=True, load_only=True)
+
+    @post_load
+    def make_user(self, data, **kwargs):
+        return User(**data)

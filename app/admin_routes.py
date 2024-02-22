@@ -8,6 +8,7 @@ from email_utils import send_student_approved_email, send_score_awarded_email
 
 
 class VerifyStudent(Resource):
+    
     def post(self, student_id):
         schema = StudentDetailsSchema()
         try:
@@ -24,6 +25,7 @@ class VerifyStudent(Resource):
         return {"message": "Student not found."}, 404
 
 class ApproveStudent(Resource):
+    
     def post(self, student_id):
         schema = StudentDetailsSchema()
         try:

@@ -53,4 +53,76 @@ export const ViewApplications = () => axios.get(`${API_URL}/view-applications`)
     name: application.name
   })));
 //login
-export const login = (email, password) => axios.post(`${API_URL}/login`, { email, password });
+//export const login = (email, password) => axios.post(`${API_URL}/login`, { email, password });
+  // Replace with your API's base URL
+
+// Function for user login
+export const login = async (email, password) => {
+    try {
+        const response = await axios.post(`${API_URL}/login`, { email, password });
+        const data = response.data;
+        // Store access token and refresh token in local storage
+        localStorage.setItem('accessToken', data.access_token);
+        localStorage.setItem('refreshToken', data.refresh_token);
+        return data;
+    } catch (error) {
+        console.error('Error logging in:', error);
+        throw error;
+    }
+};
+
+// Other API functions for different endpoints
+// Add your other API functions here...
+
+export const makeAuthenticatedRequest = async (url, options) => {
+    let accessToken = localStorage.getItem('accessToken');
+    if (!accessToken || isTokenExpired(accessToken)) {
+        await refreshToken(); // Refresh access token if expired
+        accessToken = localStorage.getItem('accessToken');
+    }
+
+    // Include access token in request headers
+    options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${accessToken}`
+    };
+
+    // Make the request using Axios
+    try {
+        const response = await axios(url, options);
+        return response.data;
+    } catch (error) {
+        console.error('Error making authenticated request:', error);
+        throw error;
+    }
+};
+
+// Function to refresh access token
+const refreshToken = async () => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    // Send request to backend token refresh endpoint
+    try {
+        const response = await axios.post(`${API_URL}/refresh-token`, { refreshToken });
+        const data = response.data;
+        if (response.status === 200) {
+            // Update stored access token
+            localStorage.setItem('accessToken', data.access_token);
+        } else {
+            // Handle refresh token failure
+            console.error('Token refresh failed:', data.message);
+        }
+    } catch (error) {
+        console.error('Error refreshing token:', error);
+    }
+};
+
+// Function to check if access token is expired
+const isTokenExpired = (token) => {
+    const expiry = token.exp * 1000; // Convert expiry time to milliseconds
+    return Date.now() >= expiry;
+};
+
+export {
+    refreshToken,
+    isTokenExpired,
+};
