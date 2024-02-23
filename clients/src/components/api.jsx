@@ -136,16 +136,19 @@ export const updateFamilyInformation = (studentId, familyInfo) => {
 };
 //update sibling information
 export const updateSiblingInformation = (studentId, siblingInfo) => {
-    return axios.put(`${API_URL}/update-sibling-information/${studentId}`, siblingInfo);
+    return axios.put(`${API_URL}/update_sibling/${studentId}`, siblingInfo);
 };
 //update student information
-export const updateStudentInformation = (userId, studentDetails) => {
-    return axios.put(`${API_URL}/update_student/${userId}`, studentDetails);
+export const updateStudentInformation = (studentId, studentDetails) => {
+    return axios.put(`${API_URL}/update_student/${studentId}`, studentDetails);
 };
+
+
 //update declarations
 export const updateDeclarations = (studentId, declarations) => {
-    return axios.put(`${API_URL}/update_declarations/${studentId}`, declarations);
-    };
+    return axios.put(`${API_URL}/update_declaration/${studentId}`, declarations);
+};
+
 //update education fund history
 export const updateEducationFundingHistory = (studentId, fundingHistory) => {
     return axios.put(`${API_URL}/update_education_funding_history/${studentId}`, fundingHistory);
@@ -177,9 +180,34 @@ export const deleteInstitutionInformation = (studentId) => {
 
 // Function to delete a student
 export const deleteStudent = (studentId) => {
-    return axios.delete(`${API_URL}/delete_student/${studentId}`);
+    return axios.delete(`${API_URL}/delete_student/${studentId}`, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 };
-//deleteDeclaration
+
+
+//Logout
+export const logout = async () => {
+  try {
+    // Call the logout API endpoint
+    const response = await axios.post('/logout');
+    // Check if the logout was successful
+    if (response.status === 200) {
+      // Clear access token from local storage or perform any other necessary actions
+      localStorage.removeItem('accessToken');
+      // Redirect to the login page or perform any other necessary actions
+      window.location.href = '/login';
+    } else {
+      // Handle error response if needed
+      console.error('Logout failed:', response.data.message);
+    }
+  } catch (error) {
+    // Handle network errors or other exceptions
+    console.error('Logout failed:', error.message);
+  }
+};
 
 
 

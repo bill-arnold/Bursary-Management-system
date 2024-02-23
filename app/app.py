@@ -7,10 +7,10 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedBursaries,OnboardBursary
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
-from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login
+from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login,Logout
 from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
 #import os
-from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateInstitutionInformation,UpdateStudent,ResetPassword,DeleteContactDetails,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent
+from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateInstitutionInformation,UpdateStudent,ResetPassword,DeleteContactDetails,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent,UpdateDeclaration
 from flask_cors import CORS
 from datetime import timedelta
 
@@ -93,6 +93,9 @@ def create_app():
     api.add_resource(DeleteSiblingInformation, '/delete_sibling/<string:student_id>')
     api.add_resource(DeleteInstitutionInformation, '/delete_institution/<string:student_id>')
     api.add_resource(DeleteStudent, '/delete_student/<string:student_id>')
+    api.add_resource(Logout, '/logout')
+    # Add the UpdateDeclaration route
+    api.add_resource(UpdateDeclaration, '/update_declaration/<string:student_id>')
     
 
 

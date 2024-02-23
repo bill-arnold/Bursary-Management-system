@@ -39,7 +39,7 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form id="addBursaryForm"onSubmit={handleSubmit}>
             <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
             <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Password" required />
             {error && <p className="error">{error}</p>}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addStudent, getAllUsers } from './api'; // adjust the import path to your api.jsx file
 
 function AddStudentInformation() {
+    const [showDropdown, setShowDropdown] = useState(false);
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState('');
     const [studentDetails, setStudentDetails] = useState({
@@ -72,11 +73,16 @@ function AddStudentInformation() {
                 console.error(error);
             });
     };
+    const handleToggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
 
     // Render the form
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <button onClick={handleToggleDropdown}>Add Students</button>
+            {showDropdown && (
+            <form id="addBursaryForm"onSubmit={handleSubmit}>
                 <select value={selectedUser} onChange={e => setSelectedUser(e.target.value)} required>
                     <option value="">Select User</option>
                     {users.map(user => (
@@ -102,6 +108,7 @@ function AddStudentInformation() {
                 <input type="date" name="expected_completion_year" value={studentDetails.expected_completion_year} onChange={handleInputChange} placeholder="Expected Completion Year" required />
                 <button type="submit">Submit</button>
             </form>
+            )}
             {message && <p>{message}</p>}
         </div>
     );

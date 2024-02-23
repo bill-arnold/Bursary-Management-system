@@ -34,3 +34,18 @@ textarea {
 button:hover {
     background-color: #45a049;
 }
+/* logout.css */
+.logout-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #2980b9;
+}

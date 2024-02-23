@@ -28,12 +28,13 @@ import ResetPassword from './ResetPassword';
 import DeleteFamilyInformation from './DeleteFamilyInformation';
 import DeleteSiblingInformation from './DeleteSiblingInformation';
 import DeleteStudent from './DeleteStudent';
+import Logout from './logout';
 
 
 
 const Dashboard = () => {
     return (
-        <div>
+        <div >
             <h1>Bursary Management System</h1>
             <nav id="mainNav">
                 <ul id="navList">
@@ -46,8 +47,11 @@ const Dashboard = () => {
                 </ul>
             </nav>
             <Routes>
+                 
                 <Route path="/applicants" element={
                     <>
+                    <li id="navItem"><Link id="navLink" to="/logout">Logout</Link></li>
+                        
                         <h2>Add Student Details</h2>
                         <AddPersonalDetails />
                         <h2>View Students</h2>
@@ -77,6 +81,7 @@ const Dashboard = () => {
                         <h2>Update Education Funding History</h2>
                         < UpdateEducationFundingHistory />
                         <ReceiveBursary />
+                        
                     </>
                 } />
                 <Route path="/sponsors" element={

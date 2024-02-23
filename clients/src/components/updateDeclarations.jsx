@@ -4,7 +4,7 @@ import { updateDeclarations, getAllStudents } from './api';
 const UpdateDeclarations = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [students, setStudents] = useState([]);
-    const [selectedStudent, setSelectedStudent] = useState('');
+    const [selectedStudentId, setSelectedStudentId] = useState('');
     const [declarations, setDeclarations] = useState({
         individual_declaration: '',
         parent_declaration: '',
@@ -27,7 +27,13 @@ const UpdateDeclarations = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await updateDeclarations(selectedStudent, declarations);
+            // Ensure a student is selected before submitting
+            if (!selectedStudentId) {
+                alert('Please select a student.');
+                return;
+            }
+            
+            const response = await updateDeclarations(selectedStudentId, declarations);
             setMessage('Declarations updated successfully.');
             console.log(response.data);
         } catch (error) {
@@ -44,7 +50,7 @@ const UpdateDeclarations = () => {
             <button onClick={handleToggleDropdown}>Update Declarations</button>
             {showDropdown && (
             <form onSubmit={handleSubmit}>
-                <select value={selectedStudent} onChange={e => setSelectedStudent(e.target.value)} required>
+                <select value={selectedStudentId} onChange={e => setSelectedStudentId(e.target.value)} required>
                     <option value="">Select Student</option>
                     {students.map(student => (
                         <option key={student.id} value={student.id}>{student.name} ({student.id})</option>

@@ -72,3 +72,11 @@ class UserSchema2(SQLAlchemyAutoSchema):
     @post_load
     def make_user(self, data, **kwargs):
         return User(**data)
+
+class StudentDetailsSchema3(SQLAlchemyAutoSchema):
+    class Meta:
+        model = StudentDetails
+        sqla_session = db.session
+        
+    student_id = fields.UUID()
+   

@@ -1,12 +1,12 @@
 # resources.py
-from flask import request
+from flask import request,make_response
 from flask_restful import Resource
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory,DeclarationDocuments,Beneficiary
 from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema,UserSchema2
 from marshmallow import ValidationError
 import uuid
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token,get_jwt_identity, unset_jwt_cookies,jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -212,3 +212,15 @@ class Login(Resource):
         else:
             # User provided incorrect email or password
             return {"message": "Invalid email or password."}, 401  # Use 401 for authentication failure
+
+
+class Logout(Resource):
+    @jwt_required()
+    def post(self):
+        # Get the identity of the current user from the JWT token
+        current_user = get_jwt_identity()
+        # Unset JWT cookies to perform logout
+        response = make_response({"message": "Logged out successfully."}, 200)
+        unset_jwt_cookies(response)
+        return response
+       

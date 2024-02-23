@@ -28,7 +28,7 @@ const SignUp = () => {
             console.log(response.data);
             setSuccessMessage('User signed up successfully!');
             // Redirect to the desired route after successful signup
-            navigate('/applicants'); // Redirect to the applicants route
+            navigate('/logIn'); // Redirect to the applicants route
         } catch (error) {
             console.error(error);
             setError('Failed to sign up. Please try again.');

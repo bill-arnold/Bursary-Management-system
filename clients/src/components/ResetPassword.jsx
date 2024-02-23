@@ -29,10 +29,10 @@ const ResetPasswordButton = () => {
     };
 
     return (
-        <div>
+        <div id="addBursaryForm">
             <button onClick={handleToggleDropdown}>Reset Password</button>
             {showDropdown && (
-                <div>
+                <div id="addBursaryForm">
                     <input
                         type="email"
                         placeholder="Enter email"
