@@ -31,7 +31,8 @@ const AwardNeedyScore = () => {
       return;
     }
     try {
-      const response = await awardStudentNeedyScore(selectedStudentId, score);
+      const data = { needy_score: score }; // Construct JSON object
+      const response = await awardStudentNeedyScore(selectedStudentId, data); // Send JSON object in the request body
       setMessage('Needy score awarded successfully!');
     } catch (error) {
       setMessage('An error occurred while awarding the needy score.');

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { addStudent, getAllUsers } from './api'; // adjust the import path to your api.jsx file
+import { updateStudentInformation, getAllStudents } from './api'; // Adjust the import path to your api.jsx file
 
-function AddStudentInformation() {
+function UpdateStudentInformation() {
     const [showDropdown, setShowDropdown] = useState(false);
-    const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState('');
+    const [students, setStudents] = useState([]);
+    const [selectedStudent, setSelectedStudent] = useState('');
     const [studentDetails, setStudentDetails] = useState({
         firstname: '',
         lastname: '',
@@ -26,10 +26,10 @@ function AddStudentInformation() {
     });
     const [message, setMessage] = useState('');
 
-    // Fetch users when component mounts
+    // Fetch students when component mounts
     useEffect(() => {
-        getAllUsers()
-            .then(response => setUsers(response.data))
+        getAllStudents()
+            .then(response => setStudents(response.data))
             .catch(error => console.error(error));
     }, []);
 
@@ -43,11 +43,11 @@ function AddStudentInformation() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Call addStudent function from api.jsx
-        addStudent(selectedUser, studentDetails)
+        // Call updateStudentInformation function from api.jsx with the selected student ID
+        updateStudentInformation(selectedStudent, studentDetails)
             .then(response => {
-                // handle success
-                setMessage('Student details added successfully.');
+                // Handle success
+                setMessage('Student details updated successfully.');
                 setStudentDetails({
                     firstname: '',
                     lastname: '',
@@ -69,10 +69,11 @@ function AddStudentInformation() {
                 });
             })
             .catch(error => {
-                // handle error
+                // Handle error
                 console.error(error);
             });
     };
+
     const handleToggleDropdown = () => {
         setShowDropdown(!showDropdown);
     };
@@ -80,15 +81,16 @@ function AddStudentInformation() {
     // Render the form
     return (
         <div>
-            <button onClick={handleToggleDropdown}>Add Students</button>
+            <button onClick={handleToggleDropdown}>Update Student Details</button>
             {showDropdown && (
-            <form id="addBursaryForm"onSubmit={handleSubmit}>
-                <select value={selectedUser} onChange={e => setSelectedUser(e.target.value)} required>
-                    <option value="">Select User</option>
-                    {users.map(user => (
-                        <option key={user.id} value={user.id}>{user.name} ({user.id})</option>
+            <form onSubmit={handleSubmit}>
+                <select value={selectedStudent} onChange={e => setSelectedStudent(e.target.value)} required>
+                    <option value="">Select Student</option>
+                    {students.map(student => (
+                        <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                     ))}
                 </select>
+                {/* Input fields for student details */}
                 <input type="text" name="firstname" value={studentDetails.firstname} onChange={handleInputChange} placeholder="First Name" required />
                 <input type="text" name="lastname" value={studentDetails.lastname} onChange={handleInputChange} placeholder="Last Name" required />
                 <input type="text" name="contact_phone_number" value={studentDetails.contact_phone_number} onChange={handleInputChange} placeholder="Contact Phone Number" required />
@@ -114,4 +116,4 @@ function AddStudentInformation() {
     );
 }
 
-export default AddStudentInformation;
+export default UpdateStudentInformation;

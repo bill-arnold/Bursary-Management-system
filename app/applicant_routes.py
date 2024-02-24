@@ -1,10 +1,15 @@
 # resources.py
-from flask import request
+from flask import request,make_response
 from flask_restful import Resource
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory,DeclarationDocuments,Beneficiary
-from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema
+from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema,UserSchema2
 from marshmallow import ValidationError
 import uuid
+from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import create_access_token,get_jwt_identity, unset_jwt_cookies,jwt_required
+from werkzeug.security import generate_password_hash, check_password_hash
+
+
 class SignUp(Resource):
     def post(self):
         schema = UserSchema()
@@ -118,25 +123,40 @@ class AddStudent(Resource):
 
 
 
+
 class AddDeclarations(Resource):
     def post(self, student_id):
+        # Load schema for validation
         schema = DeclarationDocumentsSchema()
         try:
-            data = schema.load(request.get_json(), partial=True)  # Load only specified fields
+            data = schema.load(request.get_json())  # Load only specified fields
         except ValidationError as err:
             return err.messages, 400
         
+        # Convert student_id to UUID
         student_id = uuid.UUID(student_id)
 
+        # Check if the student exists
         student = StudentDetails.query.get(student_id)
         if student:
-            # Update the student with the declaration data
-            declarations = DeclarationDocuments(**data)
-            student.declarations = declarations
+            # Create a new DeclarationDocuments instance with the loaded data
+            declarations = DeclarationDocuments(
+                student_id=student_id,
+                individual_declaration=data['individual_declaration'],
+                parent_declaration=data['parent_declaration'],
+                religious_leader_declaration=data['religious_leader_declaration'],
+                local_authority_declaration=data['local_authority_declaration']
+            )
             
+            # Add the new declaration documents to the database session
+            db.session.add(declarations)
+            
+            # Commit the changes to the database
             db.session.commit()
+            
             return {"message": "Declarations added successfully."}, 200
-        return {"message": "Student not found."}, 404
+        else:
+            return {"message": "Student not found."}, 404
 
 
 class AddEducationFundingHistory(Resource):
@@ -170,3 +190,38 @@ class ReceiveBursary(Resource):
         student_data = beneficiary_schema.dump(beneficiary)
 
         return ({"student_data": student_data}), 200
+
+
+
+
+class Login(Resource):
+    def post(self):
+        schema = UserSchema2(only=("email", "password"))
+        try:
+            data = request.get_json()
+        except ValidationError as err:
+            return {"message": "Validation error", "errors": err.messages}, 400
+
+        if 'email' not in data or 'password' not in data:
+            return {"message": "Email and password are required."}, 400
+
+        user = User.query.filter_by(email=data['email']).first()
+        if user and check_password_hash(user.password_hash, data['password']):
+            # User provided correct password
+            access_token = create_access_token(identity=user.id)
+            return {"message": "Logged in successfully.", "access_token": access_token}, 200
+        else:
+            # User provided incorrect email or password
+            return {"message": "Invalid email or password."}, 401  # Use 401 for authentication failure
+
+
+class Logout(Resource):
+    @jwt_required()
+    def post(self):
+        # Get the identity of the current user from the JWT token
+        current_user = get_jwt_identity()
+        # Unset JWT cookies to perform logout
+        response = make_response({"message": "Logged out successfully."}, 200)
+        unset_jwt_cookies(response)
+        return response
+       
