@@ -192,14 +192,14 @@ export const updateEducationFundingHistory = (studentId, fundingHistory) => {
 
 
 //reset password
-export const resetPassword = async (email, password) => {
-    try {
-        const response = await axios.post(`${API_URL}/reset_password/${email}`, { password });
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
+export const resetUserPassword = (userEmail, newPassword) => {
+  return axios.post(
+    `${API_URL}/reset_password/${userEmail}`,
+    { password: newPassword },
+    { headers: { 'Content-Type': 'application/json' } } // Set JSON content type
+  );
 };
+
 
 // Function to delete family information
 export const deleteFamilyInformation = (studentId) => {

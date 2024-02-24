@@ -89,3 +89,7 @@ class StudentDetails99Schema(Schema):
 class NeedyScoreSchema(Schema):
     model = StudentDetails
     needy_score = fields.Integer()
+
+class ResetPasswordSchema(Schema):
+    model = User
+    password = fields.Str(required=True)

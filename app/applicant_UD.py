@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, DeclarationDocuments, Beneficiary
-from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema,DeclarationDocumentsSchema,EducationFundingHistorySchema
+from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema,DeclarationDocumentsSchema,EducationFundingHistorySchema,ResetPasswordSchema
 from marshmallow import ValidationError
 from uuid import UUID
 import uuid
@@ -107,7 +107,7 @@ class UpdateStudent(Resource):
 
 class ResetPassword(Resource):
     def post(self, user_email):
-        schema = UserSchema()
+        schema = ResetPasswordSchema()
         try:
             data = schema.load(request.get_json())
         except ValidationError as err:
@@ -119,6 +119,7 @@ class ResetPassword(Resource):
             db.session.commit()
             return {"message": "Password reset successfully."}, 200
         return {"message": "User not found."}, 404
+
 
 class DeleteContactDetails(Resource):
     def delete(self, user_id):
