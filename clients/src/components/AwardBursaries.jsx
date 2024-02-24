@@ -1,5 +1,8 @@
+// AwardBursaries.jsx
+
 import React, { useState, useEffect } from 'react';
 import { awardBursaries, viewApplications } from './api';
+import './AwardBursaries.css'; // Import the stylesheet
 
 const AwardBursaries = () => {
   const [message, setMessage] = useState('');
@@ -40,17 +43,17 @@ const AwardBursaries = () => {
   };
 
   return (
-    <div>
-      <select onChange={(e) => setSelectedApplicationId(e.target.value)}>
+    <div id="awardBursariesContainer">
+      <select id="applicationSelector" onChange={(e) => setSelectedApplicationId(e.target.value)}>
         <option value="">Select an application</option>
         {options.map(application => (
           <option key={application.id} value={application.id}>{`${application.id} - ${application.contact_person}`}</option>
         ))}
       </select>
-      <button onClick={handleClick}>Award Bursary</button>
-      {message && <p>{message}</p>}
+      <button id="awardBursaryButton" onClick={handleClick}>Award Bursary</button>
+      {message && <p id="awardMessage">{message}</p>}
       {awardedApplicant && (
-        <div>
+        <div id="awardedApplicantDetails">
           <p>ID: {awardedApplicant.id}</p>
           <p>Name: {awardedApplicant.name}</p>
           {/* Add more details if needed */}

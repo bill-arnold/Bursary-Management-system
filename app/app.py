@@ -7,9 +7,8 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedBursaries,OnboardBursary
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
-from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login
+from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary
 from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
-import os
 def create_app():
     app = Flask(__name__)
     api = Api(app) 
@@ -17,7 +16,7 @@ def create_app():
 
     # Configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bursary.db'  # Use your own database URI
-    app.config['JWT_SECRET_KEY'] = os.environ.get('your-secret-key')  # Use your own secret key
+    #app.config['JWT_SECRET_KEY'] = 'your-secret-key'  # Use your own secret key
 
     # Initialize extensions
     db.init_app(app)  # Initializing db with the Flask app
@@ -73,9 +72,6 @@ def create_app():
     api.add_resource(GetAllBursaries, '/get-all-bursaries')
     #get all students
     api.add_resource(GetAllStudents2, '/get-all-students2')
-    #login
-    api.add_resource(Login, '/login')
-
 
 
     return app 

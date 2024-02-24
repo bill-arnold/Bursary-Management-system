@@ -1,0 +1,38 @@
+/* RejectRequest.css */
+
+#rejectRequestContainer {
+    text-align: center;
+    padding: 20px;
+}
+
+#applicationSelector {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#rejectRequestButton {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#rejectRequestButton:hover {
+    background-color: #c0392b;
+}
+
+#rejectMessage {
+    margin-top: 20px;
+    color: #e74c3c;
+}
+
+#rejectedApplicantDetails {
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

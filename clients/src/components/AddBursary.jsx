@@ -1,5 +1,8 @@
+// AddBursary.jsx
+
 import React, { useState } from 'react';
 import { createNewBursary } from './api';
+import './AddBursary.css'; // Import the stylesheet
 
 const AddBursary = () => {
     const initialState = {
@@ -32,28 +35,28 @@ const AddBursary = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
+        <form id="addBursaryForm" onSubmit={handleSubmit}>
+            <label htmlFor="title">
                 Title:
-                <input type="text" name="title" value={bursary.title} onChange={handleChange} required />
+                <input type="text" id="title" name="title" value={bursary.title} onChange={handleChange} required />
             </label>
-            <label>
+            <label htmlFor="description">
                 Description:
-                <textarea name="description" value={bursary.description} onChange={handleChange} required />
+                <textarea id="description" name="description" value={bursary.description} onChange={handleChange} required />
             </label>
-            <label>
+            <label htmlFor="fundAmount">
                 Fund Amount:
-                <input type="number" name="fund_amount" value={bursary.fund_amount} onChange={handleChange} required />
+                <input type="number" id="fundAmount" name="fund_amount" value={bursary.fund_amount} onChange={handleChange} required />
             </label>
-            <label>
+            <label htmlFor="contactPerson">
                 Contact Person:
-                <input type="text" name="contact_person" value={bursary.contact_person} onChange={handleChange} required />
+                <input type="text" id="contactPerson" name="contact_person" value={bursary.contact_person} onChange={handleChange} required />
             </label>
-            <label>
+            <label htmlFor="photoUrl">
                 Photo URL:
-                <input type="text" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
+                <input type="text" id="photoUrl" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
             </label>
-            <button type="submit">Add Bursary</button>
+            <button id="addBursaryButton" type="submit" >Add Bursary</button>
         </form>
     );
 };

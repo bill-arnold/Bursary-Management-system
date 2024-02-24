@@ -147,3 +147,34 @@ body {
   height: 100px;
   object-fit: cover;
 }
+
+/* nav styles */
+
+#mainNav {
+  background-color: #3498db;
+  padding: 15px;
+  text-align: center;
+}
+
+#navList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navItem {
+  display: inline;
+  margin-right: 15px;
+}
+
+#navLink {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+#navLink:hover {
+  color: #2c3e50;
+}

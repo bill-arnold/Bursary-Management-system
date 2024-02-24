@@ -1,0 +1,38 @@
+/* AwardBursaries.css */
+
+#awardBursariesContainer {
+    text-align: center;
+    padding: 20px;
+}
+
+#applicationSelector {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#awardBursaryButton {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#awardBursaryButton:hover {
+    background-color: #c0392b;
+}
+
+#awardMessage {
+    margin-top: 20px;
+    color: #27ae60;
+}
+
+#awardedApplicantDetails {
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

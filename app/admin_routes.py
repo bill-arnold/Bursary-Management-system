@@ -5,6 +5,8 @@ from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
 import uuid
+from email_utils import send_student_approved_email, send_score_awarded_email
+
 
 class VerifyStudent(Resource):
     def post(self, student_id):
@@ -35,6 +37,10 @@ class ApproveStudent(Resource):
         if student:
             student.approved = True
             db.session.commit()
+
+            # Send an approval email to the student
+            send_student_approved_email(student)
+
             return {"message": "Student approved successfully."}, 200
         return {"message": "Student not found."}, 404
 
@@ -51,6 +57,10 @@ class AwardScore(Resource):
         if student:
             student.needy_score = data.get('score')
             db.session.commit()
+            
+            # Send a score awarded email to the student
+            send_score_awarded_email(student)
+
             return {"message": "Score awarded successfully."}, 200
         return {"message": "Student not found."}, 404
 
