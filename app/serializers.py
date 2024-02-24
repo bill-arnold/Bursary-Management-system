@@ -79,4 +79,13 @@ class StudentDetailsSchema3(SQLAlchemyAutoSchema):
         sqla_session = db.session
         
     student_id = fields.UUID()
-   
+
+from marshmallow import Schema, fields
+
+class StudentDetails99Schema(Schema):
+    model = StudentDetails
+    approved = fields.Boolean()
+
+class NeedyScoreSchema(Schema):
+    model = StudentDetails
+    needy_score = fields.Integer()

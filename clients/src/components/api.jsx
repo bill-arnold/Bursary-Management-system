@@ -18,12 +18,48 @@ export const receiveBursary = (studentId) => axios.get(`${API_URL}/receive-bursa
 //admin
 
 
-export const verifyStudentInformation = (studentId) => axios.post(`${API_URL}/verify-student/${studentId}`, {});
 
 
-export const approveStudentInformation = (studentId) => axios.post(`${API_URL}/approve-student/${studentId}`);
 
-export const awardStudentNeedyScore = (studentId, score) => axios.post(`${API_URL}/award-score/${studentId}`, { score });
+
+const approveStudentInformation = async (studentId) => {
+  try {
+    const response = await axios.post(`${API_URL}/approve-student/${studentId}`, { approved: true });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { approveStudentInformation };
+
+export const awardStudentNeedyScore = (studentId, data) => {
+  return axios.post(`${API_URL}/award-score/${studentId}`, data, {
+    headers: {
+      'Content-Type': 'application/json' // Set content type to JSON
+    }
+  });
+};
+
+
+
+export const verifyStudentInformation = async (studentId, columnToUpdate) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/verify-student/${studentId}`,
+      { column_to_update: columnToUpdate }, // Sending the column to update
+      {
+        headers: {
+          'Content-Type': 'application/json' // Set the content type to JSON
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 export const onboardNewBursary = (bursaryDetails) => axios.post(`${API_URL}/onboard-bursary`, bursaryDetails);
 
@@ -151,8 +187,10 @@ export const updateDeclarations = (studentId, declarations) => {
 
 //update education fund history
 export const updateEducationFundingHistory = (studentId, fundingHistory) => {
-    return axios.put(`${API_URL}/update_education_funding_history/${studentId}`, fundingHistory);
+    return axios.put(`${API_URL}/update-education-funding-history/${studentId}`, fundingHistory);
 };
+
+
 //reset password
 export const resetPassword = async (email, password) => {
     try {
@@ -175,7 +213,7 @@ export const deleteSiblingInformation = (studentId) => {
 
 // Function to delete institution information for a student
 export const deleteInstitutionInformation = (studentId) => {
-    return axios.delete(`${API_URL}/delete_institution/${studentId}`);
+    return axios.delete(`${API_URL}/delete_institution${studentId}`);
 };
 
 // Function to delete a student
@@ -209,6 +247,12 @@ export const logout = async () => {
   }
 };
 
+
+
+// Function to delete declaration documents
+export const deleteDeclaration = (studentId) => {
+    return axios.delete(`${API_URL}/delete-declaration/${studentId}`);
+};
 
 
 

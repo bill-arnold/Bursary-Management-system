@@ -5,7 +5,7 @@ from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
 import uuid
-from email_utils import send_bursary_awarded_email, send_bursary_rejected_email
+#from email_utils import send_bursary_awarded_email, send_bursary_rejected_email
 
 
 class AddBursary(Resource):
@@ -42,7 +42,7 @@ class AwardBursary(Resource):
             application.awarded = True
             db.session.commit()
             # Send an award email to the applicant
-            send_bursary_awarded_email(application)
+            #send_bursary_awarded_email(application)
 
             return {"message": "Bursary awarded successfully."}, 200
         return {"message": "Application not found."}, 404
@@ -63,7 +63,7 @@ class RejectRequest(Resource):
             application.rejected = True
             db.session.commit()
              # Send an award email to the applicant
-            send_bursary_rejected_email(application)
+            #send_bursary_rejected_email(application)
             
             return {"message": "Request rejected successfully."}, 200
         return {"message": "Application not found."}, 404

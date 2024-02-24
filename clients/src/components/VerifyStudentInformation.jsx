@@ -4,6 +4,7 @@ import { verifyStudentInformation, getAllStudents } from './api';
 const VerifyStudentInformation = () => {
   const [students, setStudents] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState('');
+  const [selectedColumn, setSelectedColumn] = useState('');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -21,8 +22,17 @@ const VerifyStudentInformation = () => {
 
   const handleVerify = async (isVerified) => {
     try {
-      const response = await verifyStudentInformation(selectedStudentId, { verified: isVerified });
-      setMessage('Student verification status updated successfully!');
+      if (!selectedStudentId || !selectedColumn) {
+        setMessage('Please select a student and specify the column to update.');
+        return;
+      }
+
+      const response = await verifyStudentInformation(selectedStudentId, selectedColumn);
+      if (isVerified) {
+        setMessage('Student verification status updated successfully!');
+      } else {
+        setMessage('Student not verified.');
+      }
     } catch (error) {
       setMessage('An error occurred while updating the student verification status.');
       console.error(error);
@@ -37,6 +47,11 @@ const VerifyStudentInformation = () => {
         {students && students.map(student => (
           <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
         ))}
+      </select>
+      <select onChange={(e) => setSelectedColumn(e.target.value)}>
+        <option value="">Select column to update</option>
+        <option value="verified">Verified</option>
+        {/* Add additional options for other columns if needed */}
       </select>
       <button onClick={() => handleVerify(true)}>Verify Student</button>
       <button onClick={() => handleVerify(false)}>Not Verify Student</button>

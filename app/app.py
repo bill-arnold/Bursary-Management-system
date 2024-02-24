@@ -10,7 +10,7 @@ from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStude
 from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login,Logout
 from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
 #import os
-from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateInstitutionInformation,UpdateStudent,ResetPassword,DeleteContactDetails,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent,UpdateDeclaration
+from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateInstitutionInformation,UpdateStudent,ResetPassword,DeleteContactDetails,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent,UpdateDeclaration,DeleteDeclaration,UpdateEducationFundingHistory
 from flask_cors import CORS
 from datetime import timedelta
 
@@ -96,6 +96,11 @@ def create_app():
     api.add_resource(Logout, '/logout')
     # Add the UpdateDeclaration route
     api.add_resource(UpdateDeclaration, '/update_declaration/<string:student_id>')
+    # Add the route for deleting declarations
+    api.add_resource(DeleteDeclaration, '/delete-declaration/<string:student_id>')
+    # Add the route for deleting declarations
+    api.add_resource(UpdateEducationFundingHistory, '/update-education-funding-history/<string:student_id>')
+
     
 
 

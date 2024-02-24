@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, DeclarationDocuments, Beneficiary
-from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema,DeclarationDocumentsSchema
+from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema,DeclarationDocumentsSchema,EducationFundingHistorySchema
 from marshmallow import ValidationError
 from uuid import UUID
 import uuid
@@ -181,9 +181,11 @@ class DeleteStudent(Resource):
             return {"message": "Student not found."}, 404
  
 
+
+
 class UpdateDeclaration(Resource):
     def put(self, student_id):
-        # Load the request data using the DeclarationsSchema
+        # Load the request data using the DeclarationDocumentsSchema
         schema = DeclarationDocumentsSchema()
         try:
             data = schema.load(request.get_json())
@@ -196,8 +198,53 @@ class UpdateDeclaration(Resource):
         # Query the database for the declaration by student_id
         declaration = DeclarationDocuments.query.filter_by(student_id=student_id).first()
         if declaration:
-            declaration.update(data)
+            # Update the fields of the existing declaration with the new data
+            declaration.individual_declaration = data['individual_declaration']
+            declaration.parent_declaration = data['parent_declaration']
+            declaration.religious_leader_declaration = data['religious_leader_declaration']
+            declaration.local_authority_declaration = data['local_authority_declaration']
+            
+            # Commit the changes to the database
             db.session.commit()
+            
             return {"message": "Declaration updated successfully."}, 200
         else:
             return {"message": "Declaration not found."}, 404
+
+
+class DeleteDeclaration(Resource):
+    def delete(self, student_id):
+        # Convert student_id to UUID (assuming it's a UUID)
+        student_id = uuid.UUID(student_id)
+
+        # Query the database for the declaration by student_id
+        declaration = DeclarationDocuments.query.filter_by(student_id=student_id).first()
+        if declaration:
+            # Delete the declaration from the database
+            db.session.delete(declaration)
+            db.session.commit()
+            return {"message": "Declaration deleted successfully."}, 200
+        else:
+            return {"message": "Declaration not found."}, 404
+class UpdateEducationFundingHistory(Resource):
+    def put(self, student_id):
+        # Load the request data using the EducationFundingHistorySchema
+        schema = EducationFundingHistorySchema()
+        try:
+            data = schema.load(request.get_json())
+        except ValidationError as err:
+            return err.messages, 400
+        
+        student_id = uuid.UUID(student_id)
+
+        # Query the database for the funding history by student ID and other criteria
+        funding_history = EducationFundingHistory.query.filter_by(student_id=student_id, institution_name=data['institution_name']).first()
+        if funding_history:
+            # Update the fields of the existing funding history with the new data
+           
+            # Commit the changes to the database
+            db.session.commit()
+            
+            return {"message": "Education funding history updated successfully."}, 200
+        else:
+            return {"message": "Education funding history not found."}, 404

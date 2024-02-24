@@ -138,25 +138,40 @@ class AddStudent(Resource):
 
 
 
+
 class AddDeclarations(Resource):
     def post(self, student_id):
+        # Load schema for validation
         schema = DeclarationDocumentsSchema()
         try:
-            data = schema.load(request.get_json(), partial=True)  # Load only specified fields
+            data = schema.load(request.get_json())  # Load only specified fields
         except ValidationError as err:
             return err.messages, 400
         
+        # Convert student_id to UUID
         student_id = uuid.UUID(student_id)
 
+        # Check if the student exists
         student = StudentDetails.query.get(student_id)
         if student:
-            # Update the student with the declaration data
-            declarations = DeclarationDocuments(**data)
-            student.declarations = declarations
+            # Create a new DeclarationDocuments instance with the loaded data
+            declarations = DeclarationDocuments(
+                student_id=student_id,
+                individual_declaration=data['individual_declaration'],
+                parent_declaration=data['parent_declaration'],
+                religious_leader_declaration=data['religious_leader_declaration'],
+                local_authority_declaration=data['local_authority_declaration']
+            )
             
+            # Add the new declaration documents to the database session
+            db.session.add(declarations)
+            
+            # Commit the changes to the database
             db.session.commit()
+            
             return {"message": "Declarations added successfully."}, 200
-        return {"message": "Student not found."}, 404
+        else:
+            return {"message": "Student not found."}, 404
 
 
 class AddEducationFundingHistory(Resource):

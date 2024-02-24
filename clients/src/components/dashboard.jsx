@@ -29,6 +29,7 @@ import DeleteFamilyInformation from './DeleteFamilyInformation';
 import DeleteSiblingInformation from './DeleteSiblingInformation';
 import DeleteStudent from './DeleteStudent';
 import Logout from './logout';
+import DeleteDeclaration from './DeleteDeclarations';
 
 
 
@@ -76,6 +77,8 @@ const Dashboard = () => {
                         <AddDeclarations />
                           <h2>Update Declarations</h2>
                         < UpdateDeclarations/>
+                        <h2>Delete Declaration</h2>
+                        <DeleteDeclaration/>
                         <h2>Add Education Funding History</h2>
                         <AddEducationFundingHistory />
                         <h2>Update Education Funding History</h2>
