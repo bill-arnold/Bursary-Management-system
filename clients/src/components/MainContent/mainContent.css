@@ -1,0 +1,80 @@
+/* mainContent.css */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 5%;
+    padding: 2rem;
+    text-align: left;
+  }
+  
+  .text-content {
+    max-width: 60%; /* Adjust based on your layout preference */
+  }
+  
+  .text-content h1 {
+    color: #009688; /* Using a teal color for the heading to match the buttons in the image */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .text-content p {
+    color: black; /* Dark grey color for the paragraph */
+    margin-bottom: 2rem;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .get-started {
+    background-color: #009688; /* Teal background for 'Get Started' button */
+    color: white;
+  }
+  
+  .login {
+    background-color: transparent;
+    color: #009688;
+    border: 2px solid #009688; /* Teal border for 'Login' button */
+  }
+  
+  .login:hover {
+    background-color: #009688; /* Teal background on hover */
+    color: white;
+  }
+  
+  .image-content {
+    flex-shrink: 0; /* Prevents the image from shrinking */
+    max-width: 35%; /* Adjust based on your layout preference */
+  }
+  
+  .image-content img {
+    width: 100%; /* Makes the image responsive */
+    height: auto; /* Maintains aspect ratio */
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .text-content,
+    .image-content {
+      max-width: 100%;
+    }
+  
+    .image-content img {
+      margin-top: 2rem;
+    }
+  }
+  
