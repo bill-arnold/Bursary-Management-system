@@ -36,7 +36,6 @@ class SignUp(Resource):
             db.session.rollback()
             return {"message": "A user with this email already exists."}, 400
 
-
         
 
 class AddContactDetails(Resource):
@@ -108,10 +107,6 @@ class AddInstitutionInformation(Resource):
             db.session.commit()
             return {"message": "Institution information added successfully."}, 200
         return {"message": "Student not found."}, 404
-
-
-
-
 
 
 class AddStudent(Resource):

@@ -149,7 +149,7 @@ body {
   object-fit: cover;
 }
 
-/* nav styles */
+/* nav styles 
 
 #mainNav {
   background-color: #3498db;
@@ -180,7 +180,7 @@ body {
 #navLink:hover {
   color: #2c3e50;
 }
-
+*/
 /* logout.css */
 .logout-button {
   background-color: #3498db;
@@ -195,4 +195,106 @@ body {
 
 .logout-button:hover {
   background-color: #2980b9;
+}
+
+/* LandingPage.css */
+
+.LandingPage {
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  padding: 0 10px;
+  background-color: #0c0c0c;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+.content {
+  flex: 1;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.footer-content {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.footer-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-content ul li {
+  margin-bottom: 5px;
+}
+
+.copyright {
+  font-size: 12px;
+}
+.logo img {
+  max-width: 100px;
+  /* Adjust the maximum width as needed */
+  max-height: 50px;
+  /* Adjust the maximum height as needed */
+}
+.LandingPage {
+  text-align: center;
+  width: 100vw;
+  /* Set width to cover entire viewport width */
+  height: 100vh;
+  /* Set height to cover entire viewport height */
+  margin: 0;
+  /* Remove any default margin */
+  padding: 0;
+  /* Remove any default padding */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  /* Center content horizontally */
+  align-items: center;
+  /* Center content vertically */
+  height: 100%;
+  /* Ensure container fills the entire height of the viewport */
 }

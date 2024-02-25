@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, makeAuthenticatedRequest, refreshToken, isTokenExpired } from './api';
-
+import { Link } from 'react-router-dom';
+import ResetPassword from './ResetPassword';;
 const Login = () => {
     const [userData, setUserData] = useState({
         email: '',
@@ -39,13 +40,22 @@ const Login = () => {
     };
 
     return (
+        <div>
+            <nav id=".nav-links">
+                <ul id=".nav-links">
+                    <li id="navItem"><Link id="navLink" to="/">Home</Link></li>
+                </ul>
+            </nav>
+            <h1>Login</h1>
         <form id="addBursaryForm"onSubmit={handleSubmit}>
             <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
             <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Password" required />
             {error && <p className="error">{error}</p>}
             {successMessage && <p className="success">{successMessage}</p>}
             <button type="submit">Login</button>
+             < ResetPassword/>
         </form>
+        </div>
     );
 };
 

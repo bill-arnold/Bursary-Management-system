@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useHistory hook
 import { signUp } from './api';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     const [userData, setUserData] = useState({
@@ -37,6 +38,12 @@ const SignUp = () => {
     };
 
     return (
+        <div>
+             <nav id=".nav-links">
+                <ul id=".nav-links">
+                    <li id="navItem"><Link id="navLink" to="/">Home</Link></li>
+                </ul>
+            </nav>
         <form onSubmit={handleSubmit}>
             <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Name" required />
             <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
@@ -48,6 +55,7 @@ const SignUp = () => {
             {successMessage && <p className="success">{successMessage}</p>}
             <button type="submit">Sign Up</button>
         </form>
+        </div>
     );
 };
 
