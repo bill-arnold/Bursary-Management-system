@@ -192,7 +192,7 @@ export const updateEducationFundingHistory = (studentId, fundingHistory) => {
 
 
 //reset password
-export const resetUserPassword = (userEmail, newPassword) => {
+export const resetPassword  = (userEmail, newPassword) => {
   return axios.post(
     `${API_URL}/reset_password/${userEmail}`,
     { password: newPassword },
