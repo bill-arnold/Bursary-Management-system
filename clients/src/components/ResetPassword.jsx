@@ -29,10 +29,10 @@ const ResetPasswordButton = () => {
     };
 
     return (
-        <div id="addBursaryForm">
-            <button onClick={handleToggleDropdown}>Reset Password</button>
+        <div >
+            <button id = 'loginbutton'onClick={handleToggleDropdown}>Reset Password</button>
             {showDropdown && (
-                <div id="addBursaryForm">
+                <div >
                     <input
                         type="email"
                         placeholder="Enter email"
@@ -45,7 +45,7 @@ const ResetPasswordButton = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button onClick={handleResetPassword}>Confirm Reset</button>
+                    <button id = 'loginbutton'onClick={handleResetPassword}>Confirm Reset</button>
                 </div>
             )}
         </div>

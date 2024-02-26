@@ -40,10 +40,10 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <nav id=".nav-links">
-                <ul id=".nav-links">
-                    <ul id="navItem"><Link id="navLink" to="/">Home</Link></ul>
+        <div id="login-container" className='login-container'>
+            <nav id="nav-links">
+                <ul className="nav-links">
+                    <ul className="navItem"><Link className="navLink" to="/">Home</Link></ul>
                 </ul>
             </nav>
             <h1>Login</h1>
@@ -52,7 +52,7 @@ const Login = () => {
             <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Password" required />
             {error && <p className="error">{error}</p>}
             {successMessage && <p className="success">{successMessage}</p>}
-            <button type="submit">Login</button>
+            <button id = 'loginbutton'type="submit">Login</button>
              < ResetPassword/>
         </form>
         </div>

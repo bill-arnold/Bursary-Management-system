@@ -38,7 +38,7 @@ function LandingPage() {
                     <div>
                     <Link to="/signup" className="btn get-started">Get Started</Link>
                 <p>
-                  The Bursary Management System is a comprehensive platform designed to revolutionize the management of financial aid distribution within educational institutions. This innovative system streamlines the entire process, from application submission to fund allocation, ensuring efficiency and transparency at every step. With robust features such as online application submission, automated eligibility verification, and real-time tracking of disbursements, the system empowers administrators to efficiently manage bursary programs while providing students with a user-friendly interface to access and monitor their application status. By digitizing and automating traditional bursary processes, institutions can enhance accessibility, reduce administrative burdens, and promote fairness and equity in distributing financial assistance to deserving students.
+                  The Bursary Management System is a comprehensive platform designed to revolutionize the management of financial aid distribution within educational institutions. This innovative system streamlines the entire process, from application submission to fund allocation, ensuring efficiency and transparency at every step. 
                 </p>
                
                 </div>
