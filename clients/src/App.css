@@ -194,7 +194,7 @@ body {
 }
 
 .logout-button:hover {
-  background-color: #2980b9;
+  background-color: #d0d7db;
 }
 
 /* LandingPage.css */
@@ -274,7 +274,7 @@ body {
 .logo img {
   max-width: 100px;
   /* Adjust the maximum width as needed */
-  max-height: 50px;
+  max-height:40px;
   /* Adjust the maximum height as needed */
 }
 .LandingPage {

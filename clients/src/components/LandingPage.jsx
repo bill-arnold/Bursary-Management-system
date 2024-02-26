@@ -30,8 +30,9 @@ function LandingPage() {
               Empower yourself with our comprehensive Bursary Management System, designed to streamline the allocation and
                distribution of financial aid, ensuring efficiency and 
                transparency in every step of the process.🎓
-               <div>
-      <Link to="/signup" className="btn get-started">Get Started</Link>
+
+                    <div>
+                    <Link to="/signup" className="btn get-started">Get Started</Link>
                
                 </div>
             </p>

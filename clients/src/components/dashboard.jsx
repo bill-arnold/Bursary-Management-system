@@ -30,6 +30,7 @@ import DeleteSiblingInformation from './DeleteSiblingInformation';
 import DeleteStudent from './DeleteStudent';
 import Logout from './logout';
 import DeleteDeclaration from './DeleteDeclarations';
+import MainContent from './MainContent';
 
 const Dashboard = () => {
     return (
@@ -61,6 +62,7 @@ const ApplicantsRoutes = () => {
     return (
         <>
             <h2>Add Student Details</h2>
+            <MainContent/>
             <AddPersonalDetails />
             <h2>View Students</h2>
             <ViewStudents />

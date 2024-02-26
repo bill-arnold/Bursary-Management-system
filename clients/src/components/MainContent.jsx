@@ -1,7 +1,8 @@
-// MainContent.js
+/*// MainContent.js
 import React from 'react';
 import './mainContent.css';
-import mainImage from '../../assets/images/image.png';
+import mainImage from './../assets/images/image.png';
+
 
 function MainContent() {
     return (
@@ -21,4 +22,4 @@ function MainContent() {
     );
 }
 
-export default MainContent;
+export default MainContent;*/
