@@ -1,5 +1,9 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { Container, AppBar, Toolbar, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { styled } from '@mui/system';
+import {Home, PeopleAlt, SupervisorAccount,ExitToApp,AddBox,Assignment,Person,LibraryBooks, AttachMoney, VerifiedUser, HowToReg, PlaylistAddCheck, AssignmentTurnedIn, PlaylistAdd, HighlightOff,
+  } from '@mui/icons-material';
 
 // Import your existing components...
 import SignUp from './SignUp';
@@ -32,28 +36,76 @@ import Logout from './logout';
 import DeleteDeclaration from './DeleteDeclarations';
 import MainContent from './MainContent';
 
+const drawerWidth = 240;
+
+const useStyles = styled((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    marginLeft: drawerWidth,
+    
+  },
+  icon: {
+    marginRight: theme.spacing(1),
+  },
+}));
+
 const Dashboard = () => {
-    return (
-        <div style={{ display: 'flex' }}>
-            <div style={{ width: '200px', backgroundColor: 'lightgray', height: '100vh', padding: '20px' }}>
-                <h2>Dashboard</h2>
-                <nav id="mainNav">
-                    <ul id="navList" style={{ listStyle: 'none', padding: 0 }}>
-                        <li id="navItem"><Link id="navLink" to="/dashboard/applicants">Applicants</Link></li>
-                        <li id="navItem"><Link id="navLink" to="/dashboard/sponsors">Sponsors</Link></li>
-                        <li id="navItem"><Link id="navLink" to="/dashboard/admin">Admin</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
-                    </ul>
-                </nav>
-            </div>
-            <div style={{ flex: 1, padding: '20px' }}>
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <Toolbar />
+        <List>
+          <ListItem component={Link} to="/dashboard" button>
+            <Home className={classes.icon} />
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem component={Link} to="/dashboard/applicants" button>
+            <PeopleAlt className={classes.icon} />
+            <ListItemText primary="Applicants" />
+          </ListItem>
+          <ListItem component={Link} to="/dashboard/sponsors" button>
+            <SupervisorAccount className={classes.icon} />
+            <ListItemText primary="Sponsors" />
+          </ListItem>
+          <ListItem component={Link} to="/dashboard/admin" button>
+            <SupervisorAccount className={classes.icon} />
+            <ListItemText primary="Admin" />
+          </ListItem>
+          <ListItem component={Link} to="/logout" button>
+            <ExitToApp className={classes.icon} />
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </List>
+      </Drawer>
+            <Container sx={{ flexGrow: 1, p: 0, m: 20 }}>
                 <h1>Bursary Management System</h1>
                 <Routes>
                     <Route path="applicants" element={<ApplicantsRoutes />} />
                     <Route path="sponsors" element={<SponsorsRoutes />} />
                     <Route path="admin" element={<AdminRoutes />} />
                 </Routes>
-            </div>
+            </Container>
         </div>
     );
 }

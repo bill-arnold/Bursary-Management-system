@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, TextField, Typography, Container, CssBaseline, Avatar, Grid } from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import ResetPassword from './ResetPassword';
 import { login, makeAuthenticatedRequest, refreshToken, isTokenExpired } from './api';
-import { Link } from 'react-router-dom';
-import ResetPassword from './ResetPassword';;
+
 const Login = () => {
     const [userData, setUserData] = useState({
         email: '',
-        password: ''
+        password: '',
     });
 
     const navigate = useNavigate();
@@ -40,22 +42,56 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <nav id=".nav-links">
-                <ul id=".nav-links">
-                    <li id="navItem"><Link id="navLink" to="/">Home</Link></li>
-                </ul>
-            </nav>
-            <h1>Login</h1>
-        <form id="addBursaryForm"onSubmit={handleSubmit}>
-            <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
-            <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Password" required />
-            {error && <p className="error">{error}</p>}
-            {successMessage && <p className="success">{successMessage}</p>}
-            <button type="submit">Login</button>
-             < ResetPassword/>
-        </form>
-        </div>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div>
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Login
+                </Typography>
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        value={userData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        value={userData.password}
+                        onChange={handleChange}
+                        required
+                    />
+                    {error && <Typography color="error">{error}</Typography>}
+                    {successMessage && <Typography color="success">{successMessage}</Typography>}
+                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        Login
+                    </Button>
+                    <Grid container justifyContent="flex-end">
+                        <Grid item>
+                            <Link to="/reset-password" variant="body2">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                    </Grid>
+                    <ResetPassword />
+                </form>
+            </div>
+        </Container>
     );
 };
 
