@@ -40,14 +40,14 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className="login-container">
             <nav id=".nav-links">
                 <ul id=".nav-links">
-                    <li id="navItem"><Link id="navLink" to="/">Home</Link></li>
+                    <ul id="navItem"><Link id="navLink" to="/">Home</Link></ul>
                 </ul>
             </nav>
             <h1>Login</h1>
-        <form id="addBursaryForm"onSubmit={handleSubmit}>
+        <form id="loginForm" onSubmit={handleSubmit}>
             <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
             <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Password" required />
             {error && <p className="error">{error}</p>}

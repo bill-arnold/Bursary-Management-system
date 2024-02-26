@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { FaUser, FaBriefcase, FaCog, FaSignOutAlt } from 'react-icons/fa';
 
 // Import your existing components...
 import SignUp from './SignUp';
@@ -30,24 +31,23 @@ import DeleteSiblingInformation from './DeleteSiblingInformation';
 import DeleteStudent from './DeleteStudent';
 import Logout from './logout';
 import DeleteDeclaration from './DeleteDeclarations';
-import MainContent from './MainContent';
 
 const Dashboard = () => {
     return (
         <div style={{ display: 'flex' }}>
-            <div style={{ width: '200px', backgroundColor: 'lightgray', height: '100vh', padding: '20px' }}>
-                <h2>Dashboard</h2>
-                <nav id="mainNav">
-                    <ul id="navList" style={{ listStyle: 'none', padding: 0 }}>
-                        <li id="navItem"><Link id="navLink" to="/dashboard/applicants">Applicants</Link></li>
-                        <li id="navItem"><Link id="navLink" to="/dashboard/sponsors">Sponsors</Link></li>
-                        <li id="navItem"><Link id="navLink" to="/dashboard/admin">Admin</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
+            <div style={{ width: '200px', backgroundColor: '#4e4e4e', height: '100vh', padding: '20px', color: '#fff' }}>
+                <h2 style={{ marginBottom: '30px' }}>Dashboard</h2>
+                <nav>
+                    <ul style={{ listStyle: 'none', padding: 0 }}>
+                        <li style={{ marginBottom: '20px' }}><Link to="/dashboard/applicants" style={{ textDecoration: 'none', color: '#fff' }}><FaUser style={{ marginRight: '10px' }} /> Applicants</Link></li>
+                        <li style={{ marginBottom: '20px' }}><Link to="/dashboard/sponsors" style={{ textDecoration: 'none', color: '#fff' }}><FaBriefcase style={{ marginRight: '10px' }} /> Sponsors</Link></li>
+                        <li><Link to="/dashboard/admin" style={{ textDecoration: 'none', color: '#fff' }}><FaCog style={{ marginRight: '10px' }} /> Admin</Link></li>
+                        <li style={{ position: 'absolute', bottom: '20px' }}><Link to="/logout" style={{ textDecoration: 'none', color: '#fff' }}><FaSignOutAlt style={{ marginRight: '10px' }} /> Logout</Link></li>
                     </ul>
                 </nav>
             </div>
             <div style={{ flex: 1, padding: '20px' }}>
-                <h1>Bursary Management System</h1>
+                <h1 style={{ marginBottom: '30px' }}>Bursary Management System</h1>
                 <Routes>
                     <Route path="applicants" element={<ApplicantsRoutes />} />
                     <Route path="sponsors" element={<SponsorsRoutes />} />
@@ -61,36 +61,35 @@ const Dashboard = () => {
 const ApplicantsRoutes = () => {
     return (
         <>
-            <h2>Add Student Details</h2>
-            <MainContent/>
+            <h2 style={{ marginBottom: '20px' }}>Add Student Details</h2>
             <AddPersonalDetails />
-            <h2>View Students</h2>
+            <h2 style={{ marginBottom: '20px' }}>View Students</h2>
             <ViewStudents />
-            <h2>Update Student Details</h2>
+            <h2 style={{ marginBottom: '20px' }}>Update Student Details</h2>
             <UpdateStudentInformation />
-            <h2>Delete Students</h2>
+            <h2 style={{ marginBottom: '20px' }}>Delete Students</h2>
             <DeleteStudent />
-            <h2>Add Family Information</h2>
+            <h2 style={{ marginBottom: '20px' }}>Add Family Information</h2>
             <AddFamilyInformation />
-            <h2>Update Family Information</h2>
+            <h2 style={{ marginBottom: '20px' }}>Update Family Information</h2>
             <UpdateFamilyInformation />
-            <h2>Delete Family Information</h2>
+            <h2 style={{ marginBottom: '20px' }}>Delete Family Information</h2>
             <DeleteFamilyInformation />
-            <h2>Add Sibling Information</h2>
+            <h2 style={{ marginBottom: '20px' }}>Add Sibling Information</h2>
             <AddSiblingInformation />
-            <h2>update Sibling Information</h2>
+            <h2 style={{ marginBottom: '20px' }}>update Sibling Information</h2>
             <UpdateSiblingInformation />
-            <h2>Delete Sibling Information</h2>
+            <h2 style={{ marginBottom: '20px' }}>Delete Sibling Information</h2>
             <DeleteSiblingInformation />
-            <h2>Add Declarations</h2>
+            <h2 style={{ marginBottom: '20px' }}>Add Declarations</h2>
             <AddDeclarations />
-            <h2>Update Declarations</h2>
+            <h2 style={{ marginBottom: '20px' }}>Update Declarations</h2>
             <UpdateDeclarations />
-            <h2>Delete Declaration</h2>
+            <h2 style={{ marginBottom: '20px' }}>Delete Declaration</h2>
             <DeleteDeclaration />
-            <h2>Add Education Funding History</h2>
+            <h2 style={{ marginBottom: '20px' }}>Add Education Funding History</h2>
             <AddEducationFundingHistory />
-            <h2>Update Education Funding History</h2>
+            <h2 style={{ marginBottom: '20px' }}>Update Education Funding History</h2>
             <UpdateEducationFundingHistory />
             <ReceiveBursary />
         </>
@@ -100,15 +99,15 @@ const ApplicantsRoutes = () => {
 const SponsorsRoutes = () => {
     return (
         <>
-            <h2>Add Bursary</h2>
+            <h2 style={{ marginBottom: '20px' }}>Add Bursary</h2>
             <AddBursary />
-            <h2>Applied Bursary</h2>
+            <h2 style={{ marginBottom: '20px' }}>Applied Bursary</h2>
             <ViewAppliedBursaries />
-            <h2>View Students</h2>
+            <h2 style={{ marginBottom: '20px' }}>View Students</h2>
             <ViewStudents />
-            <h2>Award Bursary</h2>
+            <h2 style={{ marginBottom: '20px' }}>Award Bursary</h2>
             <AwardBursaries />
-            <h2>Reject Bursary</h2>
+            <h2 style={{ marginBottom: '20px' }}>Reject Bursary</h2>
             <RejectRequest />
         </>
     );

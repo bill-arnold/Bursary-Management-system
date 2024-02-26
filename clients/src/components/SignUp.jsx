@@ -38,13 +38,13 @@ const SignUp = () => {
     };
 
     return (
-        <div>
+        <div className='.sign-up-container '>
              <nav id=".nav-links">
                 <ul id=".nav-links">
-                    <li id="navItem"><Link id="navLink" to="/">Home</Link></li>
+                    <ul id="navItem"><Link id="navLink" to="/">Home</Link></ul>
                 </ul>
             </nav>
-        <form onSubmit={handleSubmit}>
+        <form id='loginForm'onSubmit={handleSubmit}>
             <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Name" required />
             <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
             <input type="tel" name="phone" value={userData.phone} onChange={handleChange} placeholder="Phone" required />

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { viewAllStudents } from './api';
+import './viewStudents.css'; 
+
 
 
 const ViewStudents = () => {

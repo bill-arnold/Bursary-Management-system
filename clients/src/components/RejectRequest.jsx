@@ -1,6 +1,5 @@
-// RejectRequestComponent.jsx
-
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { rejectRequest, viewApplications } from './api';
 import './RejectRequest.css'; // Import the stylesheet
 
@@ -30,15 +29,33 @@ const RejectRequestComponent = () => {
         setMessage('Please select an application before rejecting the request.');
         return;
       }
+
+      const { isConfirmed } = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to reject the request. Continue?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, reject it!',
+        cancelButtonText: 'No, cancel',
+      });
+
+      if (!isConfirmed) {
+        return;
+      }
+
       const response = await rejectRequest(selectedApplicationId);
       setMessage('Request rejected successfully!');
       console.log(response.data);
+
       // Find the rejected applicant based on the selectedApplicationId
       const rejectedApplicant = options.find(application => application.id === selectedApplicationId);
       setRejectedApplicant(rejectedApplicant);
+
+      Swal.fire('Success', 'Request rejected successfully!', 'success');
     } catch (error) {
       setMessage('An error occurred while rejecting the request.');
       console.error(error);
+      Swal.fire('Error', 'An error occurred while rejecting the request.', 'error');
     }
   };
 

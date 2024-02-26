@@ -1,217 +1,38 @@
-/* app.css */
-
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-.sidebar {
-  width: 200px;
-  background-color: #0c0c0c;
-  padding: 20px;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.content {
-  flex: 1;
-  padding: 20px;
-  height: 100vh;
-}
-
-body {
-  background-color: #2c3e50;
-  color: #ecf0f1;
-  font-family: Arial, sans-serif;
-}
-
-
-.header {
-  text-align: center;
-  padding: 20px;
-  color: #ecf0f1;
-  background-color: #8e44ad;
-}
-
-.sidebar {
-  width: 20%;
-  float: left;
-  height: 100vh;
-  background-color: #34495e;
-  padding: 20px;
-}
-
-.main-content {
-  width: 80%;
-  float: right;
-  padding: 20px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #bdc3c7;
-}
-
-.input-field:hover {
-  background-color: #ecf0f1;
-}
-
-.button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #3498db;
-  color: #ecf0f1;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #2980b9;
-}
-
-.button:active {
-  transform: scale(0.9);
-}
-
-.button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #ecf0f1;
-}
-
-.student-card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 15px 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.student-card h2 {
-  flex-basis: 100%;
-}
-
-.student-card p {
-  flex-basis: calc(50% - 10px);
-}
-
-.student-card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 15px 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.student-card h2 {
-  flex-basis: 100%;
-}
-
-.student-card p {
-  flex-basis: calc(50% - 10px);
-}
-
-
-.application-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.application-card h2 {
-  font-size: 20px;
-  color: #fcf6f6;
-}
-
-.application-card p {
-  font-size: 16px;
-  color: #fffdfd;
-}
-
-.application-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
-/* nav styles 
-
-#mainNav {
-  background-color: #3498db;
-  padding: 15px;
-  text-align: center;
-  position: flex;
-}
-
-#navList {
-  list-style-type: none;
+/* Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-#navItem {
-  display: inline;
-  margin-right: 15px;
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #cbced6;
+  color: #333;
+  margin: 0;
 }
 
-#navLink {
-  text-decoration: none;
-  color: #ecf0f1;
-  font-weight: bold;
-  font-size: 16px;
-  transition: color 0.3s ease;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-#navLink:hover {
-  color: #2c3e50;
-}
-*/
-/* logout.css */
-.logout-button {
-  background-color: #3498db;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-  background-color: #d0d7db;
-}
-
-/* LandingPage.css */
-
-.LandingPage {
-  text-align: center;
-}
-
+/* Header Styles */
 .header {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 10px 20px;
+  /* Reduce padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 20px;
+  /* Adjust font size */
 }
 
 .nav-links {
@@ -221,42 +42,34 @@ body {
 }
 
 .nav-links li {
-  padding: 0 10px;
-  background-color: #0c0c0c;
+  padding: 10px;
+  background-color: #495057;
+  border-radius: 5px;
 }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 50px auto;
-  max-width: 1200px;
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
+.nav-links li a:hover {
+  background-color: #343a40;
+}
+
+/* Content Styles */
 .content {
   flex: 1;
-  padding: 0 20px;
-  text-align: left;
+  padding: 20px;
+  background-color: #bbb7b7;
 }
 
-.image-container {
-  flex: 1;
-}
-
-.image-container img {
-  max-width: 100%;
-  height: auto;
-}
-
+/* Footer Styles */
 .footer {
-  background-color: #333;
+  background-color: #6c757d;
   color: #fff;
   padding: 20px;
-}
-
-.footer-content {
-  text-align: left;
-  margin-bottom: 20px;
+  text-align: center;
 }
 
 .footer-content ul {
@@ -268,33 +81,478 @@ body {
   margin-bottom: 5px;
 }
 
-.copyright {
-  font-size: 12px;
+.footer-content a {
+  color: #fff;
+  text-decoration: none;
 }
-.logo img {
-  max-width: 100px;
-  /* Adjust the maximum width as needed */
-  max-height:40px;
-  /* Adjust the maximum height as needed */
+
+.footer-content a:hover {
+  text-decoration: underline;
 }
+
+/* Landing Page Styles */
 .LandingPage {
+  font-family: 'Arial', sans-serif;
   text-align: center;
-  width: 100vw;
-  /* Set width to cover entire viewport width */
-  height: 100vh;
-  /* Set height to cover entire viewport height */
+  padding: 50px 20px;
+  box-sizing: border-box;
+  border-radius: 1em;
+}
+
+.container {
+  width: 100%;
+  max-width: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #4b4848;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.logo img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.nav-links li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #db2828;
+}
+
+.main {
+  padding: 20px;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.image-container img {
+  width: 80%;
+  object-fit: cover;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content p {
   margin: 0;
-  /* Remove any default margin */
+}
+
+.footer-content ul {
+  list-style: none;
   padding: 0;
-  /* Remove any default padding */
+}
+
+.footer-content ul li {
+  margin-bottom: 5px;
+}
+
+/* Styling for the container holding FAQ, Services, and About */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* Adjust as needed */
+  align-items: center;
+  margin: 50px 0;
+}
+
+/* Styling for each section (FAQ, Services, About) */
+.section {
+  width: 30%;
+  /* Adjust width as needed */
+  text-align: center;
+  font-weight: bold;
+  /* Making text bold */
+}
+
+/* Styling for section headings */
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Styling for section content */
+.section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  font-weight: bold;
+  /* Making text bold */
+}
+
+/* Styling for the button */
+.btn {
+  display: inline-block;
+  background-color: blue;
+  /* Change to desired color */
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: darkblue;
+  /* Change to desired hover color */
+}
+
+/* App.css */
+
+.LandingPage {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.header {
+  background-color: #1e90ff;
+  /* Dodger Blue */
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.main {
+  padding: 20px;
 }
 
 .container {
   display: flex;
-  justify-content: center;
-  /* Center content horizontally */
+  justify-content: space-around;
   align-items: center;
-  /* Center content vertically */
-  height: 100%;
-  /* Ensure container fills the entire height of the viewport */
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f0f0f0;
+  /* Light Gray */
+  border-radius: 10px;
+}
+
+.welcome-image {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.footer {
+  background-color: #1e90ff;
+  /* Dodger Blue */
+  color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.footer-content {
+  text-align: left;
+}
+
+.footer-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.get-started {
+  background-color: #4caf50;
+  /* Green */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.get-started:hover {
+  background-color: #45a049;
+  /* Darker Green */
+}
+
+/* login*/
+/* Add this CSS to your existing stylesheet or create a new one */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2; /* Light Gray */
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333; /* Dark Gray */
+}
+
+form {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="email"],
+input[type="password"],
+button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #1e90ff; /* Dodger Blue */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007bff; /* Slightly Darker Blue */
+}
+
+.error,
+.success {
+  color: #d9534f; /* Red */
+  margin-top: 10px;
+}
+
+.success {
+  color: #5cb85c; /* Green */
+}
+/* Add this CSS to your existing stylesheet or create a new one */
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+  /* Light Gray */
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+  /* Dark Gray */
+}
+
+form {
+  width: 100%;
+}
+
+#nav-links {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  list-style-type: none;
+}
+
+#nav-links li {
+  display: inline;
+  margin-right: 10px;
+}
+
+#navLink {
+  text-decoration: none;
+  color: #1e90ff;
+  /* Dodger Blue */
+}
+
+input[type="email"],
+input[type="password"],
+button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #1e90ff;
+  /* Dodger Blue */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007bff;
+  /* Slightly Darker Blue */
+}
+
+.error,
+.success {
+  color: #d9534f;
+  /* Red */
+  margin-top: 10px;
+}
+
+.success {
+  color: #5cb85c;
+  /* Green */
+}
+/*signup*/
+/* Add this CSS to your existing stylesheet or create a new one */
+
+/* Add this CSS to your existing stylesheet or create a new one */
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+  /* Light Gray */
+  font-family: Arial, sans-serif;
+}
+
+.sign-up-container {
+  width: 250px;
+    /* Adjusted width */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+  /* Dark Gray */
+}
+
+form {
+  width: 100%;
+}
+
+#nav-links {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  list-style-type: none;
+}
+
+#nav-links li {
+  display: inline;
+  margin-right: 10px;
+}
+
+#navLink {
+  text-decoration: none;
+  color: #1e90ff;
+  /* Dodger Blue */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+button {
+  width: calc(100% - 20px);
+  /* Adjusted width */
+  margin-bottom: 15px;
+  padding: 8px;
+  /* Adjusted padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #1e90ff;
+  /* Dodger Blue */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007bff;
+  /* Slightly Darker Blue */
+}
+
+.error,
+.success {
+  color: #d9534f;
+  /* Red */
+  margin-top: 10px;
+}
+
+.success {
+  color: #5cb85c;
+  /* Green */
 }
