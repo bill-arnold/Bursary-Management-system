@@ -53,3 +53,4 @@
 
    # mail = Mail(current_app)
    # mail.send(msg)
+

@@ -12,11 +12,14 @@ import SignUp from './components/SignUp';
 const App = () => {
     return (
         <Router>
+
                 <Routes>
+
                     <Route path="*" element={<LandingPage />} />
                     <Route path="/login" element={<Login/>} />
                     <Route path="/signup" element={<SignUp/>} />
                     <Route path="/dashboard/*" element={<Dashboard />}/>
+
                 </Routes>
         </Router>
     );

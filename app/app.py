@@ -24,6 +24,7 @@ def create_app():
     app.config['JWT_SECRET_KEY'] = '8e491c3e401bbfc80d2bb16485ab0ccc35407b8773d683469afea3153ba3960a'
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 
+
     # Initialize extensions
     db.init_app(app)  # Initializing db with the Flask app
     migrate = Migrate(app, db)
@@ -78,6 +79,7 @@ def create_app():
     api.add_resource(GetAllBursaries, '/get-all-bursaries')
     #get all students
     api.add_resource(GetAllStudents2, '/get-all-students2')
+
     #login
     api.add_resource(Login, '/login')
 
@@ -102,9 +104,6 @@ def create_app():
     api.add_resource(UpdateEducationFundingHistory, '/update-education-funding-history/<string:student_id>')
 
     
-
-
-
     return app 
 if __name__ == "__main__":
     app = create_app()

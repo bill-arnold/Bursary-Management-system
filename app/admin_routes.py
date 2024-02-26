@@ -4,7 +4,9 @@ from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema,StudentDetails99Schema,NeedyScoreSchema
 from marshmallow import ValidationError
 import uuid
+
 #from email_utils import send_student_approved_email, send_score_awarded_email
+
 
 
 class VerifyStudent(Resource):
@@ -47,7 +49,9 @@ class ApproveStudent(Resource):
             db.session.commit()
 
             # Send an approval email to the student
+
             # send_student_approved_email(student)
+
 
             return {"message": "Student approved successfully."}, 200
         return {"message": "Student not found."}, 404
