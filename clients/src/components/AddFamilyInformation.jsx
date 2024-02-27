@@ -80,7 +80,7 @@ const AddFamilyInformation = () => {
                 <input type="text" name="main_income_source" value={familyInfo.main_income_source} onChange={handleChange} placeholder="Main Income Source" required />
                 <input type="text" name="other_income_source" value={familyInfo.other_income_source} onChange={handleChange} placeholder="Other Income Source" required />
                 <input type="text" name="employed" value={familyInfo.employed} onChange={handleChange} placeholder="Employed" required />
-                <button id = 'loginbutton'type="submit">Add Family Information</button>
+                <button id = 'loginbutton'type="submit">Add Family Information ✏️</button>
             </form>
 
             {/* Display success message */}

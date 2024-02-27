@@ -108,7 +108,7 @@ function UpdateStudentInformation() {
                 <input type="text" name="course" value={studentDetails.course} onChange={handleInputChange} placeholder="Course" required />
                 <input type="text" name="mode_of_study" value={studentDetails.mode_of_study} onChange={handleInputChange} placeholder="Mode of Study" required />
                 <input type="date" name="expected_completion_year" value={studentDetails.expected_completion_year} onChange={handleInputChange} placeholder="Expected Completion Year" required />
-                <button id = 'loginbutton'type="submit">Submit</button>
+                <button id = 'loginbutton'type="submit">Update  🔄</button>
             </form>
             )}
             {message && <p>{message}</p>}

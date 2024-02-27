@@ -60,7 +60,7 @@ const UpdateDeclarations = () => {
                 <input type="text" name="parent_declaration" value={declarations.parent_declaration} onChange={handleChange} placeholder="Parent Declaration" required />
                 <input type="text" name="religious_leader_declaration" value={declarations.religious_leader_declaration} onChange={handleChange} placeholder="Religious Leader Declaration" required />
                 <input type="text" name="local_authority_declaration" value={declarations.local_authority_declaration} onChange={handleChange} placeholder="Local Authority Declaration" required />
-                <button id = 'loginbutton'type="submit">Update Declarations</button>
+                <button id = 'loginbutton'type="submit">Update Declarations  🔄</button>
             </form>
             )}
             {message && <p>{message}</p>}

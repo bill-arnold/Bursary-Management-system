@@ -36,7 +36,7 @@ const DeleteFamilyInformation = () => {
                             <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                         ))}
                     </select>
-                    <button id = 'loginbutton'onClick={handleDelete}>Delete Family Information</button>
+                    <button id = 'loginbutton'onClick={handleDelete}>Delete Family Information 🗑️</button>
                     {message && <p>{message}</p>}
                 </div>
             )}

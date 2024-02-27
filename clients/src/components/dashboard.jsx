@@ -47,8 +47,8 @@ const Dashboard = () => {
 
                 </nav>
             </div>
-            <div style={{ flex: 1, padding: '20px',backgroundColor: '#343a40'}} >
-                <h1 style={{ marginBottom: '30px',textAlign:'center',color:'white' }}>Bursary Management System</h1>
+            <div style={{ flex: 1, padding: '20px',backgroundColor: '#f1f3f1'}} >
+                <h1 style={{ marginBottom: '30px',textAlign:'center',color:'black' }}>Bursary Management System 🎓</h1>
                 <Routes>
                     <Route path="applicants" element={<ApplicantsRoutes />} />
                     <Route path="sponsors" element={<SponsorsRoutes />} />

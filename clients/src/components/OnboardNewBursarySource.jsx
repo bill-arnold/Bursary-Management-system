@@ -53,7 +53,7 @@ const OnboardNewBursary = () => {
                 Photo URL:
                 <input type="text" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
             </label>
-            <button id = 'loginbutton'type="submit">Onboard New Bursary</button>
+            <button id = 'loginbutton'type="submit">Onboard New Bursary ➕</button>
         </form>
     );
 };

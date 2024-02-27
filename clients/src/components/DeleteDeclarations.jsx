@@ -51,7 +51,7 @@ const DeleteDeclaration = () => {
                             <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                         ))}
                     </select>
-                    <button id = 'loginbutton' onClick={handleDelete}>Delete Declaration</button>
+                    <button id = 'loginbutton' onClick={handleDelete}>Delete Declaration 🗑️</button>
                 </div>
             )}
             {message && <p>{message}</p>}

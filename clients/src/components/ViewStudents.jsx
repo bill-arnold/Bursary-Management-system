@@ -28,7 +28,7 @@ const ViewStudents = () => {
         <div>
             <button id = 'loginbutton'onClick={handleClick}>View All Students</button>
             {showStudents && students.map(student => (
-                <div className="student-card" key={student.id}>
+                <div  key={student.id}>
                     <h2>{student.firstname} {student.lastname}</h2>
                     <p>ID: {student.id}</p>
                     <p>Contact Phone Number: {student.contact_phone_number}</p>
