@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { deleteFamilyInformation, getAllStudents } from './api';
 
 const DeleteFamilyInformation = () => {
@@ -16,6 +17,19 @@ const DeleteFamilyInformation = () => {
 
     const handleDelete = async () => {
         try {
+            const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to delete the family information. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel',
+            });
+
+            if (!isConfirmed) {
+                return;
+            }
+
             const response = await deleteFamilyInformation(selectedStudent);
             console.log(response.data);
             setMessage('Family information deleted successfully.');
@@ -27,7 +41,7 @@ const DeleteFamilyInformation = () => {
 
     return (
         <div>
-            <button id = 'loginbutton'onClick={() => setShowForm(!showForm)}> Delete Family Form</button>
+            <button id='loginbutton' onClick={() => setShowForm(!showForm)}> Delete Family Form</button>
             {showForm && (
                 <div>
                     <select value={selectedStudent} onChange={e => setSelectedStudent(e.target.value)} required>
@@ -36,7 +50,7 @@ const DeleteFamilyInformation = () => {
                             <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                         ))}
                     </select>
-                    <button id = 'loginbutton'onClick={handleDelete}>Delete Family Information 🗑️</button>
+                    <button id='loginbutton' onClick={handleDelete}>Delete Family Information 🗑️</button>
                     {message && <p>{message}</p>}
                 </div>
             )}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import { createNewBursary } from './api';
 
 const OnboardNewBursary = () => {
@@ -22,12 +23,23 @@ const OnboardNewBursary = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await createNewBursary(bursary);
-            alert('New bursary onboarded successfully!');
-            setBursary(initialState); // Reset the state to clear the input fields
+            const { isConfirmed } = await Swal.fire({
+                title: 'Confirm Onboarding',
+                text: 'Are you sure you want to onboard this new bursary?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, onboard it!',
+                cancelButtonText: 'No, cancel'
+            });
+
+            if (isConfirmed) {
+                await createNewBursary(bursary);
+                Swal.fire('Success', 'New bursary onboarded successfully!', 'success');
+                setBursary(initialState); // Reset the state to clear the input fields
+            }
         } catch (error) {
             console.error(error);
-            alert('An error occurred while onboarding the new bursary.');
+            Swal.fire('Error', 'An error occurred while onboarding the new bursary.', 'error');
         }
     };
 
@@ -53,7 +65,7 @@ const OnboardNewBursary = () => {
                 Photo URL:
                 <input type="text" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
             </label>
-            <button id = 'loginbutton'type="submit">Onboard New Bursary ➕</button>
+            <button id="loginbutton" type="submit">Onboard New Bursary ➕</button>
         </form>
     );
 };

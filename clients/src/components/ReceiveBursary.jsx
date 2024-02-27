@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { receiveBursary, getAllStudents } from './api'; // Assuming getAllStudents returns data with both name and ID
 
 const ReceiveBursary = () => {
@@ -20,9 +21,20 @@ const ReceiveBursary = () => {
 
     const handleClick = async () => {
         try {
-            const response = await receiveBursary(selectedStudentId);
-            setStudentData(response.data.student_data);
-            setErrorMessage('');
+            const { isConfirmed } = await Swal.fire({
+                title: 'Confirm Bursary Receipt',
+                text: 'Are you sure you want to receive this bursary?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, receive it!',
+                cancelButtonText: 'No, cancel'
+            });
+
+            if (isConfirmed) {
+                const response = await receiveBursary(selectedStudentId);
+                setStudentData(response.data.student_data);
+                setErrorMessage('');
+            }
         } catch (error) {
             setStudentData(null);
             setErrorMessage('Student not found.');
@@ -38,7 +50,7 @@ const ReceiveBursary = () => {
                     <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                 ))}
             </select>
-            <button id = 'loginbutton'onClick={handleClick}>Receive Bursary 💰</button>
+            <button id="loginbutton" onClick={handleClick}>Receive Bursary 💰</button>
             {errorMessage && <p>{errorMessage}</p>}
             {studentData && (
                 <div>

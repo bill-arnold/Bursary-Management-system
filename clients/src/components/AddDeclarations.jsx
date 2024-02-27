@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { addDeclarations, getAllStudents } from './api';
 
 const AddDeclarations = () => {
@@ -26,17 +27,25 @@ const AddDeclarations = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await addDeclarations(selectedStudent, declarations);
-            setMessage('Declarations added successfully.');
-            setDeclarations({
-                individual_declaration: '',
-                parent_declaration: '',
-                religious_leader_declaration: '',
-                local_authority_declaration: ''
+            const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to add a new declaration. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, add it!',
+                cancelButtonText: 'No, cancel',
             });
-            console.log(response.data);
+
+            if (!isConfirmed) {
+                return;
+            }
+
+            // Call the addDeclarations function here
+            await addDeclarations(selectedStudent, declarations);
+            setMessage('Declarations added successfully!');
         } catch (error) {
             console.error(error);
+            setMessage('An error occurred while adding the declarations.');
         }
     };
 
@@ -53,7 +62,7 @@ const AddDeclarations = () => {
                 <input type="text" name="parent_declaration" value={declarations.parent_declaration} onChange={handleChange} placeholder="Parent Declaration" required />
                 <input type="text" name="religious_leader_declaration" value={declarations.religious_leader_declaration} onChange={handleChange} placeholder="Religious Leader Declaration" required />
                 <input type="text" name="local_authority_declaration" value={declarations.local_authority_declaration} onChange={handleChange} placeholder="Local Authority Declaration" required />
-                <button id = 'loginbutton'type="submit">Add Declarations ✏️</button>
+                <button id='loginbutton' type="submit">Add Declarations ✏️</button>
             </form>
             {message && <p>{message}</p>}
         </div>

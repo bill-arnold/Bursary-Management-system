@@ -16,6 +16,7 @@ const DeleteSiblingInformation = () => {
 
     const handleDelete = async () => {
         try {
+            
             const response = await deleteSiblingInformation(selectedStudent);
             console.log(response.data);
             setMessage('Sibling information deleted successfully.');

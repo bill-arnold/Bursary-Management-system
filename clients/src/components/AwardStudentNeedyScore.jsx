@@ -1,5 +1,5 @@
-// AwardNeedyScore.jsx
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { awardStudentNeedyScore, getAllStudents } from './api';
 
 const AwardNeedyScore = () => {
@@ -30,6 +30,18 @@ const AwardNeedyScore = () => {
       setMessage('Please enter a valid score.');
       return;
     }
+    const { isConfirmed } = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to award the needy score. Continue?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, award it!',
+      cancelButtonText: 'No, cancel',
+    });
+
+    if (!isConfirmed) {
+      return;
+    }
     try {
       const data = { needy_score: score }; // Construct JSON object
       const response = await awardStudentNeedyScore(selectedStudentId, data); // Send JSON object in the request body
@@ -48,8 +60,13 @@ const AwardNeedyScore = () => {
           <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
         ))}
       </select>
-      <input type="text" placeholder="Enter score" value={score} onChange={(e) => setScore(e.target.value)} />
-      <button id = 'loginbutton'onClick={handleAwardScore}>Award Needy Score</button>
+      <select value={score} onChange={(e) => setScore(e.target.value)}>
+        <option value="">Select score</option>
+        <option value="0">Not Needy</option>
+        <option value="5">Moderate Needy</option>
+        <option value="10">Fully Needy</option>
+      </select>
+      <button id='loginbutton' onClick={handleAwardScore}>Award Needy Score</button>
       {message && <p>{message}</p>}
     </div>
   );

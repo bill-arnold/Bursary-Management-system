@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { deleteDeclaration, getAllStudents } from './api';
 
 const DeleteDeclaration = () => {
@@ -21,6 +22,18 @@ const DeleteDeclaration = () => {
             alert('Please select a student.');
             return;
         }
+        const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to delete the declaration. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel',
+            });
+
+            if (!isConfirmed) {
+                return;
+            }
 
         const response = await deleteDeclaration(selectedStudentId);
         if (response) {

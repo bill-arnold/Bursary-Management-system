@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { updateDeclarations, getAllStudents } from './api';
 
 const UpdateDeclarations = () => {
@@ -33,9 +34,20 @@ const UpdateDeclarations = () => {
                 return;
             }
             
-            const response = await updateDeclarations(selectedStudentId, declarations);
-            setMessage('Declarations updated successfully.');
-            console.log(response.data);
+            const { isConfirmed } = await Swal.fire({
+                title: 'Confirm Update',
+                text: 'Are you sure you want to update declarations?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'No, cancel'
+            });
+
+            if (isConfirmed) {
+                const response = await updateDeclarations(selectedStudentId, declarations);
+                setMessage('Declarations updated successfully.');
+                console.log(response.data);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -47,21 +59,21 @@ const UpdateDeclarations = () => {
 
     return (
         <div>
-            <button id = 'loginbutton'onClick={handleToggleDropdown}>Update Declarations</button>
+            <button id="loginbutton" onClick={handleToggleDropdown}>Update Declarations</button>
             {showDropdown && (
-            <form onSubmit={handleSubmit}>
-                <select value={selectedStudentId} onChange={e => setSelectedStudentId(e.target.value)} required>
-                    <option value="">Select Student</option>
-                    {students.map(student => (
-                        <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
-                    ))}
-                </select>
-                <input type="text" name="individual_declaration" value={declarations.individual_declaration} onChange={handleChange} placeholder="Individual Declaration" required />
-                <input type="text" name="parent_declaration" value={declarations.parent_declaration} onChange={handleChange} placeholder="Parent Declaration" required />
-                <input type="text" name="religious_leader_declaration" value={declarations.religious_leader_declaration} onChange={handleChange} placeholder="Religious Leader Declaration" required />
-                <input type="text" name="local_authority_declaration" value={declarations.local_authority_declaration} onChange={handleChange} placeholder="Local Authority Declaration" required />
-                <button id = 'loginbutton'type="submit">Update Declarations  🔄</button>
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <select value={selectedStudentId} onChange={e => setSelectedStudentId(e.target.value)} required>
+                        <option value="">Select Student</option>
+                        {students.map(student => (
+                            <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
+                        ))}
+                    </select>
+                    <input type="text" name="individual_declaration" value={declarations.individual_declaration} onChange={handleChange} placeholder="Individual Declaration" required />
+                    <input type="text" name="parent_declaration" value={declarations.parent_declaration} onChange={handleChange} placeholder="Parent Declaration" required />
+                    <input type="text" name="religious_leader_declaration" value={declarations.religious_leader_declaration} onChange={handleChange} placeholder="Religious Leader Declaration" required />
+                    <input type="text" name="local_authority_declaration" value={declarations.local_authority_declaration} onChange={handleChange} placeholder="Local Authority Declaration" required />
+                    <button id="loginbutton" type="submit">Update Declarations  🔄</button>
+                </form>
             )}
             {message && <p>{message}</p>}
         </div>

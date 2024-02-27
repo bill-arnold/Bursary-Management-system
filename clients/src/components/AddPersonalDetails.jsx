@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { addStudent, getAllUsers } from './api'; // adjust the import path to your api.jsx file
 
 function AddStudentInformation() {
@@ -40,8 +41,21 @@ function AddStudentInformation() {
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const { isConfirmed } = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to add a new student. Continue?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, add it!',
+            cancelButtonText: 'No, cancel',
+        });
+
+        if (!isConfirmed) {
+            return;
+        }
 
         // Call addStudent function from api.jsx
         addStudent(selectedUser, studentDetails)
@@ -71,8 +85,10 @@ function AddStudentInformation() {
             .catch(error => {
                 // handle error
                 console.error(error);
+                setMessage('Failed to add student. Please try again.');
             });
     };
+
     const handleToggleDropdown = () => {
         setShowDropdown(!showDropdown);
     };
