@@ -44,8 +44,8 @@ function LandingPage() {
       <main>
         <div className="container">
           <div className="content">
-            <img src="/images/bms_2.jpeg" alt="Welcome Image" className="welcome-image" />
-            <h1>Welcome to Bursary Management System 🎓</h1>
+            
+            <h1 className="landingh1">Welcome to Bursary Management System 🎓 </h1>
             <p>
               Empower yourself with our comprehensive Bursary Management System, designed to streamline the allocation and distribution of financial aid, ensuring efficiency and transparency in every step of the process.🎓
             </p>

@@ -32,7 +32,7 @@ const OnboardNewBursary = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form id="addBursaryForm" onSubmit={handleSubmit}>
             <label>
                 Title:
                 <input type="text" name="title" value={bursary.title} onChange={handleChange} required />

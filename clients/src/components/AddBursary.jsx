@@ -56,7 +56,7 @@ const AddBursary = () => {
                 Photo URL:
                 <input type="text" id="photoUrl" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
             </label>
-            <button id="addBursaryButton" type="submit" >Add Bursary</button>
+            <button id = 'loginbutton' type="submit" >Add Bursary</button>
         </form>
     );
 };

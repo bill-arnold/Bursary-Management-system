@@ -45,7 +45,7 @@ const SignUp = () => {
                 </ul>
             </nav>
             <h1>Sign up</h1>
-        <form id='sign-up-form' onSubmit={handleSubmit}>
+        <form id="addBursaryForm" onSubmit={handleSubmit}>
             <input type="text" name="name" value={userData.name} onChange={handleChange} placeholder="Name" required />
             <input type="email" name="email" value={userData.email} onChange={handleChange} placeholder="Email" required />
             <input type="tel" name="phone" value={userData.phone} onChange={handleChange} placeholder="Phone" required />
@@ -54,7 +54,7 @@ const SignUp = () => {
             <input type="password" name="password" value={userData.password} onChange={handleChange} placeholder="Password" required />
             {error && <p className="error">{error}</p>}
             {successMessage && <p className="success">{successMessage}</p>}
-            <button type="submit">Sign Up</button>
+            <button id = 'loginbutton'>Sign Up</button>
         </form>
         </div>
     );

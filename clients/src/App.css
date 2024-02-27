@@ -9,7 +9,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   
-  color: #ffffff;
+  color: #1f1e1e;
   margin: 0;
 }
 
@@ -345,7 +345,7 @@ body {
 #sign-up-form {
   width: 300px;
   padding: 20px;
-  background-color: #aaa8a8;
+  background-color: #616060;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -475,20 +475,20 @@ margin-bottom: 20px;
   margin-bottom: 20px;
   color: #fcfafa;
   /* Dark Gray */
-  background-color: #1e90ff;
+  background-color: #5cb85c;
   /* Dodger Blue */
   padding: 10px 20px;
   /* Adjust padding as needed */
   border-radius: 8px;
   /* Adjust border-radius as needed */
-  border: 2px solid #0e67ec;
+  border: 2px solid #5cb85c;
   /* Border color and thickness */
   width: 100%;
   text-align: center;
 }
 
 #sign-up-form button:hover {
-  background-color: #007bff;
+  background-color: #5cb85c;
   /* Slightly Darker Blue */
 }
 
@@ -519,7 +519,7 @@ margin-bottom: 20px;
 }
 #loginbutton {
   color: #f4f8f6;
-  background-color: #343a40;
+  background-color: #85d8af;
   border: none;
   /* Remove border if not needed */
   padding: 10px 20px;
@@ -533,7 +533,7 @@ margin-bottom: 20px;
 #loginbutton:hover {
   color: #fff;
   /* Change text color on hover */
-  background-color: #85d8af;
+  background-color: #5cb85c;
   /* Change background color on hover */
 }
 
@@ -563,15 +563,15 @@ button {
 }
 
 button {
-  background-color: #1e90ff;
+  background-color: #5cb85c;
   /* Dodger Blue */
-  color: #0e67ec;
+  color: #5cb85c;
   font-weight: bold;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #007bff;
+  background-color: #5cb85c;
   /* Slightly Darker Blue */
 }
 
@@ -611,7 +611,7 @@ body {
 
 h1 {
   margin-bottom: 20px;
-  color: #333;
+  color: #1b1b1b;
   /* Dark Gray */
 }
 
@@ -649,7 +649,7 @@ button {
 }
 
 button {
-  background-color: #1e90ff;
+  background-color: #5cb85c;
   /* Dodger Blue */
   color: #e91717;
   font-weight: bold;
@@ -657,7 +657,7 @@ button {
 }
 
 button:hover {
-  background-color: #007bff;
+  background-color: #5cb85c;
   /* Slightly Darker Blue */
 }
 
@@ -677,13 +677,13 @@ button:hover {
   margin-bottom: 20px;
   color: #fcfafa;
   /* Dark Gray */
-  background-color: #1e90ff;
+  background-color: #5cb85c;
   /* Dodger Blue */
   padding: 10px 20px;
   /* Adjust padding as needed */
   border-radius: 8px;
   /* Adjust border-radius as needed */
-  border: 2px solid #0e67ec;
+  border: 2px solid #5cb85c;
   /* Border color and thickness */
   width: 100%;
   text-align: center;
@@ -693,15 +693,20 @@ button:hover {
   margin-bottom: 20px;
   color: #fcfafa;
   /* Dark Gray */
-  background-color: #1e90ff;
+  background-color: #5cb85c;
   /* Dodger Blue */
   padding: 10px 20px;
   /* Adjust padding as needed */
   border-radius: 8px;
   /* Adjust border-radius as needed */
-  border: 2px solid #0e67ec;
+
   /* Border color and thickness */
   width: 100%;
   text-align: center;
 }
 
+.landingpageh1 {
+  margin-bottom: 20px;
+  color: #1b1b1b;
+  /* Dark Gray */
+}

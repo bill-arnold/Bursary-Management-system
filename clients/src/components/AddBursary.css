@@ -1,4 +1,4 @@
-/* AddBursary.css */
+ AddBursary.css 
 
 #addBursaryForm {
     max-width: 900px;
@@ -9,10 +9,10 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-label {
+/*label {
     display: block;
     margin-bottom: 10px;
-}
+}*/
 
 #addBursaryForm input,
 textarea {
@@ -21,7 +21,7 @@ textarea {
     margin-top: 5px;
     box-sizing: border-box;
 }
-
+/*
 #addBursaryButton{
     background-color: #4caf50;
     color: white;
@@ -35,7 +35,7 @@ button:hover {
     background-color: #45a049;
 }
 
-/* logout.css */
+/* logout.css 
 .logout-button {
     background-color: #3498db;
     color: #fff;
@@ -49,4 +49,4 @@ button:hover {
 
 .logout-button:hover {
     background-color: #2980b9;
-}
+}*/
