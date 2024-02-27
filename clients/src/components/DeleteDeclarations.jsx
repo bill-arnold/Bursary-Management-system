@@ -42,7 +42,7 @@ const DeleteDeclaration = () => {
 
     return (
         <div>
-            <button onClick={handleToggleDropdown}>Delete Declaration</button>
+            <button id = 'loginbutton'onClick={handleToggleDropdown}>Delete Declaration</button>
             {showDropdown && (
                 <div>
                     <select value={selectedStudentId} onChange={e => setSelectedStudentId(e.target.value)} required>
@@ -51,7 +51,7 @@ const DeleteDeclaration = () => {
                             <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                         ))}
                     </select>
-                    <button onClick={handleDelete}>Delete Declaration</button>
+                    <button id = 'loginbutton' onClick={handleDelete}>Delete Declaration</button>
                 </div>
             )}
             {message && <p>{message}</p>}

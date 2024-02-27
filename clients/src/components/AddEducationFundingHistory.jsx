@@ -61,7 +61,7 @@ const AddEducationFundingHistory = () => {
                 <input type="date" name="end_date" value={fundingHistory.end_date} onChange={handleChange} placeholder="End Date" required />
                 <input type="text" name="funding_source" value={fundingHistory.funding_source} onChange={handleChange} placeholder="Funding Source" required />
                 <input type="text" name="details" value={fundingHistory.details} onChange={handleChange} placeholder="Details" required />
-                <button type="submit">Add Education Funding History</button>
+                <button id = 'loginbutton'type="submit">Add Education Funding History</button>
             </form>
             {message && <p>{message}</p>}
         </div>

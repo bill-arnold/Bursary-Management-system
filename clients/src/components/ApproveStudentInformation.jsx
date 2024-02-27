@@ -61,7 +61,7 @@ const ApproveStudentInformation = () => {
         />
         Not Approved
       </label>
-      <button onClick={handleApprove}>Update Approval Status</button>
+      <button id = 'loginbutton' onClick={handleApprove}>Update Approval Status</button>
       {message && <p>{message}</p>}
     </div>
   );

@@ -49,7 +49,7 @@ const AwardNeedyScore = () => {
         ))}
       </select>
       <input type="text" placeholder="Enter score" value={score} onChange={(e) => setScore(e.target.value)} />
-      <button onClick={handleAwardScore}>Award Needy Score</button>
+      <button id = 'loginbutton'onClick={handleAwardScore}>Award Needy Score</button>
       {message && <p>{message}</p>}
     </div>
   );

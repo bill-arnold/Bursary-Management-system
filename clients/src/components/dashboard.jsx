@@ -35,19 +35,20 @@ import DeleteDeclaration from './DeleteDeclarations';
 const Dashboard = () => {
     return (
         <div style={{ display: 'flex' }}>
-            <div style={{ width: '200px', backgroundColor: '#4e4e4e', height: '100vh', padding: '20px', color: '#fff' }}>
-                <h2 style={{ marginBottom: '30px' }}>Dashboard</h2>
+            <div style={{ width: '20%', backgroundColor: '#4caf50', height: '245vh', padding: '20px', color: '#fff' }}>
+                <h2 style={{position: 'fixed', top: 0  }}>Dashboard</h2>
                 <nav>
-                    <ul style={{ listStyle: 'none', padding: 0 }}>
-                        <li style={{ marginBottom: '20px' }}><Link to="/dashboard/applicants" style={{ textDecoration: 'none', color: '#fff' }}><FaUser style={{ marginRight: '10px' }} /> Applicants</Link></li>
-                        <li style={{ marginBottom: '20px' }}><Link to="/dashboard/sponsors" style={{ textDecoration: 'none', color: '#fff' }}><FaBriefcase style={{ marginRight: '10px' }} /> Sponsors</Link></li>
-                        <li><Link to="/dashboard/admin" style={{ textDecoration: 'none', color: '#fff' }}><FaCog style={{ marginRight: '10px' }} /> Admin</Link></li>
-                        <li style={{ position: 'absolute', bottom: '20px' }}><Link to="/logout" style={{ textDecoration: 'none', color: '#fff' }}><FaSignOutAlt style={{ marginRight: '10px' }} /> Logout</Link></li>
-                    </ul>
+<ul style={{ listStyle: 'none', padding: 0 }}>
+    <li style={{ position: 'fixed', top: '50px' }}><Link to="/dashboard/applicants" style={{ textDecoration: 'none', color: '#fff' }}><FaUser style={{ marginRight: '10px' }} /> Applicants</Link></li>
+    <li style={{ position: 'fixed', top: '100px' }}><Link to="/dashboard/sponsors" style={{ textDecoration: 'none', color: '#fff' }}><FaBriefcase style={{ marginRight: '10px' }} /> Sponsors</Link></li>
+    <li style={{ position: 'fixed', top: '150px' }}><Link to="/dashboard/admin" style={{ textDecoration: 'none', color: '#fff' }}><FaCog style={{ marginRight: '10px' }} /> Admin</Link></li>
+    <li style={{ position: 'fixed', bottom: '20px' }}><Link to="/logout" style={{ textDecoration: 'none', color: '#fff' }}><FaSignOutAlt style={{ marginRight: '10px' }} /> Logout</Link></li>
+</ul>
+
                 </nav>
             </div>
-            <div style={{ flex: 1, padding: '20px' }}>
-                <h1 style={{ marginBottom: '30px' }}>Bursary Management System</h1>
+            <div style={{ flex: 1, padding: '20px',backgroundColor: '#343a40'}} >
+                <h1 style={{ marginBottom: '30px',textAlign:'center',color:'white' }}>Bursary Management System</h1>
                 <Routes>
                     <Route path="applicants" element={<ApplicantsRoutes />} />
                     <Route path="sponsors" element={<SponsorsRoutes />} />

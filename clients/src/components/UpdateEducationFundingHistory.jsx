@@ -46,7 +46,7 @@ const UpdateEducationFundingHistory = () => {
 
     return (
         <div>
-            <button onClick={handleToggleDropdown}>Update Education Funding History</button>
+            <button id = 'loginbutton'onClick={handleToggleDropdown}>Update Education Funding History</button>
             {showDropdown && (
             <form onSubmit={handleSubmit}>
                 <select value={selectedStudent} onChange={e => setSelectedStudent(e.target.value)} required>
@@ -61,7 +61,7 @@ const UpdateEducationFundingHistory = () => {
                 <input type="date" name="end_date" value={fundingHistory.end_date} onChange={handleChange} placeholder="End Date" required />
                 <input type="text" name="funding_source" value={fundingHistory.funding_source} onChange={handleChange} placeholder="Funding Source" required />
                 <input type="text" name="details" value={fundingHistory.details} onChange={handleChange} placeholder="Details" required />
-                <button type="submit">Update Education Funding History</button>
+                <button id = 'loginbutton' type="submit">Update Education Funding History</button>
             </form>
             )}
             {message && <p>{message}</p>}

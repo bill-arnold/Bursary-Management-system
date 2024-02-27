@@ -65,7 +65,7 @@ const UpdateFamilyInformation = () => {
 
     return (
         <div>
-            <button onClick={handleToggleDropdown}>Update Family Information</button>
+            <button id = 'loginbutton'onClick={handleToggleDropdown}>Update Family Information</button>
             {showDropdown && (
             <form onSubmit={handleSubmit}>
                 {/* Dropdown to select student */}
@@ -87,7 +87,7 @@ const UpdateFamilyInformation = () => {
                 <input type="text" name="main_income_source" value={familyInfo.main_income_source} onChange={handleChange} placeholder="Main Income Source" required />
                 <input type="text" name="other_income_source" value={familyInfo.other_income_source} onChange={handleChange} placeholder="Other Income Source" required />
                 <input type="text" name="employed" value={familyInfo.employed} onChange={handleChange} placeholder="Employed" required />
-                <button type="submit">Update Family Information</button>
+                <button id = 'loginbutton'type="submit">Update Family Information</button>
             </form>
             )}
 

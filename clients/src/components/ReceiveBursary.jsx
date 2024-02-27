@@ -38,7 +38,7 @@ const ReceiveBursary = () => {
                     <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                 ))}
             </select>
-            <button onClick={handleClick}>Receive Bursary</button>
+            <button id = 'loginbutton'onClick={handleClick}>Receive Bursary</button>
             {errorMessage && <p>{errorMessage}</p>}
             {studentData && (
                 <div>

@@ -8,8 +8,8 @@
 /* Global Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #cbced6;
-  color: #333;
+  
+  color: #ffffff;
   margin: 0;
 }
 
@@ -518,7 +518,7 @@ margin-bottom: 20px;
   font-family: Arial, sans-serif;
 }
 #loginbutton {
-  color: #007bff;
+  color: #f4f8f6;
   background-color: #343a40;
   border: none;
   /* Remove border if not needed */
@@ -533,7 +533,7 @@ margin-bottom: 20px;
 #loginbutton:hover {
   color: #fff;
   /* Change text color on hover */
-  background-color: #007bff;
+  background-color: #85d8af;
   /* Change background color on hover */
 }
 
@@ -705,19 +705,3 @@ button:hover {
   text-align: center;
 }
 
-/*background*/
-.background-container {
-  /* Set the background image */
-  background-image: url('../assets/images/image.png');
-  
-
-  /* Set background size and positioning */
-  background-size: cover;
-  /* Cover the entire container */
-  background-position: center;
-  /* Center the background image */
-
-  /* Optionally, add more styles such as height */
-  height: 100vh;
-  /* Adjust the height as needed */
-}

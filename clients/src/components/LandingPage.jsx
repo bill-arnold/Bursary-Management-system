@@ -28,7 +28,7 @@ function LandingPage() {
   };
  
   return (
-  <div className="background-container">
+  
     <div className="LandingPage" >
       <header className="header">
         <div className="logo">BMS
@@ -75,7 +75,7 @@ function LandingPage() {
         </div>
       </footer>
     </div>
-    </div>
+   
   );
 }
 

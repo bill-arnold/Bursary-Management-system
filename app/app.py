@@ -22,7 +22,7 @@ def create_app():
     # Configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bursary.db'  # Use your own database URI
     app.config['JWT_SECRET_KEY'] = '8e491c3e401bbfc80d2bb16485ab0ccc35407b8773d683469afea3153ba3960a'
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=10)
 
 
     # Initialize extensions

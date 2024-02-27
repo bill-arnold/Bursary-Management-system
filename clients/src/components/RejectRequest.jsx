@@ -67,7 +67,7 @@ const RejectRequestComponent = () => {
           <option key={application.id} value={application.id}>{`${application.id} - ${application.contact_person}`}</option>
         ))}
       </select>
-      <button id="rejectRequestButton" onClick={handleClick}>Reject Request</button>
+      <button id = 'loginbutton' onClick={handleClick}>Reject Request</button>
       {message && <p id="rejectMessage">{message}</p>}
       {rejectedApplicant && (
         <div id="rejectedApplicantDetails">

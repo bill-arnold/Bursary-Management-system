@@ -22,7 +22,7 @@ const ViewAppliedBursaries = () => {
 
     return (
         <div>
-            <button onClick={handleClick}>View Applied Bursaries</button>
+            <button id = 'loginbutton'onClick={handleClick}>View Applied Bursaries</button>
             {showApplications && applications.map(application => (
                 <div className="application-card" key={application.id}>
                     <h2>{application.title}</h2>

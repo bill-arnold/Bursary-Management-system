@@ -27,7 +27,7 @@ const DeleteFamilyInformation = () => {
 
     return (
         <div>
-            <button onClick={() => setShowForm(!showForm)}> Delete Family Form</button>
+            <button id = 'loginbutton'onClick={() => setShowForm(!showForm)}> Delete Family Form</button>
             {showForm && (
                 <div>
                     <select value={selectedStudent} onChange={e => setSelectedStudent(e.target.value)} required>
@@ -36,7 +36,7 @@ const DeleteFamilyInformation = () => {
                             <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                         ))}
                     </select>
-                    <button onClick={handleDelete}>Delete Family Information</button>
+                    <button id = 'loginbutton'onClick={handleDelete}>Delete Family Information</button>
                     {message && <p>{message}</p>}
                 </div>
             )}

@@ -53,8 +53,8 @@ const VerifyStudentInformation = () => {
         <option value="verified">Verified</option>
         {/* Add additional options for other columns if needed */}
       </select>
-      <button onClick={() => handleVerify(true)}>Verify Student</button>
-      <button onClick={() => handleVerify(false)}>Not Verify Student</button>
+      <button  id = 'loginbutton'onClick={() => handleVerify(true)}>Verify Student</button>
+      <button id = 'loginbutton'onClick={() => handleVerify(false)}>Not Verify Student</button>
       {message && <p>{message}</p>}
     </div>
   );

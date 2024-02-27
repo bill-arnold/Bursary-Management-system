@@ -27,7 +27,7 @@ const DeleteStudent = () => {
 
     return (
         <div>
-            <button onClick={() => setShowForm(!showForm)}>Delete Student Form</button>
+            <button id = 'loginbutton'onClick={() => setShowForm(!showForm)}>Delete Student Form</button>
             {showForm && (
                 <div>
                     <select value={selectedStudent} onChange={e => setSelectedStudent(e.target.value)} required>
