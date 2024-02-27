@@ -233,7 +233,7 @@ body {
 }
 
 .header {
-  background-color: #1e90ff;
+  background-color: #4caf50;
   /* Dodger Blue */
   color: #fff;
   padding: 20px;
@@ -289,7 +289,7 @@ body {
 }
 
 .footer {
-  background-color: #1e90ff;
+  background-color: #4caf50;
   /* Dodger Blue */
   color: #fff;
   padding: 20px;
@@ -703,4 +703,21 @@ button:hover {
   /* Border color and thickness */
   width: 100%;
   text-align: center;
+}
+
+/*background*/
+.background-container {
+  /* Set the background image */
+  background-image: url('../assets/images/image.png');
+  
+
+  /* Set background size and positioning */
+  background-size: cover;
+  /* Cover the entire container */
+  background-position: center;
+  /* Center the background image */
+
+  /* Optionally, add more styles such as height */
+  height: 100vh;
+  /* Adjust the height as needed */
 }
