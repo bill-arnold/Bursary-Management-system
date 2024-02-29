@@ -1,10 +1,10 @@
 from flask import request
 from flask_restful import Resource
-from models import  StudentDetails, Bursary
+from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema,StudentDetails99Schema,NeedyScoreSchema,BeneficiarySchema
 from marshmallow import ValidationError
 import uuid
-from app import app , db
+from app import app 
 
 
 #from email_utils import send_student_approved_email, send_score_awarded_email
