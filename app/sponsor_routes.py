@@ -1,11 +1,11 @@
 # resources.py
 from flask import request
 from flask_restful import Resource
-from models import  StudentDetails, Bursary
+from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema
 from marshmallow import ValidationError
 import uuid
-from app import app,db
+
 
 #from email_utils import send_bursary_awarded_email, send_bursary_rejected_email
 
@@ -75,7 +75,3 @@ class RejectRequest(Resource):
             return {"message": "Request rejected successfully."}, 200
         return {"message": "Application not found."}, 404
     
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)

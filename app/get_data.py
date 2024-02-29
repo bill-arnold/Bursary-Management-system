@@ -1,9 +1,9 @@
 # get_data.py
 from flask import Flask,jsonify
 from flask_restful import Resource, Api
-from models import  User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, Bursary,Beneficiary
+from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, Bursary,Beneficiary
 from serializers import UserSchema, StudentDetailsSchema2, ParentGuardianSchema2, SiblingsSchema2, EducationFundingHistorySchema2, BursarySchema2,StudentDetailsSchema,BeneficiarySchema2
-from app import app,db
+
 
 class GetAllUsers(Resource):
     def get(self):
@@ -64,7 +64,3 @@ class GetAllBeneficiaries(Resource):
         result = schema.dump(beneficiaries)
         return result, 200
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
