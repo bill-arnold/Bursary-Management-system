@@ -103,6 +103,9 @@ def create_app():
     api.add_resource(DeleteDeclaration, '/delete-declaration/<string:student_id>')
     # Add the route for deleting declarations
     api.add_resource(UpdateEducationFundingHistory, '/update-education-funding-history/<string:student_id>')
+    #add beneficiary
+    #api.add_resource(BeneficiaryPost, '/beneficiary')
+
 
     
     return app 

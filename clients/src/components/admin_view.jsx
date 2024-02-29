@@ -57,7 +57,7 @@ const AdminView = () => {
           </option>
         ))}
       </select>
-      <button onClick={fetchDataForStudent}>Search</button>
+      <button id="loginbutton"onClick={fetchDataForStudent}>Search</button>
       <h2>Beneficiaries</h2>
       <ul>
         {beneficiaries.map((beneficiary, index) => (

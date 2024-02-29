@@ -9,7 +9,7 @@ import AddSiblingInformation from './AddSiblingInformation';
 import AddPersonalDetails from './AddPersonalDetails';
 import AddDeclarations from './AddDeclarations';
 import AddEducationFundingHistory from './AddEducationFundingHistory';
-import ReceiveBursary from './ReceiveBursary';
+//import ReceiveBursary from './ReceiveBursary';
 import VerifyStudentInformation from './VerifyStudentInformation';
 import ApproveStudentInformation from './ApproveStudentInformation';
 import AwardStudentNeedyScore from './AwardStudentNeedyScore';
@@ -33,6 +33,7 @@ import Logout from './logout';
 import DeleteDeclaration from './DeleteDeclarations';
 import AdminView from './admin_view';
 //import DisplayContent from './DisplayContent';
+
 
 const Dashboard = () => {
     const location = useLocation();
@@ -135,7 +136,7 @@ const ApplicantsRoutes = () => {
             <AddEducationFundingHistory />
             <h2 style={{ marginBottom: '20px' }}>Update Education Funding History</h2>
             <UpdateEducationFundingHistory />
-            <ReceiveBursary />
+            
         </>
     );
 }
@@ -174,7 +175,9 @@ const AdminRoutes = () => {
             <OnboardNewBursarySource />
             <h2 style={{ marginBottom: '20px' }}>View Applied Bursaries</h2>
             <ViewAppliedBursaries />
+            <h2 style={{ marginBottom: '20px' }}>View Student related data</h2>
             <AdminView />
+            
         </>
     );
 }
