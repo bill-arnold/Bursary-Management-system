@@ -1,12 +1,12 @@
-from app import db
+#from app import db
 from sqlalchemy.dialects.postgresql import UUID
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 import uuid
 from sqlalchemy import Enum
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-
+db = SQLAlchemy()
 
 def generate_uuid():
     return str(uuid.uuid4())
