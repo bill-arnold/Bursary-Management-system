@@ -1,14 +1,14 @@
 # resources.py
 from flask import request,make_response
 from flask_restful import Resource
-from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory,DeclarationDocuments,Beneficiary
+from models import  User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory,DeclarationDocuments,Beneficiary
 from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema, EducationFundingHistorySchema,DeclarationDocumentsSchema,BeneficiarySchema,UserSchema2
 from marshmallow import ValidationError
 import uuid
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token,get_jwt_identity, unset_jwt_cookies,jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from app import app,db
 
 class SignUp(Resource):
     def post(self):
@@ -233,4 +233,7 @@ class Logout(Resource):
         response = make_response({"message": "Logged out successfully."}, 200)
         unset_jwt_cookies(response)
         return response
-       
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)

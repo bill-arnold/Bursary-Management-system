@@ -1,10 +1,11 @@
 from flask import request
 from flask_restful import Resource
-from models import db, User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, DeclarationDocuments, Beneficiary
+from models import  User, StudentDetails, ParentGuardian, Siblings, EducationFundingHistory, DeclarationDocuments, Beneficiary
 from serializers import UserSchema, StudentDetailsSchema, ParentGuardianSchema, SiblingsSchema,DeclarationDocumentsSchema,EducationFundingHistorySchema,ResetPasswordSchema
 from marshmallow import ValidationError
 from uuid import UUID
 import uuid
+from app import app ,db
 #from sqlalchemy.exc import IntegrityError
 #from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -249,3 +250,8 @@ class UpdateEducationFundingHistory(Resource):
             return {"message": "Education funding history updated successfully."}, 200
         else:
             return {"message": "Education funding history not found."}, 404
+        
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
