@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { deleteDeclaration, getAllStudents } from './api';
 
 const DeleteDeclaration = () => {
@@ -21,6 +22,18 @@ const DeleteDeclaration = () => {
             alert('Please select a student.');
             return;
         }
+        const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to delete the declaration. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel',
+            });
+
+            if (!isConfirmed) {
+                return;
+            }
 
         const response = await deleteDeclaration(selectedStudentId);
         if (response) {
@@ -42,7 +55,7 @@ const DeleteDeclaration = () => {
 
     return (
         <div>
-            <button onClick={handleToggleDropdown}>Delete Declaration</button>
+            <button id = 'loginbutton'onClick={handleToggleDropdown}>Delete Declaration</button>
             {showDropdown && (
                 <div>
                     <select value={selectedStudentId} onChange={e => setSelectedStudentId(e.target.value)} required>
@@ -51,7 +64,7 @@ const DeleteDeclaration = () => {
                             <option key={student.id} value={student.id}>{student.name} ({student.id})</option>
                         ))}
                     </select>
-                    <button onClick={handleDelete}>Delete Declaration</button>
+                    <button id = 'loginbutton' onClick={handleDelete}>Delete Declaration 🗑️</button>
                 </div>
             )}
             {message && <p>{message}</p>}

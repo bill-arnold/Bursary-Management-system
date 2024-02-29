@@ -14,16 +14,10 @@ class SignUp(Resource):
     def post(self):
         schema = UserSchema()
         try:
-            data = schema.load(request.get_json())
+            data = request.get_json()  # Get the JSON data from the request
         except ValidationError as err:
             return err.messages, 400
 
-<<<<<<< HEAD
-        new_user = User(**data)
-        db.session.add(new_user)
-        db.session.commit()
-        return {"message": "User signed up successfully."}, 201
-=======
         # Create a new User instance with the hashed password
         new_user = User(
             name=data['name'],
@@ -41,9 +35,6 @@ class SignUp(Resource):
         except IntegrityError:
             db.session.rollback()
             return {"message": "A user with this email already exists."}, 400
-
-        
->>>>>>> faa18975c92fa27d23b122df08ad51fb69343911
 
 class AddContactDetails(Resource):
     def post(self, user_id):

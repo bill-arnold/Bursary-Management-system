@@ -69,7 +69,7 @@ const AwardBursaries = () => {
           <option key={application.id} value={application.id}>{`${application.id} - ${application.contact_person}`}</option>
         ))}
       </select>
-      <button id="awardBursaryButton" onClick={handleClick}>Award Bursary</button>
+      <button id = 'loginbutton' onClick={handleClick}>Award Bursary 💰</button>
       {message && <p id="awardMessage">{message}</p>}
       {awardedApplicant && (
         <div id="awardedApplicantDetails">

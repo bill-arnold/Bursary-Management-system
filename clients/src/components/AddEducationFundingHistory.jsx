@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { getAllStudents, addEducationFundingHistory } from './api';
 
 const AddEducationFundingHistory = () => {
@@ -28,6 +29,19 @@ const AddEducationFundingHistory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to add education funding history. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, add it!',
+                cancelButtonText: 'No, cancel',
+            });
+
+            if (!isConfirmed) {
+                return;
+            }
+
             const response = await addEducationFundingHistory(selectedStudent, fundingHistory);
             console.log(response.data);
             // Clear input fields after successful submission
@@ -40,9 +54,10 @@ const AddEducationFundingHistory = () => {
                 details: ''
             });
             // Display success message
-            setMessage('Education funding history added successfully.');
+            Swal.fire('Success', 'Education funding history added successfully.', 'success');
         } catch (error) {
             console.error(error);
+            Swal.fire('Error', 'An error occurred while adding education funding history.', 'error');
         }
     };
 
@@ -61,7 +76,7 @@ const AddEducationFundingHistory = () => {
                 <input type="date" name="end_date" value={fundingHistory.end_date} onChange={handleChange} placeholder="End Date" required />
                 <input type="text" name="funding_source" value={fundingHistory.funding_source} onChange={handleChange} placeholder="Funding Source" required />
                 <input type="text" name="details" value={fundingHistory.details} onChange={handleChange} placeholder="Details" required />
-                <button type="submit">Add Education Funding History</button>
+                <button id='loginbutton' type="submit">Add Education Funding History ✏️</button>
             </form>
             {message && <p>{message}</p>}
         </div>

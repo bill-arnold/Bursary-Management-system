@@ -1,6 +1,7 @@
 // AddBursary.jsx
-
+import Swal from 'sweetalert2';
 import React, { useState } from 'react';
+
 import { createNewBursary } from './api';
 import './AddBursary.css'; // Import the stylesheet
 
@@ -25,12 +26,25 @@ const AddBursary = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to add a new bursary. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, add it!',
+                cancelButtonText: 'No, cancel',
+            });
+
+            if (!isConfirmed) {
+                return;
+            }
+
             await createNewBursary(bursary);
-            alert('Bursary added successfully!');
+            Swal.fire('Success', 'Bursary added successfully!', 'success');
             setBursary(initialState); // Reset the state to clear the input fields
         } catch (error) {
             console.error(error);
-            alert('An error occurred while adding the bursary.');
+            Swal.fire('Error', 'An error occurred while adding the bursary.', 'error');
         }
     };
 
@@ -56,7 +70,7 @@ const AddBursary = () => {
                 Photo URL:
                 <input type="text" id="photoUrl" name="photo_url" value={bursary.photo_url} onChange={handleChange} />
             </label>
-            <button id="addBursaryButton" type="submit" >Add Bursary</button>
+            <button id = 'loginbutton' type="submit" >Add Bursary ✏️</button>
         </form>
     );
 };

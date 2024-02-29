@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { approveStudentInformation, getAllStudents } from './api';
 
 const ApproveStudentInformation = () => {
@@ -21,20 +22,33 @@ const ApproveStudentInformation = () => {
   };
 
   const handleApprove = async () => {
-  try {
-    if (approvalStatus === null) {
-      setMessage('Please select approval status.');
-      return;
-    }
+    try {
+      if (approvalStatus === null) {
+        setMessage('Please select approval status.');
+        return;
+      }
 
-    const response = await approveStudentInformation(selectedStudentId);
-    const approvalMessage = approvalStatus ? 'Approved' : 'Not Approved';
-    setMessage(`Student ${approvalMessage} successfully!`);
-  } catch (error) {
-    setMessage('An error occurred while updating the approval status.');
-    console.error(error);
-  }
-};
+      const { isConfirmed } = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to update the approval status. Continue?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, update it!',
+        cancelButtonText: 'No, cancel',
+      });
+
+      if (!isConfirmed) {
+        return;
+      }
+
+      const response = await approveStudentInformation(selectedStudentId);
+      const approvalMessage = approvalStatus ? 'Approved' : 'Not Approved';
+      setMessage(`Student ${approvalMessage} successfully!`);
+    } catch (error) {
+      setMessage('An error occurred while updating the approval status.');
+      console.error(error);
+    }
+  };
   return (
     <div>
       <select onChange={(e) => setSelectedStudentId(e.target.value)}>
@@ -61,7 +75,7 @@ const ApproveStudentInformation = () => {
         />
         Not Approved
       </label>
-      <button onClick={handleApprove}>Update Approval Status</button>
+      <button id = 'loginbutton' onClick={handleApprove}>Update Approval Status</button>
       {message && <p>{message}</p>}
     </div>
   );

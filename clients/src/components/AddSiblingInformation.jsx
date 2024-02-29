@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { addSiblingInformation, getAllStudents } from './api';
 
 const AddSiblingInformation = () => {
@@ -24,12 +25,25 @@ const AddSiblingInformation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const { isConfirmed } = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to add sibling information. Continue?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, add it!',
+                cancelButtonText: 'No, cancel',
+            });
+
+            if (!isConfirmed) {
+                return;
+            }
+
             const response = await addSiblingInformation(studentId, siblingInfo);
             console.log(response.data);
-            // Display success message here
-            alert('Sibling information added successfully!');
+            Swal.fire('Success', 'Sibling information added successfully!', 'success');
         } catch (error) {
             console.error(error);
+            Swal.fire('Error', 'Failed to add sibling information. Please try again.', 'error');
         }
     };
 
@@ -59,7 +73,7 @@ const AddSiblingInformation = () => {
             <input type="text" name="level" value={siblingInfo.level} onChange={handleChange} placeholder="Level" required />
             <input type="number" name="total_annual_fees" value={siblingInfo.total_annual_fees} onChange={handleChange} placeholder="Total Annual Fees" required />
             <input type="number" name="paid" value={siblingInfo.paid} onChange={handleChange} placeholder="Amount Paid" required />
-            <button type="submit">Add Sibling Information</button>
+            <button id = 'loginbutton'type="submit">Add Sibling Information ✏️</button>
         </form>
     );
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { updateSiblingInformation, getAllStudents } from './api';
 
 const UpdateSiblingInformation = () => {
@@ -25,10 +26,21 @@ const UpdateSiblingInformation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await updateSiblingInformation(studentId, siblingInfo);
-            console.log(response.data);
-            // Display success message here
-            alert('Sibling information updated successfully!');
+            const { isConfirmed } = await Swal.fire({
+                title: 'Confirm Update',
+                text: 'Are you sure you want to update sibling information?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'No, cancel'
+            });
+
+            if (isConfirmed) {
+                const response = await updateSiblingInformation(studentId, siblingInfo);
+                console.log(response.data);
+                // Display success message
+                alert('Sibling information updated successfully!');
+            }
         } catch (error) {
             console.error(error);
         }
@@ -52,25 +64,24 @@ const UpdateSiblingInformation = () => {
 
     return (
         <div>
-            <button onClick={handleToggleDropdown}>Update Sibling Information</button>
+            <button id="loginbutton" onClick={handleToggleDropdown}>Update Sibling Information</button>
             {showDropdown && (
-            
-        <form onSubmit={handleSubmit}>
-            <select value={studentId} onChange={handleStudentChange}>
-                <option value="">Select Student</option>
-                {students.map(student => (
-                    <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
-                ))}
-            </select>
-            <input type="text" name="name" value={siblingInfo.name} onChange={handleChange} placeholder="Sibling Name" required />
-            <input type="text" name="relationship" value={siblingInfo.relationship} onChange={handleChange} placeholder="Relationship" required />
-            <input type="text" name="institution" value={siblingInfo.institution} onChange={handleChange} placeholder="Institution" required />
-            <input type="text" name="level" value={siblingInfo.level} onChange={handleChange} placeholder="Level" required />
-            <input type="number" name="total_annual_fees" value={siblingInfo.total_annual_fees} onChange={handleChange} placeholder="Total Annual Fees" required />
-            <input type="number" name="paid" value={siblingInfo.paid} onChange={handleChange} placeholder="Amount Paid" required />
-            <button type="submit">Update Sibling Information</button>
-        </form>
-        )}
+                <form onSubmit={handleSubmit}>
+                    <select value={studentId} onChange={handleStudentChange}>
+                        <option value="">Select Student</option>
+                        {students.map(student => (
+                            <option key={student.id} value={student.id}>{`${student.id} - ${student.name}`}</option>
+                        ))}
+                    </select>
+                    <input type="text" name="name" value={siblingInfo.name} onChange={handleChange} placeholder="Sibling Name" required />
+                    <input type="text" name="relationship" value={siblingInfo.relationship} onChange={handleChange} placeholder="Relationship" required />
+                    <input type="text" name="institution" value={siblingInfo.institution} onChange={handleChange} placeholder="Institution" required />
+                    <input type="text" name="level" value={siblingInfo.level} onChange={handleChange} placeholder="Level" required />
+                    <input type="number" name="total_annual_fees" value={siblingInfo.total_annual_fees} onChange={handleChange} placeholder="Total Annual Fees" required />
+                    <input type="number" name="paid" value={siblingInfo.paid} onChange={handleChange} placeholder="Amount Paid" required />
+                    <button id="loginbutton" type="submit">Update Sibling Information 🔄</button>
+                </form>
+            )}
         </div>
     );
 };

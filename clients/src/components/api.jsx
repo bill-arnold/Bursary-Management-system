@@ -255,4 +255,9 @@ export const deleteDeclaration = (studentId) => {
 };
 
 
-
+//get for admin
+export const getAllBeneficiaries = () => axios.get(`${API_URL}/get-all-beneficiaries`);
+export const getAllParentGuardians = () => axios.get(`${API_URL}/get-all-parent-guardians`);
+export const getAllSiblings = () => axios.get(`${API_URL}/get-all-siblings`);
+export const getAllEducationFundingHistories = () => axios.get(`${API_URL}/get-all-education-funding-histories`);
+export const getAllBursaries = () => axios.get(`${API_URL}/get-all-bursaries`);
