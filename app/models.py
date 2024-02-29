@@ -4,9 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 import uuid
 from sqlalchemy import Enum
 from werkzeug.security import generate_password_hash, check_password_hash
-from config import db
+#from config import db
 
-#db = SQLAlchemy()
+db = SQLAlchemy()
 
 def generate_uuid():
     return str(uuid.uuid4())
