@@ -20,8 +20,8 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 api = Api(app) 
-db =SQLAlchemy(app)
-from models import db  # Importing db from models
+db = SQLAlchemy(app)
+#from models import db  # Importing db from models
 
     # Configuration
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")  # Use your own database URI

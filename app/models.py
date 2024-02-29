@@ -6,7 +6,7 @@ from sqlalchemy import Enum
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-#db = SQLAlchemy()
+
 
 def generate_uuid():
     return str(uuid.uuid4())
