@@ -4,7 +4,7 @@ from models import db, StudentDetails, Bursary
 from serializers import StudentDetailsSchema, BursarySchema,StudentDetails99Schema,NeedyScoreSchema,BeneficiarySchema
 from marshmallow import ValidationError
 import uuid
-from app import app 
+
 
 
 #from email_utils import send_student_approved_email, send_score_awarded_email
@@ -142,7 +142,3 @@ class OnboardBursary(Resource):
         #db.session.commit()
 
        # return {"message": "Beneficiary added successfully", "beneficiary_id": str(beneficiary.id)}, 201
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
