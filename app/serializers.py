@@ -95,3 +95,35 @@ class NeedyScoreSchema(Schema):
 class ResetPasswordSchema(Schema):
     model = User
     password = fields.Str(required=True)
+
+    #new schemas for get
+class ParentGuardianSchema2(SQLAlchemyAutoSchema):
+    class Meta:
+        model = ParentGuardian
+        include_fk = True
+    student_id = fields.UUID()
+
+class SiblingsSchema2(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Siblings
+        include_fk = True
+    student_id = fields.UUID()
+
+class EducationFundingHistorySchema2(SQLAlchemyAutoSchema):
+    class Meta:
+        model = EducationFundingHistory
+        include_fk = True
+    student_id = fields.UUID()
+
+class BursarySchema2(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Bursary
+        include_fk = True
+    student_id = fields.UUID()
+
+class BeneficiarySchema2(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Beneficiary
+        include_fk = True
+    student_id = fields.UUID()
+        

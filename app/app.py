@@ -8,7 +8,7 @@ from flask_restful import Api
 from admin_routes import VerifyStudent, ApproveStudent, AwardScore, ViewAppliedBursaries,OnboardBursary
 from sponsor_routes import AddBursary, ViewApplications, AwardBursary, ViewStudents, RejectRequest
 from applicant_routes import SignUp, AddContactDetails, AddFamilyInformation, AddSiblingInformation, AddInstitutionInformation, AddStudent, AddDeclarations, AddEducationFundingHistory, ReceiveBursary,Login,Logout
-from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2
+from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllEducationFundingHistories, GetAllBursaries,GetAllStudents2,GetAllBeneficiaries
 #import os
 from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateInstitutionInformation,UpdateStudent,ResetPassword,DeleteContactDetails,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent,UpdateDeclaration,DeleteDeclaration,UpdateEducationFundingHistory
 from flask_cors import CORS
@@ -67,6 +67,7 @@ def create_app():
     api.add_resource(ReceiveBursary, '/receive-bursary/<string:student_id>')
     #routes for get_data.py
     api.add_resource(GetAllUsers, '/get-all-users')
+    api.add_resource(GetAllBeneficiaries, '/get-all-beneficiaries')
     # StudentDetails routes
     #api.add_resource(GetAllStudentDetails, '/get-all-student-details')
     # ParentGuardian routes
