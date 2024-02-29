@@ -1,3 +1,4 @@
+import os 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 #from flask_bcrypt import Bcrypt
@@ -20,10 +21,10 @@ def create_app():
     from models import db  # Importing db from models
 
     # Configuration
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bursary.db'  # Use your own database URI
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")  # Use your own database URI
     app.config['JWT_SECRET_KEY'] = '8e491c3e401bbfc80d2bb16485ab0ccc35407b8773d683469afea3153ba3960a'
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=10)
-
+    #postgres://bursary_management_system_user:pXjau2poCcLh5UPVRvbrwyJ6atV4c2M6@dpg-cngdq0ljm4es73973mfg-a.oregon-postgres.render.com/bursary_management_system
 
     # Initialize extensions
     db.init_app(app)  # Initializing db with the Flask app
