@@ -1,4 +1,4 @@
-import os 
+#import os 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 #from flask_bcrypt import Bcrypt
@@ -13,14 +13,16 @@ from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllE
 #import os
 from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateStudent,ResetPassword,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent,UpdateDeclaration,DeleteDeclaration,UpdateEducationFundingHistory
 
-#from datetime import timedelta
+from datetime import timedelta
 from config import Config
-
+from config import db
 #def create_app():
 app = Flask(__name__)
 app.config.from_object(Config)
-api = Api(app) 
-db = SQLAlchemy(app)
+api = Api(app)
+
+#db = SQLAlchemy(app)
+#db.init_app(app) 
 #from models import db  # Importing db from models
 
     # Configuration
@@ -30,7 +32,7 @@ db = SQLAlchemy(app)
 #postgres://bursary_management_system_user:pXjau2poCcLh5UPVRvbrwyJ6atV4c2M6@dpg-cngdq0ljm4es73973mfg-a.oregon-postgres.render.com/bursary_management_system
 
 # Initialize extensions
-#db.init_app(app)  # Initializing db with the Flask app
+db.init_app(app)  # Initializing db with the Flask app
 migrate = Migrate(app, db)
 #bcrypt = Bcrypt(app)
 jwt = JWTManager(app)

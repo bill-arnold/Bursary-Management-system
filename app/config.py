@@ -1,6 +1,9 @@
 import os
 from datetime import timedelta
+from flask_sqlalchemy import  SQLAlchemy
 
+
+db = SQLAlchemy()
 class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")  # Use your own database URI
     SQLALCHEMY_TRACK_MODIFICATIONS = False
