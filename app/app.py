@@ -13,18 +13,20 @@ from get_data import GetAllUsers, GetAllParentGuardians, GetAllSiblings, GetAllE
 #import os
 from applicant_UD import UpdateContactDetails,UpdateFamilyInformation,UpdateSiblingInformation,UpdateStudent,ResetPassword,DeleteFamilyInformation, DeleteSiblingInformation,DeleteInstitutionInformation,DeleteStudent,UpdateDeclaration,DeleteDeclaration,UpdateEducationFundingHistory
 from flask_cors import CORS
-from datetime import timedelta
+#from datetime import timedelta
+from config import Config
 
 #def create_app():
 app = Flask(__name__)
+app.config.from_object(Config)
 api = Api(app) 
 db =SQLAlchemy(app)
 from models import db  # Importing db from models
 
     # Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")  # Use your own database URI
-app.config['JWT_SECRET_KEY'] = '8e491c3e401bbfc80d2bb16485ab0ccc35407b8773d683469afea3153ba3960a'
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=10)
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")  # Use your own database URI
+#app.config['JWT_SECRET_KEY'] = '8e491c3e401bbfc80d2bb16485ab0ccc35407b8773d683469afea3153ba3960a'
+#app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=10)
 #postgres://bursary_management_system_user:pXjau2poCcLh5UPVRvbrwyJ6atV4c2M6@dpg-cngdq0ljm4es73973mfg-a.oregon-postgres.render.com/bursary_management_system
 
 # Initialize extensions
