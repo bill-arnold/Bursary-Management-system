@@ -105,7 +105,7 @@ def create_app():
     api.add_resource(UpdateEducationFundingHistory, '/update-education-funding-history/<string:student_id>')
 
     
-    return app 
+    return app
+app = create_app() 
 if __name__ == "__main__":
-    app = create_app()
     app.run(debug=True)
