@@ -43,7 +43,7 @@ const ViewStudents = () => {
                 <div className="dropdown-content">
                     <input
                         type="text"
-                        placeholder="Search by name"
+                        placeholder=""
                         value={searchName}
                         onChange={handleSearch}
                     />

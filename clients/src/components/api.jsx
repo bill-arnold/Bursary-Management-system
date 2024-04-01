@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://bursary-management-system-b63z.onrender.com/';  // Replace with your API's base URL
-
+//const API_URL = 'https://bursary-management-system-b63z.onrender.com/';  // Replace with your API's base URL
+const API_URL = 'http://127.0.0.1:5555/';
 export const signUp = (userData) => axios.post(`${API_URL}/sign-up`, userData);
 //export const addContactDetails = (userId, contactDetails) => axios.post(`${API_URL}/add-contact-details/${userId}`, contactDetails);
 //export const addContactDetails = (userId, contactDetails) => axios.post(`${API_URL}/add-contact-details/${userId}`, contactDetails);
